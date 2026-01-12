@@ -8,11 +8,11 @@
 *.ctxt
 
 # IDE files
-.ideal/workspace.xml
-.ideal/usage.statistics.xml
-.ideal/dictionaries/
-.ideal/shelf/
-.ideal/tasks.xml
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/dictionaries/
+.idea/shelf/
+.idea/tasks.xml
 
 *.iml
 # Gradle files
