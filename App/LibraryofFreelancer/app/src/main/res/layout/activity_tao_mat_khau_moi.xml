@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C1B1B"
+    tools:context=".view.TaoMatKhauMoiActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:background="#1B1A1A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:text="Nhập mật khẩu mới"
+            android:textColor="#E2E0E0"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <EditText
+            android:id="@+id/edt_mat_khau_moi"
+            android:paddingLeft="20dp"
+            android:layout_width="342dp"
+            android:layout_height="68.61dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/custom_txt"
+            android:ems="10"
+            android:hint="Mật khẩu mới"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/textView2"
+            app:layout_constraintHorizontal_bias="0.526"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <EditText
+            android:id="@+id/edt_xac_nhan_mat_khau"
+            android:paddingLeft="20dp"
+            android:layout_width="342dp"
+            android:layout_height="68.61dp"
+            android:layout_marginTop="44dp"
+            android:background="@drawable/custom_txt"
+            android:ems="10"
+            android:hint="Nhập lại mật khẩu"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/edt_mat_khau_moi"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/edt_mat_khau_moi"
+            app:layout_constraintTop_toBottomOf="@+id/edt_mat_khau_moi" />
+
+        <Button
+            android:id="@+id/btn_xac_nhan"
+            android:layout_width="342dp"
+            android:layout_height="68.61dp"
+            android:layout_marginTop="48dp"
+            android:backgroundTint="#0C9300"
+            android:text="Xác nhận"
+            app:layout_constraintEnd_toEndOf="@+id/edt_xac_nhan_mat_khau"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/edt_xac_nhan_mat_khau"
+            app:layout_constraintTop_toBottomOf="@+id/edt_xac_nhan_mat_khau" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="194dp"
+            android:layout_height="167dp"
+            android:layout_marginStart="97dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="118dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
