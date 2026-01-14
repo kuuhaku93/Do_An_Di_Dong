@@ -1,6 +1,6 @@
 # Compiled class file
 *.class
-
+.env
 # Log file
 *.log
 .env
@@ -42,3 +42,5 @@ replay_pid*
 
 # Kotlin Gradle plugin data, see https://kotlinlang.org/docs/whatsnew20.html#new-directory-for-kotlin-data-in-gradle-projects
 .kotlin/
+__pycache__/
+*.pyc

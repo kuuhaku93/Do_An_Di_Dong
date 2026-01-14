@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Accounts,Jobs,Applications,Contacts,Employer_Reviews,Freelancer_Ratings,Portfolios,Item_types,Default_Items,Portfolio_Items,Custom_items,Skill_Categories,Skills,Portfolio_Skills,Job_Requirement_Skills
+from .models import Accounts,Jobs,Applications,Contacts,Employer_Reviews,Freelancer_Ratings,Portfolios,Item_types,Default_Items,Portfolio_Items,Custom_items,Skill_Categories,Skills,Portfolio_Skills,Job_Requirement_Skills,EmailOTP
 
 admin.site.register(Accounts)
 admin.site.register(Jobs)
@@ -16,3 +16,4 @@ admin.site.register(Skill_Categories)
 admin.site.register(Skills)
 admin.site.register(Portfolio_Skills)
 admin.site.register(Job_Requirement_Skills)
+admin.site.register(EmailOTP)
