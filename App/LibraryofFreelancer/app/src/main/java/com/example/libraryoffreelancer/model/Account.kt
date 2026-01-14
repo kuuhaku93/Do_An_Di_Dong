@@ -15,6 +15,7 @@ data class Account(
 data class LoginResult(
     @SerialName("success")
     var isSuccess: Boolean = false,
+    @SerialName("message")
     var message: String = "",
     var token: String? = "",
     var employer_status: Boolean? = false,

@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.HomeActivity">
+    tools:context=".view.freelancer.TrangChuFreeLancerActivity">
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -19,10 +19,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="394dp"
         android:layout_height="649dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
         android:background="#D9B4B4"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"

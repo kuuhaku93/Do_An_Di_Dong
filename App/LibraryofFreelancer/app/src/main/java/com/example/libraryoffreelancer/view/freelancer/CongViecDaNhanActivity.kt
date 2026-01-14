@@ -1,4 +1,4 @@
-package com.example.libraryoffreelancer.view
+package com.example.libraryoffreelancer.view.freelancer
 
 import android.content.Intent
 import android.os.Build
@@ -11,12 +11,12 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.libraryoffreelancer.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class AppliedJobActivity : AppCompatActivity() {
+class CongViecDaNhanActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_applied_job)
+        setContentView(R.layout.activity_cong_viec_da_nhan)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -31,7 +31,7 @@ class AppliedJobActivity : AppCompatActivity() {
             }
             when (item.itemId) {
                 R.id.nav_home -> {
-                    startActivity(Intent(applicationContext, HomeActivity::class.java))
+                    startActivity(Intent(applicationContext, TrangChuFreeLancerActivity::class.java))
                     overrideActivityTransition(
                         OVERRIDE_TRANSITION_OPEN,
                         android.R.anim.slide_out_right,
@@ -41,7 +41,7 @@ class AppliedJobActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_profile -> {
-                    startActivity(Intent(applicationContext, ProfileActivity::class.java))
+                    startActivity(Intent(applicationContext, HoSoFreelancerActivity::class.java))
                     overrideActivityTransition(
                         OVERRIDE_TRANSITION_OPEN,
                         android.R.anim.slide_out_right,

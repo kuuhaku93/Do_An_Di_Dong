@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1B1C1C"
-    tools:context=".view.MainActivity">
+    tools:context=".view.DangNhapActivity">
 
     <Button
         android:id="@+id/btn_dangNhap"

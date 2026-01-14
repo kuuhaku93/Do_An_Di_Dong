@@ -1,8 +1,6 @@
 package com.example.libraryoffreelancer.viewmodel
 
-import android.content.Intent
 import android.util.Log
-import android.widget.Toast
 import com.example.libraryoffreelancer.model.Account
 import com.example.libraryoffreelancer.model.Check
 import com.example.libraryoffreelancer.model.LoginResult
@@ -89,21 +87,5 @@ class AccountViewModel {
         thread.join()
         return result
     }
-    fun Logout(token:String): Unit{
-        val res= Request.Builder()
-            .url("$urlRoot/logout/")
-            .addHeader("Content-Type","application/json")
-            .addHeader("Authorization","Token $token")
-            .get()
-            .build()
 
-        val thread= Thread{
-            client.newCall(res).execute().use { response ->
-                val body=response.body?.string().orEmpty()
-                Log.d("md",body)
-            }
-        }
-        thread.start()
-        thread.join()
-    }
 }

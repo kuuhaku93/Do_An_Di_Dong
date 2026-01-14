@@ -15,16 +15,22 @@
         android:theme="@style/Theme.LibraryOfFreelancer"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".view.employer.CongViecDaDangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.employer.TrangChuEmployerActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.DangKyActivity"
             android:exported="false" />
         <activity
-            android:name=".view.LichSuCongViecActivity"
+            android:name=".view.freelancer.LichSuCongViecActivity"
             android:exported="false" />
         <activity
             android:name=".view.NutCaiDatActivity"
             android:exported="false" />
         <activity
-            android:name=".view.AppliedJobActivity"
+            android:name=".view.freelancer.CongViecDaNhanActivity"
             android:exported="false" />
         <activity
             android:name=".view.QuenMatKhauActivity"
@@ -36,14 +42,13 @@
             android:name=".view.NhapMaOTPActivity"
             android:exported="false" />
         <activity
-            android:name=".view.ProfileActivity"
+            android:name=".view.freelancer.HoSoFreelancerActivity"
             android:exported="false" />
         <activity
-            android:name=".view.HomeActivity"
-            android:exported="false">
-        </activity>
+            android:name=".view.freelancer.TrangChuFreeLancerActivity"
+            android:exported="false" />
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.DangNhapActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

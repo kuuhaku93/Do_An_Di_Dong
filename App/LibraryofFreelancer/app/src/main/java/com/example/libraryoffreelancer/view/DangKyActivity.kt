@@ -62,7 +62,7 @@ class DangKyActivity : AppCompatActivity() {
                             "Đăng nhập thành công!",
                             Toast.LENGTH_SHORT
                         ).show()
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, DangNhapActivity::class.java)
                         startActivity(intent)
                 }else{
                     Toast.makeText(this, check.message, Toast.LENGTH_LONG).show()
