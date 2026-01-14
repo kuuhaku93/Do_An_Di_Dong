@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+import datetime
 from django.contrib.auth.models import AbstractUser
 
 class Accounts(AbstractUser):
@@ -70,7 +72,7 @@ class Contacts(models.Model):
         verbose_name_plural = "Contacts"
 
     def __str__(self):
-        return f"Contact from {self.application_id.freelancer_id.full_name} <{self.application_id.job.employer_id.company_name}> to {self.application_id.job.title}"
+        return f"Contact from {self.application_id.freelancer_id.full_name}  to {self.application_id.job_id.title} for <{self.application_id.job_id.employer_id.company_name}>"
 
 class Employer_Reviews(models.Model):
     contact_id = models.OneToOneField(Contacts, on_delete=models.CASCADE)
@@ -84,7 +86,7 @@ class Employer_Reviews(models.Model):
         verbose_name_plural = "Employer Reviews"
 
     def __str__(self):
-        return f"Review by {self.contact_id.application_id.freelancer_id.full_name} for {self.contact_id.application_id.job_id.employer_id.company_name}"    
+        return f"Review by {self.contact_id.application_id.freelancer_id.full_name} for {self.contact_id.application_id.job_id.title} of {self.contact_id.application_id.job_id.employer_id.company_name}"    
 
 class Freelancer_Ratings(models.Model):
     contact_id = models.OneToOneField(Contacts, on_delete=models.CASCADE)
@@ -99,7 +101,7 @@ class Freelancer_Ratings(models.Model):
         verbose_name_plural = "Freelancer Ratings"
 
     def __str__(self):
-        return f"Rating by {self.contact_id.application_id.job.employer_id.company_name} for {self.contact_id.application_id.freelancer_id.full_name} at {self.contact_id.application_id.job.title}"
+        return f"Rating by {self.contact_id.application_id.job_id.employer_id.company_name} for {self.contact_id.application_id.freelancer_id.full_name} at {self.contact_id.application_id.job_id.title}"
 
 class Portfolios(models.Model):
     freelancer_id = models.OneToOneField(Accounts, on_delete=models.CASCADE)
@@ -205,3 +207,14 @@ class Job_Requirement_Skills(models.Model):
 
     def __str__(self):
         return f"{self.job_id.title} - {self.skill_id.skill_name}"
+
+class EmailOTP(models.Model):
+    user = models.ForeignKey(Accounts, on_delete=models.CASCADE)
+    otp_code = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def is_valid(self):
+        return timezone.now() < self.created_at + datetime.timedelta(minutes=5)
+
+    def __str__(self):
+        return f"opt of {self.user.full_name}"
