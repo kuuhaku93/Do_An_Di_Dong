@@ -2,7 +2,13 @@ package com.example.libraryoffreelancer.model
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.json.Json
 
+@Serializable
+data class APIResponse(
+    val success: Boolean,
+    val message: String
+)
 @Serializable
 data class Account(
     val username: String,
@@ -25,3 +31,7 @@ data class Check(
     var isSuccess: Boolean,
     var message: String,
 )
+
+val customJson= Json {
+    ignoreUnknownKeys = true
+}

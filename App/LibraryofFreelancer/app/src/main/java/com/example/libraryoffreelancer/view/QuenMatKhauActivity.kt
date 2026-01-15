@@ -5,11 +5,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.libraryoffreelancer.R
+import com.example.libraryoffreelancer.viewmodel.AccountViewModel
 
 class QuenMatKhauActivity : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation")
@@ -25,8 +27,20 @@ class QuenMatKhauActivity : AppCompatActivity() {
         val edt_quenMatkhau=findViewById<EditText>(R.id.edt_ma)
         val btn_xacNhan=findViewById<Button>(R.id.btn_xac_nhan_ma)
             btn_xacNhan.setOnClickListener {
-                val chuyen_trang= Intent(this, NhapMaOTPActivity::class.java)
-                startActivity(chuyen_trang)
+                if (edt_quenMatkhau.text.toString().isEmpty()){
+                    Toast.makeText(this, "Bạn chưa nhập Email", Toast.LENGTH_LONG).show()
+                    return@setOnClickListener
+                }
+                val accountViewModel = AccountViewModel()
+                val res=accountViewModel.Send_otp(edt_quenMatkhau.text.toString())
+                if(res.success){
+                    Toast.makeText(this, res.message, Toast.LENGTH_LONG).show()
+                    val chuyen_trang= Intent(this, NhapMaOTPActivity::class.java)
+                    startActivity(chuyen_trang)
+                }
+                else{
+                    Toast.makeText(this, res.message, Toast.LENGTH_LONG).show()
+                }
             }
     }
 }

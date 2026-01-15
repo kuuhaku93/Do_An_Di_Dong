@@ -106,9 +106,10 @@ class Account:
         except (ValueError, UnicodeDecodeError):
             return HttpResponseBadRequest(json.dumps({'success':False,'message': 'Invalid JSON'}), content_type='application/json')
         email = (data.get('email') or '').strip()
-        user=Accounts.objects.get(email=email)
-
-        print(f'{config('mail')},{config('app_password')}')
+        try:
+            user=Accounts.objects.get(email=email)
+        except Accounts.DoesNotExist:
+            return JsonResponse({'success': False, 'message': 'account does not exits'}, status=400)
         otp_code = str(random.randint(100000, 999999))
         EmailOTP.objects.create(user=user, otp_code=otp_code)
         subject = "Your OTP Code"
@@ -116,8 +117,26 @@ class Account:
         from_email = config('mail')
         recipient_list = [user.email]
         send_mail(subject, message, from_email, recipient_list)
-        print(f'send mail from {config('mail')} to {user.email}')
         return JsonResponse({'success':True,'message': 'OTP send successfully.'}, status=200)
+
+    @csrf_exempt
+    @require_POST
+    def check_otp(request):
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+        except (ValueError, UnicodeDecodeError):
+            return HttpResponseBadRequest(json.dumps({'message': 'Invalid JSON'}), content_type='application/json')
+        
+        otp_code = data.get('otp')
+        if not otp_code:
+            return JsonResponse({'success': False, 'message': 'Missing fields'}, status=400)
+        try:
+            otp_obj = EmailOTP.objects.filter(otp_code=otp_code).latest('created_at')
+        except EmailOTP.DoesNotExist:
+            return JsonResponse({'success': False, 'message': 'Invalid OTP'}, status=400)
+        if not otp_obj.is_valid():
+            return JsonResponse({'success': False, 'message': 'OTP expired'}, status=400)
+        return JsonResponse({'success': True, 'message': 'otp is correct '}, status=200)
 
     @csrf_exempt
     @require_POST

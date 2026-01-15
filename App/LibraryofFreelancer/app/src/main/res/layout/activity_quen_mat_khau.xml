@@ -36,14 +36,14 @@
 
     <EditText
         android:id="@+id/edt_ma"
-        android:paddingLeft="20dp"
         android:layout_width="342dp"
         android:layout_height="68.61dp"
         android:layout_marginTop="36dp"
         android:background="@drawable/custom_txt"
         android:ems="10"
         android:hint="Email"
-        android:inputType="text"
+        android:inputType="text|textEmailAddress"
+        android:paddingLeft="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"

@@ -8,6 +8,7 @@ urlpatterns = [
     path("logout", views.Account.logout, name="logout"),
     path("register", views.Account.register, name="register"),
     path("send_otp", views.Account.send_otp, name="send_otp"),
+    path("check_otp", views.Account.check_otp, name="check_otp"),
     path("change_password", views.Account.change_password, name="change_password"),
     path("load_list_application", views.General.load_list_application, name="load_list_application"),
     path("load_list_skill", views.General.load_list_skill, name="load_list_skill"),

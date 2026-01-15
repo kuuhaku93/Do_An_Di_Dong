@@ -1,9 +1,11 @@
 package com.example.libraryoffreelancer.viewmodel
 
 import android.util.Log
+import com.example.libraryoffreelancer.model.APIResponse
 import com.example.libraryoffreelancer.model.Account
 import com.example.libraryoffreelancer.model.Check
 import com.example.libraryoffreelancer.model.LoginResult
+import com.example.libraryoffreelancer.model.customJson
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -36,7 +38,7 @@ class AccountViewModel {
         val thread = Thread{
             client.newCall(req).execute().use { response ->
                 val body = response.body?.string().orEmpty()
-                Log.d("md",body)
+                Log.d("mydebug",body)
                 if (response.isSuccessful){
                     check.isSuccess=true
                     check.message = response.message
@@ -70,7 +72,7 @@ class AccountViewModel {
         val thread= Thread{
             client.newCall(req).execute().use { response ->
                 val body = response.body?.string().orEmpty()
-                Log.d("md", body)
+                Log.d("mydebug", body)
                 val data = json.decodeFromString<LoginResult>(body)
                 if (response.isSuccessful) {
                     result.isSuccess = true
@@ -88,4 +90,85 @@ class AccountViewModel {
         return result
     }
 
+    fun Send_otp(email:String): APIResponse {
+        var result = APIResponse(false, "")
+        val bodyString= JSONObject()
+            .put("email",email)
+            .toString()
+
+        val JSON= "application/json; charset=utf-8".toMediaType()
+        val body= bodyString.toRequestBody(JSON)
+
+        val req= Request.Builder()
+            .url("$urlRoot/send_otp")
+            .addHeader("Content-Type","application/json")
+            .post(body)
+            .build()
+
+        val thread= Thread{
+            client.newCall(req).execute().use { response ->
+                val body = response.body?.string().orEmpty()
+                Log.d("mydebug", body)
+                result = customJson.decodeFromString<APIResponse>(body)
+            }
+        }
+        thread.start()
+        thread.join()
+        return result
+    }
+
+    fun Check_otp(otp:String): APIResponse {
+        var result = APIResponse(false, "")
+        val bodyString= JSONObject()
+            .put("otp",otp)
+            .toString()
+
+        val JSON= "application/json; charset=utf-8".toMediaType()
+        val body= bodyString.toRequestBody(JSON)
+
+        val req= Request.Builder()
+            .url("$urlRoot/check_otp")
+            .addHeader("Content-Type","application/json")
+            .post(body)
+            .build()
+
+        val thread= Thread{
+            client.newCall(req).execute().use { response ->
+                val body = response.body?.string().orEmpty()
+                Log.d("mydebug", body)
+                result = customJson.decodeFromString<APIResponse>(body)
+            }
+        }
+        thread.start()
+        thread.join()
+        return result
+    }
+
+    fun Change_password(otp:String,new_password: String): APIResponse {
+        var result = APIResponse(false, "")
+        val bodyString= JSONObject()
+            .put("otp",otp)
+            .put("new_password",new_password)
+            .toString()
+
+        val JSON= "application/json; charset=utf-8".toMediaType()
+        val body= bodyString.toRequestBody(JSON)
+
+        val req= Request.Builder()
+            .url("$urlRoot/change_password")
+            .addHeader("Content-Type","application/json")
+            .post(body)
+            .build()
+
+        val thread= Thread{
+            client.newCall(req).execute().use { response ->
+                val body = response.body?.string().orEmpty()
+                Log.d("mydebug", body)
+                result = customJson.decodeFromString<APIResponse>(body)
+            }
+        }
+        thread.start()
+        thread.join()
+        return result
+    }
 }
