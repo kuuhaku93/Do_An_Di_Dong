@@ -8,7 +8,7 @@ from django.contrib.auth.hashers import make_password
 from datetime import datetime
 from django.core.mail import send_mail
 from django.db import transaction
-from django.db.models import Count,Q,Avg,OuterRef,Exists
+from django.db.models import Count,Q,Avg,OuterRef,Exists,F
 import json,random
 from decouple import config
 from .models import Accounts,Jobs,Applications,Contacts,Employer_Reviews,Freelancer_Ratings,Portfolios,Item_types,Default_Items,Portfolio_Items,Custom_items,Skill_Categories,Skills,Portfolio_Skills,Job_Requirement_Skills,EmailOTP
@@ -105,8 +105,8 @@ class Account:
             data = json.loads(request.body.decode('utf-8'))
         except (ValueError, UnicodeDecodeError):
             return HttpResponseBadRequest(json.dumps({'success':False,'message': 'Invalid JSON'}), content_type='application/json')
-        username = (data.get('username') or '').strip()
-        user=Accounts.objects.get(username=username)
+        email = (data.get('email') or '').strip()
+        user=Accounts.objects.get(email=email)
 
         print(f'{config('mail')},{config('app_password')}')
         otp_code = str(random.randint(100000, 999999))
@@ -127,21 +127,17 @@ class Account:
         except (ValueError, UnicodeDecodeError):
             return HttpResponseBadRequest(json.dumps({'message': 'Invalid JSON'}), content_type='application/json')
         
-        username = data.get('username')
         otp_code = data.get('otp')
         new_password = data.get('new_password')
-        if not all([username, otp_code, new_password]):
+        if not all([otp_code, new_password]):
             return JsonResponse({'success': False, 'message': 'Missing fields'}, status=400)
         try:
-            user = Accounts.objects.get(username=username)
-        except Accounts.DoesNotExist:
-            return JsonResponse({'success': False, 'message': 'User not found'}, status=404)
-        try:
-            otp_obj = EmailOTP.objects.filter(user=user, otp_code=otp_code).latest('created_at')
+            otp_obj = EmailOTP.objects.filter(otp_code=otp_code).latest('created_at')
         except EmailOTP.DoesNotExist:
             return JsonResponse({'success': False, 'message': 'Invalid OTP'}, status=400)
         if not otp_obj.is_valid():
             return JsonResponse({'success': False, 'message': 'OTP expired'}, status=400)
+        user=otp_obj.user
         user.password = make_password(new_password)
         user.save()
         return JsonResponse({'success': True, 'message': 'Password changed successfully'}, status=200)
@@ -252,7 +248,7 @@ class Freelancer:
             return JsonResponse({'success':False,'message': 'Token does not exist.'}, status=400)
 
         resuilt = []
-        list_jobs = list(Jobs.objects.filter(status=True).exclude(employer_id=freelancer).order_by('-created_at')[:50])
+        list_jobs = list(Jobs.objects.filter(status=True).exclude(employer_id=freelancer).filter(current_employee__lt=F('max_employee')).order_by('-created_at')[:50])
         for job in list_jobs:
             resuilt.append({
                 'id': job.id,
@@ -300,7 +296,7 @@ class Freelancer:
         except (TypeError, ValueError):
             return JsonResponse({'success':False,'message': 'requirement must be a list of integer ids'}, status=400)
 
-        qs=Jobs.objects.filter(status=True).exclude(employer_id=freelancer) 
+        qs=Jobs.objects.filter(status=True).exclude(employer_id=freelancer).filter(current_employee__lt=F('max_employee'))
         if keyword:
             qs = qs.filter(Q(title__icontains=keyword) | Q(employer_id__company_name__icontains=keyword))
         if requirement_ids:
