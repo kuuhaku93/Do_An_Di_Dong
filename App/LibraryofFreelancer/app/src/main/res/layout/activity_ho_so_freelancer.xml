@@ -63,7 +63,7 @@
                     />
 
                 <ImageButton
-                    android:id="@+id/btn_CaiDat"
+                    android:id="@+id/btn_CaiDat_Freelancer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -73,7 +73,7 @@
                     app:srcCompat="@drawable/baseline_settings_24" />
 
                 <ImageButton
-                    android:id="@+id/btn_ChinhSuaHoSo"
+                    android:id="@+id/btn_ChinhSuaHoSoFreelancer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#0C9300"

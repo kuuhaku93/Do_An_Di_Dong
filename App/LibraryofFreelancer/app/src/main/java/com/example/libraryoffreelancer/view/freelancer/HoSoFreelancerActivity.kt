@@ -19,19 +19,19 @@ class HoSoFreelancerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_trang_ho_so_employer)
+        setContentView(R.layout.activity_ho_so_freelancer)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val ChinhSua = findViewById<ImageButton>(R.id.btn_ChinhSuaHoSo)
+        val ChinhSua = findViewById<ImageButton>(R.id.btn_ChinhSuaHoSoEmployer)
         ChinhSua.setOnClickListener {
             startActivity(Intent(applicationContext, ChinhSuaHoSoFreelancerActivity::class.java))
         }
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNavigationView.selectedItemId = R.id.nav_profile
-        val btn_caiDat = findViewById<ImageButton>(R.id.btn_CaiDat)
+        val btn_caiDat = findViewById<ImageButton>(R.id.btn_CaiDat_Employer)
         btn_caiDat.setOnClickListener {
             val intent = Intent(this, NutCaiDatActivity::class.java)
             startActivity(intent)

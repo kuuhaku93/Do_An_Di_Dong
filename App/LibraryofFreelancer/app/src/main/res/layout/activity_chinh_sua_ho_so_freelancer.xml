@@ -155,33 +155,35 @@
             android:layout_marginTop="8dp"/>
 
         <!-- Mô tả -->
+
         <TextView
             android:id="@+id/textView17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="4dp"
             android:text="Mô tả"
             android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_NamChinhSuaHoSo"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"/>
+            app:layout_constraintTop_toBottomOf="@id/txt_NamChinhSuaHoSo" />
 
         <EditText
             android:id="@+id/txt_HovaTenTrangChinhSuaHoSo6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minHeight="100dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="32dp"
             android:background="@drawable/custum_txt_mota"
             android:ems="10"
             android:inputType="textMultiLine"
+            android:minHeight="100dp"
             android:paddingLeft="20dp"
             android:text="Mô tả chi tiết"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView17"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginTop="8dp"/>
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView17" />
 
         <Button
             android:id="@+id/btn_Luu_ChinhSuaHoSo"
