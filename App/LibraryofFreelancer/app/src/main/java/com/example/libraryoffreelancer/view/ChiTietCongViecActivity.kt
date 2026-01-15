@@ -13,7 +13,7 @@ class ChiTietCongViecActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_chi_tiet_cong_viec)
+        setContentView(R.layout.activity_chi_tiet_cong_viec_employer)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.layout_ChiTietCongViec)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)

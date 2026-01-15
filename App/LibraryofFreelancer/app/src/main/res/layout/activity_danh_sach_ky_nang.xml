@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    android:clickable="true">
+    android:clickable="true"
+
+    >
 
     <Button
         android:id="@+id/btn_huy_danhSachSkill"
