@@ -24,6 +24,14 @@ class HoSoFreelancerActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val btn_CaiDat = findViewById<ImageButton>(R.id.btn_CaiDat)
+        btn_CaiDat.setOnClickListener {
+            startActivity(Intent(applicationContext, NutCaiDatActivity::class.java))
+        }
+        val ChinhSua = findViewById<ImageButton>(R.id.btn_ChinhSuaHoSo)
+        ChinhSua.setOnClickListener {
+            startActivity(Intent(applicationContext, activity_ChinhSuaHoSo::class.java))
+        }
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNavigationView.selectedItemId = R.id.nav_profile
         val btn_caiDat = findViewById<ImageButton>(R.id.btn_settings)

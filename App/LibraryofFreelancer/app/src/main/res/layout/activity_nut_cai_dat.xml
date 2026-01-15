@@ -19,7 +19,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_back1" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_QuayLaiTrangHoSo" />
 
     <Button
         android:id="@+id/btn_lich_su"
@@ -36,15 +36,16 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_vai_tro" />
 
     <ImageButton
-        android:id="@+id/btn_back1"
+        android:id="@+id/btn_QuayLaiTrangHoSo"
         android:layout_width="68dp"
         android:layout_height="53dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="34dp"
-        android:background="#DE1515"
+        android:background="@null"
+        app:tint="#6C6C6C"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_home_24" />
+        app:srcCompat="@drawable/baseline_arrow_back_24" />
 
     <Button
         android:id="@+id/btn_dang_xuat"

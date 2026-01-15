@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -25,15 +26,26 @@ class TrangChuFreeLancerActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val token = intent.getStringExtra("token")
-        if (token.isNullOrEmpty()) {
+        val btn_loc_trangchu = findViewById<ImageButton>(R.id.btn_loc_trangchu)
+        btn_loc_trangchu.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            builder.setTitle("Thông báo")
-            builder.setMessage("Chưa có Access Token?")
-            builder.setPositiveButton("Yes") { dialog, which ->
-                startActivity(Intent(applicationContext, DangNhapActivity::class.java))
-                finish()
+            val dialogView = layoutInflater.inflate(R.layout.dialog_loctimkiem, null)
+            builder.setView(dialogView)
+
+            val alertDialog = builder.create()
+
+            val btnApDung = dialogView.findViewById<Button>(R.id.btn_ApDung)
+            val btnHuy = dialogView.findViewById<Button>(R.id.btn_huy)
+
+            btnApDung.setOnClickListener {
+
             }
+
+            btnHuy.setOnClickListener { alertDialog.dismiss() }
+
+            alertDialog.show()
+
+
         }
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNavigationView.selectedItemId = R.id.nav_home
@@ -64,11 +76,6 @@ class TrangChuFreeLancerActivity : AppCompatActivity() {
                 }
                 else -> false
             }
-        }
-        val btn_test=findViewById<Button>(R.id.btn_test)
-        btn_test.setOnClickListener {
-            val chuyenTrang= Intent(this, DangNhapActivity::class.java)
-            startActivity(chuyenTrang)
         }
     }
 }
