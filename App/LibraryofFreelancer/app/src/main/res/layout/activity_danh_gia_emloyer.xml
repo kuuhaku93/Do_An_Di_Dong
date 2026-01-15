@@ -87,7 +87,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_dang_danh_gia"
+        android:id="@+id/btn_dang_danh_gia_employer"
         android:layout_width="342dp"
         android:layout_height="68.61dp"
         android:layout_marginTop="24dp"

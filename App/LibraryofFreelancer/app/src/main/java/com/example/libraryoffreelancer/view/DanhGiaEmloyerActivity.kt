@@ -19,7 +19,7 @@ class DanhGiaEmloyerActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val btn_dang_danh_gia=findViewById<Button>(R.id.btn_dang_danh_gia)
+        val btn_dang_danh_gia=findViewById<Button>(R.id.btn_dang_danh_gia_freelancer)
         btn_dang_danh_gia.setOnClickListener {
             val test= Intent(this, DanhGiaEmloyerActivity::class.java)
             startActivity(test)

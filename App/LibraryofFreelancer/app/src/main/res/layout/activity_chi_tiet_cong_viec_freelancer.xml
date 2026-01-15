@@ -35,7 +35,7 @@
         app:tint="#0C9300" />
 
     <TextView
-        android:id="@+id/textView21"
+        android:id="@+id/txt_SoNguoiDaThamGia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/txt_TenCongViecEmployer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -90,7 +90,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_TenCongViecEmployer" />
 
     <TextView
         android:id="@+id/textView24"
@@ -267,7 +267,7 @@
         android:text="Thời gian:"
         android:textColor="#ffff"
         android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@+id/textView23"
+        app:layout_constraintStart_toStartOf="@+id/txt_TenCongViecEmployer"
         app:layout_constraintTop_toTopOf="@+id/txt_thoigiandeadline" />
 
     <TextView
@@ -278,10 +278,10 @@
         android:text="TextView"
         android:textColor="#4CAF50"
         android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView23"
+        app:layout_constraintEnd_toEndOf="@+id/txt_TenCongViecEmployer"
         app:layout_constraintHorizontal_bias="0.015"
         app:layout_constraintStart_toEndOf="@+id/textView32"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_TenCongViecEmployer" />
 
     <ImageView
         android:id="@+id/imageView6"
