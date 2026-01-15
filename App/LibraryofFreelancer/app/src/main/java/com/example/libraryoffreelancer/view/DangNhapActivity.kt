@@ -1,5 +1,6 @@
 package com.example.libraryoffreelancer.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -16,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.libraryoffreelancer.R
 import com.example.libraryoffreelancer.view.freelancer.TrangChuFreeLancerActivity
 import com.example.libraryoffreelancer.viewmodel.AccountViewModel
+import androidx.core.content.edit
 
 class DangNhapActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +65,10 @@ class DangNhapActivity : AppCompatActivity() {
                     "Freelancer" -> {
                         if (login.freelancer_status == true) {
                             val intent = Intent(this, TrangChuFreeLancerActivity::class.java)
-                            intent.putExtra("token", token)
+                            val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+                            sharedPref.edit {
+                                putString("token", token)
+                            }
                             startActivity(intent)
                             finish()
                         } else {

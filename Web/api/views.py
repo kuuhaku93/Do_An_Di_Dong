@@ -35,6 +35,9 @@ class Account:
             return JsonResponse({'success':False,'message': 'username or password is incorrect.'}, status=400)
         if not user.is_active:
             return JsonResponse({'success':False,'message': 'account is not active.'}, status=400)
+        if Token.objects.filter(user=user).exists():
+            return JsonResponse({'success':False,'message': 'account has been used.'}, status=400)
+
         token, created = Token.objects.get_or_create(user=user)
         account=Accounts.objects.get(id=user.id)
         return JsonResponse({'success':True,'token': token.key,'account_id':account.pk,'employer_status':account.employer_status,'freelancer_status':account.freelancer_status,'message': 'Logged in successfully.'}, status=200)

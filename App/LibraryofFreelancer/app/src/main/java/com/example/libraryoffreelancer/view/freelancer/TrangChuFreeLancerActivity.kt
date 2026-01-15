@@ -43,9 +43,8 @@ class TrangChuFreeLancerActivity : AppCompatActivity() {
             btnHuy.setOnClickListener { alertDialog.dismiss() }
 
             alertDialog.show()
-
-
         }
+        //val btn_
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNavigationView.selectedItemId = R.id.nav_home
         bottomNavigationView.setOnItemSelectedListener { item ->
