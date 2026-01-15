@@ -74,9 +74,12 @@ class AccountViewModel {
                 val body = response.body?.string().orEmpty()
                 Log.d("mydebug", body)
                 val data = json.decodeFromString<LoginResult>(body)
+                Log.d("mydebug", data.toString())
+                Log.d("mydebug", data.token.toString())
                 if (response.isSuccessful) {
                     result.isSuccess = true
                     result.message = "Đăng nhập thành công"
+                    result.token=data.token
                     result.freelancer_status = data.freelancer_status
                     result.employer_status = data.employer_status
                 } else {

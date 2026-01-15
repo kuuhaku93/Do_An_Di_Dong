@@ -59,16 +59,15 @@ class DangNhapActivity : AppCompatActivity() {
             Log.d("mydebug", login.toString())
             Log.d("mydebug", login.message)
             if (login.isSuccess) {
-                Log.d("mydebug", login.toString())
                 val token = login.token
+                val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+                sharedPref.edit {
+                    putString("token", token)
+                }
                 when (vaitrodachon) {
                     "Freelancer" -> {
                         if (login.freelancer_status == true) {
                             val intent = Intent(this, TrangChuFreeLancerActivity::class.java)
-                            val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
-                            sharedPref.edit {
-                                putString("token", token)
-                            }
                             startActivity(intent)
                             finish()
                         } else {

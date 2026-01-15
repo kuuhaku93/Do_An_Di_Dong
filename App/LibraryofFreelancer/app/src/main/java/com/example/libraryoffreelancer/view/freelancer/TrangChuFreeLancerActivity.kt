@@ -1,8 +1,10 @@
 package com.example.libraryoffreelancer.view.freelancer
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
@@ -11,10 +13,16 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.libraryoffreelancer.R
+import com.example.libraryoffreelancer.view.ChiTietCongViecActivity
+import com.example.libraryoffreelancer.view.adapter.OnItemClickListener
+import com.example.libraryoffreelancer.view.adapter.TrangChuFreelancerAdapter
+import com.example.libraryoffreelancer.viewmodel.FreelancerViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class TrangChuFreeLancerActivity : AppCompatActivity() {
+class TrangChuFreeLancerActivity : AppCompatActivity(), OnItemClickListener {
     @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +33,9 @@ class TrangChuFreeLancerActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+        val token=sharedPref.getString("token","").orEmpty()
+
         val btn_loc_trangchu = findViewById<ImageButton>(R.id.btn_loc_trangchu)
         btn_loc_trangchu.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -44,7 +55,12 @@ class TrangChuFreeLancerActivity : AppCompatActivity() {
 
             alertDialog.show()
         }
-        //val btn_
+        val rev_CongViecFreelancer = findViewById<RecyclerView>(R.id.rcv_CongViecFreelancer)
+        rev_CongViecFreelancer.layoutManager = LinearLayoutManager(this)
+        val freelancerViewModel= FreelancerViewModel()
+        Log.d("mydebug",token)
+        rev_CongViecFreelancer.adapter= TrangChuFreelancerAdapter(freelancerViewModel.Load_list_job(token),this)
+
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNavigationView.selectedItemId = R.id.nav_home
         bottomNavigationView.setOnItemSelectedListener { item ->
@@ -75,5 +91,11 @@ class TrangChuFreeLancerActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    override fun onItemClick(position: Int) {
+        val intent = Intent(this, ChiTietCongViecActivity::class.java)
+        intent.putExtra("position", position)
+        startActivity(intent)
     }
 }

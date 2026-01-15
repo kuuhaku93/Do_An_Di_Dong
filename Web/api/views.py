@@ -35,8 +35,8 @@ class Account:
             return JsonResponse({'success':False,'message': 'username or password is incorrect.'}, status=400)
         if not user.is_active:
             return JsonResponse({'success':False,'message': 'account is not active.'}, status=400)
-        if Token.objects.filter(user=user).exists():
-            return JsonResponse({'success':False,'message': 'account has been used.'}, status=400)
+        # if Token.objects.filter(user=user).exists():
+        #     return JsonResponse({'success':False,'message': 'account has been used.'}, status=400)
 
         token, created = Token.objects.get_or_create(user=user)
         account=Accounts.objects.get(id=user.id)
@@ -237,10 +237,10 @@ class General:
         job_id = data.get('job_id')
         if not job_id:
             return JsonResponse({'success':False,'message': 'job_id is required.'}, status=400)
-        resuilt = []
+        result = []
         applications = list(Applications.objects.filter(job_id=job_id).order_by('-applied_date'))
         for application in applications:
-            resuilt.append({
+            result.append({
                 'id': application.id,
                 'freelancer_id':application.freelancer_id.pk,
                 'freelancer_name': application.freelancer_id.full_name,
@@ -250,7 +250,7 @@ class General:
                 'applied_date': application.applied_date,
                 'skills': [skill.skill.skill_name for skill in Portfolio_Skills.objects.filter(portfolio_id__freelancer_id=application.freelancer_id)]
             })
-        return JsonResponse({'success':True,'applications': resuilt}, status=200)
+        return JsonResponse({'success':True,'applications': result}, status=200)
         
 class Freelancer:
 
@@ -269,10 +269,10 @@ class Freelancer:
         except Token.DoesNotExist:
             return JsonResponse({'success':False,'message': 'Token does not exist.'}, status=400)
 
-        resuilt = []
+        result = []
         list_jobs = list(Jobs.objects.filter(status=True).exclude(employer_id=freelancer).filter(current_employee__lt=F('max_employee')).order_by('-created_at')[:50])
         for job in list_jobs:
-            resuilt.append({
+            result.append({
                 'id': job.id,
                 'employer_id':job.employer_id.pk,
                 'employer_name': job.employer_id.company_name,
@@ -289,7 +289,7 @@ class Freelancer:
                 'requirements': [skill.skill_id.skill_name for skill in Job_Requirement_Skills.objects.filter(job_id=job)],
                 'is_applied': Applications.objects.filter(job_id=job, freelancer_id=freelancer).exists()
             })
-        return JsonResponse({'success':True,'jobs': resuilt}, status=200)
+        return JsonResponse({'success':True,'jobs': result}, status=200)
 
     @csrf_exempt
     @require_POST
@@ -326,9 +326,9 @@ class Freelancer:
                .annotate(matching_skills=Count('job_requirement_skills__skill_id', distinct=True)) \
                .filter(matching_skills=len(requirement_ids))
         qs = qs.order_by('-created_at')[:50]
-        resuilt = []
+        result = []
         for job in qs:
-            resuilt.append({
+            result.append({
                 'id': job.id,
                 'employer_name': job.employer_id.company_name,
                 'avatar': job.employer_id.company_logo,
@@ -344,7 +344,7 @@ class Freelancer:
                 'requirements': [skill.skill_id.skill_name for skill in Job_Requirement_Skills.objects.filter(job_id=job)],
                 'is_applied': Applications.objects.filter(job_id=job, freelancer_id=freelancer).exists()
             })
-        return JsonResponse({'success':True,'jobs': resuilt}, status=200)
+        return JsonResponse({'success':True,'jobs': result}, status=200)
 
     @csrf_exempt
     @require_POST
@@ -604,9 +604,9 @@ class Freelancer:
         review_exists = Employer_Reviews.objects.filter(contact_id=OuterRef('pk'))
         contacts_qs = contacts_base.annotate(has_review=Exists(review_exists)).filter(Q(current_status=True) | (Q(current_status=False) & Q(has_review=False))).select_related('application_id__job_id','application_id__freelancer_id').order_by('-created_at').distinct()
 
-        resuilt = []
+        result = []
         for contact in contacts_qs:
-            resuilt.append({
+            result.append({
                 'contact_id':contact.pk,
                 'job_title':contact.application_id.job_id.title,
                 'company_name':contact.application_id.job_id.employer_id.company_name,
@@ -615,7 +615,7 @@ class Freelancer:
                 'is_rating':bool(contact.has_review)
             })
 
-        return JsonResponse({'success':True,'jobs': resuilt}, status=200)
+        return JsonResponse({'success':True,'jobs': result}, status=200)
         
     @csrf_exempt
     @require_POST
@@ -690,9 +690,9 @@ class Freelancer:
         rating_qs = Freelancer_Ratings.objects.filter(contact_id__application_id__freelancer_id=freelancer,status=True).select_related('contact_id__application_id__job_id__employer_id','contact_id__application_id__job_id','contact_id__application_id__freelancer_id','contact_id__application_id','contact_id').distinct()
         if not rating_qs.exists():
             return JsonResponse({'success': True, 'ratings': []}, status=200)
-        resuilt = []
+        result = []
         for rating in rating_qs:
-            resuilt.append({
+            result.append({
                 'rating_id':rating.pk,
                 'comment':rating.comment,
                 'rating':rating.rating,
@@ -702,7 +702,7 @@ class Freelancer:
                 'freelancer_name': rating.contact_id.application_id.freelancer_id.full_name,
                 'freelancer_avatar':rating.contact_id.application_id.freelancer_id.avatar,
             })
-        return JsonResponse({'success':True,'ratings': resuilt}, status=200)
+        return JsonResponse({'success':True,'ratings': result}, status=200)
         
     @csrf_exempt
     @require_GET
@@ -722,13 +722,13 @@ class Freelancer:
         contacts_qs = Contacts.objects.filter(application_id__freelancer_id=freelancer,current_status=False).select_related('application_id__job_id','application_id__freelancer_id','application_id').distinct()
         if not contacts_qs.exists():
             return JsonResponse({'success': True, 'contacts': []}, status=200)
-        resuilt = []
+        result = []
         for contact in contacts_qs:
             rating=Freelancer_Ratings.objects.get(contact_id=contact)
             review=Employer_Reviews.objects.get(contact_id=contact)
             job = contact.application_id.job_id
             employer=contact.application_id.job_id.employer_id
-            resuilt.append({
+            result.append({
                 'contact_id':contact.pk,
                 'job_title':job.title,
                 'score':review.score,
@@ -739,7 +739,7 @@ class Freelancer:
                 'start_date': contact.start_date,
                 'end_date': contact.end_date
             })
-        return JsonResponse({'success':True,'jobs': resuilt}, status=200)
+        return JsonResponse({'success':True,'jobs': result}, status=200)
         
 class Employer:
     @csrf_exempt
@@ -757,10 +757,10 @@ class Employer:
             return JsonResponse({'success':False,'message': 'Token does not exist.'}, status=400)
         employer=token.user
 
-        resuilt = []
+        result = []
         list_jobs = list(Jobs.objects.filter(status=True,employer_id=employer).order_by('-created_at')[:20])
         for job in list_jobs:
-            resuilt.append({
+            result.append({
                 'id': job.id,
                 'employer_name': job.employer_id.company_name,
                 'avatar': job.employer_id.company_logo,
@@ -775,7 +775,7 @@ class Employer:
                 'current_employee': job.current_employee,
                 'requirements': [skill.skill_id.skill_name for skill in Job_Requirement_Skills.objects.filter(job_id=job)],
             })
-        return JsonResponse({'success':True,'jobs': resuilt}, status=200)
+        return JsonResponse({'success':True,'jobs': result}, status=200)
 
     @csrf_exempt
     @require_POST
@@ -952,11 +952,11 @@ class Employer:
         if not contacts_qs.exists():
             return JsonResponse({'success': True, 'jobs': []}, status=200)
 
-        resuilt = []
+        result = []
         for contact in contacts_qs:
             job = contact.application_id.job_id
             freelancer = contact.application_id.freelancer_id
-            resuilt.append({
+            result.append({
                 'contact_id':contact.pk,
                 'job_title':job.title,
                 'company_name':job.employer_id.company_name,
@@ -967,7 +967,7 @@ class Employer:
                 'end_date': contact.end_date.isoformat() if contact.end_date else None,
             })
 
-        return JsonResponse({'success':True,'jobs': resuilt}, status=200)
+        return JsonResponse({'success':True,'jobs': result}, status=200)
         
     @csrf_exempt
     @require_POST
@@ -1057,9 +1057,9 @@ class Employer:
         review_qs = Employer_Reviews.objects.filter(contact_id__application_id__job_id__employer_id=employer_id,status=True).select_related('contact_id__application_id__job_id','contact_id__application_id__freelancer_id','contact_id__application_id','contact_id').distinct()
         if not review_qs.exists():
             return JsonResponse({'success': True, 'reviews': []}, status=200)
-        resuilt = []
+        result = []
         for review in review_qs:
-            resuilt.append({
+            result.append({
                 'review_id':review.pk,
                 'comment':review.comment,
                 'score':review.score,
@@ -1068,7 +1068,7 @@ class Employer:
                 'freelancer_name': review.contact_id.application_id.freelancer_id.full_name,
                 'freelancer_avatar':review.contact_id.application_id.freelancer_id.avatar,
             })
-        return JsonResponse({'success':True,'reviews': resuilt}, status=200)
+        return JsonResponse({'success':True,'reviews': result}, status=200)
         
     @csrf_exempt
     @require_GET
@@ -1088,12 +1088,12 @@ class Employer:
         contacts_qs = Contacts.objects.filter(application_id__freelancer_id=freelancer,current_status=False).select_related('application_id__job_id','application_id__freelancer_id','application_id').distinct()
         if not contacts_qs.exists():
             return JsonResponse({'success': True, 'contacts': []}, status=200)
-        resuilt = []
+        result = []
         for contact in contacts_qs:
             review=Employer_Reviews.objects.get(contact_id=contact)
             job = contact.application_id.job_id
             freelancer = contact.application_id.freelancer_id
-            resuilt.append({
+            result.append({
                 'contact_id':contact.pk,
                 'job_title':job.title,
                 'score':review.score,
@@ -1105,5 +1105,5 @@ class Employer:
                 'start_date': contact.start_date,
                 'end_date': contact.end_date
             })
-        return JsonResponse({'success':True,'jobs': resuilt}, status=200)
+        return JsonResponse({'success':True,'jobs': result}, status=200)
        

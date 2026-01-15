@@ -34,4 +34,5 @@ data class Check(
 
 val customJson= Json {
     ignoreUnknownKeys = true
+    coerceInputValues = true
 }

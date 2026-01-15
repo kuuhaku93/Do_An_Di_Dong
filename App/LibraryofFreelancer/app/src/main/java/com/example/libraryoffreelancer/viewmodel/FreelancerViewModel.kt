@@ -4,7 +4,10 @@ import android.util.Log
 import com.example.libraryoffreelancer.model.Account
 import com.example.libraryoffreelancer.model.Check
 import com.example.libraryoffreelancer.model.Job
+import com.example.libraryoffreelancer.model.ListJobsRespone
 import com.example.libraryoffreelancer.model.customJson
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -14,6 +17,7 @@ class FreelancerViewModel {
     val  client=okhttp3.OkHttpClient()
     val urlRoot="http://10.0.2.2:8000/api/freelancer"
     fun Load_list_job(token: String): List<Job>{
+        Log.d("mydebug",token)
         var listJob : List<Job> = emptyList()
         val req = Request.Builder()
             .url("$urlRoot/load_list_job")
@@ -26,7 +30,16 @@ class FreelancerViewModel {
                 val body = response.body?.string().orEmpty()
                 Log.d("mydebug",body)
                 if (response.isSuccessful){
-                    listJob = customJson.decodeFromString<List<Job>>(body)
+                    val listJobsRespone = customJson.decodeFromString<ListJobsRespone>(body)
+                    if (listJobsRespone.success) {
+                        listJob = listJobsRespone.jobs
+                    }
+                    else{
+                        Log.d("mydebug",listJobsRespone.message)
+                    }
+                }
+                else{
+                    Log.d("mydebug",response.message)
                 }
             }
         }

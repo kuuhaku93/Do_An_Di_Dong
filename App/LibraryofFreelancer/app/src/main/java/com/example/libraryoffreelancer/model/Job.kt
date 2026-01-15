@@ -12,16 +12,23 @@ data class Skill(
 data class Job(
     val id: Int,
     val employer_name:String,
-    val avatar:String,
-    val title: String,
-    val description: String,
-    val salalry_max: Double,
-    val salalry_min: Double,
+    val avatar:String = "https://tse4.mm.bing.net/th/id/OIP.xsKDhQCvjJdx9f2U-SIT5wHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+    val title: String=" ",
+    val description: String = " ",
+    val salary_max: Double,
+    val salary_min: Double,
     val publish_date: String,
-    val location:String,
-    val dateline:String,
+    val location:String = " ",
+    val deadline:String,
     val max_employee:Int,
     val current_employee:Int,
     val requirements: List<String>,
     val is_applied: Boolean,
+)
+
+@Serializable
+data class ListJobsRespone(
+    val success: Boolean,
+    val jobs: List<Job>,
+    val message: String=" "
 )

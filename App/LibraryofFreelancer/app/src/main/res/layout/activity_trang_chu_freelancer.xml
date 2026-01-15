@@ -18,7 +18,7 @@
         app:itemTextColor="@color/bottom_nav_text_selector"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav_menu"/>
+        app:menu="@menu/bottom_nav_menu" />
 
     <EditText
         android:id="@+id/txt_timkiem_trangchu"
@@ -78,6 +78,7 @@
         android:layout_width="409dp"
         android:layout_height="526dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="@+id/textView9"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="@+id/textView9"
