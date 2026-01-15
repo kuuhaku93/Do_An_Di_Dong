@@ -47,7 +47,7 @@
 
                 <!-- Avatar chồng lên header -->
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/image_anhdaidien"
+                    android:id="@+id/image_freelancer"
                     android:layout_width="145dp"
                     android:layout_height="145dp"
                     android:layout_gravity="center_horizontal"
@@ -81,7 +81,7 @@
 
             <!-- Tên -->
             <TextView
-                android:id="@+id/txt_HovaTen"
+                android:id="@+id/txt_companyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -92,7 +92,7 @@
 
             <!-- Mô tả -->
             <TextView
-                android:id="@+id/txt_mota"
+                android:id="@+id/txt_mota_trangChuEmployer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -136,7 +136,7 @@
 
                 <!-- Label SĐT bên trái -->
                 <TextView
-                    android:id="@+id/label_sdt"
+                    android:id="@+id/label_diaChi_TrangChuEmployer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SĐT:"
@@ -147,7 +147,7 @@
 
                 <!-- Nội dung SĐT bên phải hẳn -->
                 <TextView
-                    android:id="@+id/txt_sdt"
+                    android:id="@+id/txt_phone_TrangChuEmployer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0987654321"

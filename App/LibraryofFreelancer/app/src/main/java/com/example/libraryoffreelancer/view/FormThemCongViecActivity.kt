@@ -28,6 +28,17 @@ class FormThemCongViecActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
+        val btn_return = findViewById<TextView>(R.id.txt_return_FormThemCongViec)
+        val txt_jobname = findViewById<TextView>(R.id.txt_jobname)
+        val txt_luong_toi_thieu = findViewById<TextView>(R.id.txt_luong_toi_thieu)
+        val txt_luong_toi_da = findViewById<TextView>(R.id.txt_luong_toi_da)
+        val txt_deadline = findViewById<TextView>(R.id.txt_deadline)
+        val txt_deadline2 = findViewById<TextView>(R.id.txt_deadline2)
+        val txt_moTa_congViec = findViewById<TextView>(R.id.txt_moTa_congViec)
+        val txt_viTri_congViec = findViewById<TextView>(R.id.txt_viTri_congViec)
+        val txt_position = findViewById<TextView>(R.id.txt_position)
+
+
 
     }
 }

@@ -1,0 +1,28 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="60dp"
+    android:viewportWidth="100"
+    android:viewportHeight="60">
+
+    <!-- Green Background -->
+    <path
+        android:fillColor="#0C9300"
+        android:pathData="M15,5 H85 A10,10 0 0 1 95,15 V45 A10,10 0 0 1 85,55 H15 A10,10 0 0 1 5,45 V15 A10,10 0 0 1 15,5 Z" />
+
+    <!-- White Podium -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M38,48 H62 V46 C62,44 60,44 60,44 H56 V38 C56,36 54,36 54,36 H46 C44,36 44,38 44,38 V42 H40 C38,42 38,44 38,44 V48" />
+
+    <!-- White Star -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M50,26 L51.5,29.5 H55 L52.5,31.5 L53.5,35 L50,33 L46.5,35 L47.5,31.5 L45,29.5 H48.5 Z" />
+
+</vector>

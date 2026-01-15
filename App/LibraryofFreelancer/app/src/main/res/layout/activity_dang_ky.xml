@@ -71,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edt_SDT" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/img_time"
         android:layout_width="140dp"
         android:layout_height="113dp"
         android:layout_marginStart="135dp"
@@ -96,7 +96,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintTop_toBottomOf="@+id/img_time" />
 
     <EditText
         android:id="@+id/edt_ho_ten"
