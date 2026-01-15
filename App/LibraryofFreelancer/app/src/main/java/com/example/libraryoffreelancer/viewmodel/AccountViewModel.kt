@@ -30,7 +30,7 @@ class AccountViewModel {
         val JSON = "application/json; charset=utf-8".toMediaType()
         val body = bodyString.toRequestBody(JSON)
         val req = Request.Builder()
-            .url("$urlRoot/register/")
+            .url("$urlRoot/register")
             .post(body)
             .build()
         val thread = Thread{
@@ -62,7 +62,7 @@ class AccountViewModel {
         val body= bodyString.toRequestBody(JSON)
 
         val req= Request.Builder()
-            .url("$urlRoot/login/")
+            .url("$urlRoot/login")
             .addHeader("Content-Type","application/json")
             .post(body)
             .build()
