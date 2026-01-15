@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.libraryoffreelancer.R
+import com.example.libraryoffreelancer.view.ChinhSuaHoSoFreelancerActivity
 import com.example.libraryoffreelancer.view.NutCaiDatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -18,7 +19,7 @@ class HoSoFreelancerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_ho_so_freelancer)
+        setContentView(R.layout.activity_trang_ho_so_employer)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -30,7 +31,7 @@ class HoSoFreelancerActivity : AppCompatActivity() {
         }
         val ChinhSua = findViewById<ImageButton>(R.id.btn_ChinhSuaHoSo)
         ChinhSua.setOnClickListener {
-            startActivity(Intent(applicationContext, activity_ChinhSuaHoSo::class.java))
+            startActivity(Intent(applicationContext, ChinhSuaHoSoFreelancerActivity::class.java))
         }
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNavigationView.selectedItemId = R.id.nav_profile

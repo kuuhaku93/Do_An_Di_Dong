@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1C1B1B"
-    tools:context=".view.HomeActivity">
+    tools:context=".view.freelancer.TrangChuFreeLancerActivity">
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.libraryoffreelancer.R
-import com.example.libraryoffreelancer.view.DangNhapActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class TrangChuFreeLancerActivity : AppCompatActivity() {

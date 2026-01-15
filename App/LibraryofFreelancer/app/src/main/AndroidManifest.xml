@@ -15,6 +15,9 @@
         android:theme="@style/Theme.LibraryOfFreelancer"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".view.freelancer.DangKyCongViecActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.employer.CongViecDaDangActivity"
             android:exported="false" />
         <activity
