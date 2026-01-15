@@ -45,7 +45,7 @@ class TrangChuFreelancerAdapter(private val listJob: List<Job>, private val list
 
         holder.txt_title.text=job.title
         holder.txt_noiDung.text=job.employer_name
-        holder.txt_mucLuong.text=job.salary_min.toString()+" - "+job.salary_max
+        holder.txt_mucLuong.text=job.salary_min.toString()+" - "+job.salary_max.toString()+" \$"
         holder.txt_thoiGian.text=dateconvert(job.publish_date)
         holder.rev_skill.layoutManager= GridLayoutManager(holder.itemView.context, 3)
         holder.rev_skill.adapter=TrangChuFreelancerItemAdapter(job.requirements)

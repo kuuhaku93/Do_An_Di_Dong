@@ -54,7 +54,7 @@ class AccountViewModel {
         return check
     }
     fun Login(username:String,password:String): LoginResult {
-        var result = LoginResult(false, "")
+        var result = LoginResult(false)
         val bodyString= JSONObject()
             .put("username",username)
             .put("password",password)
@@ -79,6 +79,7 @@ class AccountViewModel {
                 if (response.isSuccessful) {
                     result.isSuccess = true
                     result.message = "Đăng nhập thành công"
+                    result.account_id = data.account_id
                     result.token=data.token
                     result.freelancer_status = data.freelancer_status
                     result.employer_status = data.employer_status

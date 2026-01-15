@@ -58,7 +58,6 @@ class TrangChuFreeLancerActivity : AppCompatActivity(), OnItemClickListener {
         val rev_CongViecFreelancer = findViewById<RecyclerView>(R.id.rcv_CongViecFreelancer)
         rev_CongViecFreelancer.layoutManager = LinearLayoutManager(this)
         val freelancerViewModel= FreelancerViewModel()
-        Log.d("mydebug",token)
         rev_CongViecFreelancer.adapter= TrangChuFreelancerAdapter(freelancerViewModel.Load_list_job(token),this)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
@@ -94,7 +93,7 @@ class TrangChuFreeLancerActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     override fun onItemClick(position: Int) {
-        val intent = Intent(this, ChiTietCongViecActivity::class.java)
+        val intent = Intent(this, ChiTietCongViecFreelancerActivity::class.java)
         intent.putExtra("position", position)
         startActivity(intent)
     }
