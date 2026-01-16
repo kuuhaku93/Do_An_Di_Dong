@@ -15,9 +15,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.libraryoffreelancer.R
+import androidx.core.content.edit
+import com.example.libraryoffreelancer.view.employer.TrangChuEmployerActivity
 import com.example.libraryoffreelancer.view.freelancer.TrangChuFreeLancerActivity
 import com.example.libraryoffreelancer.viewmodel.AccountViewModel
-import androidx.core.content.edit
 
 class DangNhapActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,16 +60,18 @@ class DangNhapActivity : AppCompatActivity() {
             Log.d("mydebug", login.toString())
             Log.d("mydebug", login.message)
             if (login.isSuccess) {
+                Log.d("mydebug", login.toString())
                 val token = login.token
-                val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
-                sharedPref.edit {
-                    putString("token", token)
-                    putInt("id",login.account_id)
-                }
+                Log.d("mydebugE", token.toString())
                 when (vaitrodachon) {
                     "Freelancer" -> {
                         if (login.freelancer_status == true) {
                             val intent = Intent(this, TrangChuFreeLancerActivity::class.java)
+                            val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+                            sharedPref.edit {
+                                putString("token", token)
+                                putInt("ACCOUNT_ID", login.account_id)
+                            }
                             startActivity(intent)
                             finish()
                         } else {
@@ -77,6 +80,13 @@ class DangNhapActivity : AppCompatActivity() {
                     }
                     "Employer" -> {
                         if (login.employer_status == true) {
+                            val intent = Intent(this, TrangChuEmployerActivity::class.java)
+                            val Pref = getSharedPreferences("Pref", Context.MODE_PRIVATE)
+                            Pref.edit {
+                                putString("token", token)
+                                putInt("ACCOUNT_ID", login.account_id)
+                            }
+                            startActivity(intent)
                             finish()
                         } else {
                             Toast.makeText(this, "Vai trò Employer của tài khoản tạm thời bị khoá!", Toast.LENGTH_LONG).show()

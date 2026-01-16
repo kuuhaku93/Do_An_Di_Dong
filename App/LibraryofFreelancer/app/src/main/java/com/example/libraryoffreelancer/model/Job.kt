@@ -24,5 +24,27 @@ data class Job(
 data class ListJobsRespone(
     val success: Boolean,
     val jobs: List<Job>,
-    val message: String=" "
+    val message: String=" ",
+)
+
+@Serializable
+data class EmployerJob(
+    val id: Int,
+    val title: String,
+    val description: String,
+    val salary_min: Long,
+    val salary_max: Long,
+    val location: String,
+    val deadline: String? = null,
+    val publish_date: String? = null,
+    val max_employee: Int,
+    val current_employee: Int,
+    val requirements: List<String> = emptyList()
+)
+
+@Serializable
+data class EmployerJobResponse(
+    val success: Boolean,
+    val jobs: List<EmployerJob> = emptyList(),
+    val message: String? = null
 )
