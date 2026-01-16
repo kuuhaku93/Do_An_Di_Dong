@@ -39,6 +39,7 @@
         android:textColor="#FFFEFE"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_fullName_itemProvider" />
 
@@ -46,23 +47,12 @@
         android:id="@+id/txt_salary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:text="TextView"
         android:textColor="#F6E8E8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.573"
         app:layout_constraintStart_toEndOf="@+id/txt_fullName_itemProvider"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <CheckBox
-        android:id="@+id/cb_accept_itemProviderr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="32dp"
-        android:textColor="#FFFFFF"
-        android:textSize="29dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -94,11 +84,22 @@
         android:id="@+id/txt_review"
         android:layout_width="49dp"
         android:layout_height="13dp"
-        android:layout_marginTop="16dp"
         android:text="TextView"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toEndOf="@+id/txt_rate"
-        app:layout_constraintTop_toBottomOf="@+id/cb_accept_itemProviderr" />
+        tools:layout_editor_absoluteY="134dp" />
+
+    <ImageButton
+        android:id="@+id/btn_NhanNhanVien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="null"
+        app:layout_constraintEnd_toEndOf="@+id/txt_salary"
+        app:layout_constraintStart_toStartOf="@+id/txt_salary"
+        app:layout_constraintTop_toBottomOf="@+id/txt_salary"
+        app:srcCompat="@drawable/btn_nhannhanvien" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
