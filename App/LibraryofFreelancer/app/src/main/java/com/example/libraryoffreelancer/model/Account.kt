@@ -23,6 +23,7 @@ data class LoginResult(
     var isSuccess: Boolean = false,
     @SerialName("message")
     var message: String = "",
+    var account_id:Int=0,
     var token: String? = "",
     var employer_status: Boolean? = false,
     var freelancer_status: Boolean? = false,

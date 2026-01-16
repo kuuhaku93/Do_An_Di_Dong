@@ -63,6 +63,7 @@ class DangNhapActivity : AppCompatActivity() {
                 val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
                 sharedPref.edit {
                     putString("token", token)
+                    putInt("id",login.account_id)
                 }
                 when (vaitrodachon) {
                     "Freelancer" -> {

@@ -1,4 +1,4 @@
-package com.example.libraryoffreelancer.view
+package com.example.libraryoffreelancer.view.freelancer
 
 import android.os.Bundle
 import android.widget.ImageButton
@@ -18,6 +18,8 @@ class ChinhSuaHoSoFreelancerActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
         val btn_QuayLaiTrangHoSo2 = findViewById<ImageButton>(R.id.btn_QuayLaiTrangHoSo2)
         btn_QuayLaiTrangHoSo2.setOnClickListener {
             finish()

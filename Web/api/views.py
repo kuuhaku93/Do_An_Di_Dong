@@ -344,7 +344,7 @@ class Freelancer:
                 'requirements': [skill.skill_id.skill_name for skill in Job_Requirement_Skills.objects.filter(job_id=job)],
                 'is_applied': Applications.objects.filter(job_id=job, freelancer_id=freelancer).exists()
             })
-        return JsonResponse({'success':True,'jobs': result}, status=200)
+        return JsonResponse({'success':True,'jobs': resuilt}, status=200)
 
     @csrf_exempt
     @require_POST
@@ -409,12 +409,14 @@ class Freelancer:
         except Portfolios.DoesNotExist:
             return JsonResponse({'success':False,'message': 'freelancer does not exist portfolio.'}, status=400)
         
-        listItem = {}
-
+        items_list = []
         item_types = Item_types.objects.all()
-
         for item_type in item_types:
-            default_qs = Portfolio_Items.objects.filter(portfolio_id=portfolio,item_id__type_id=item_type ).select_related('item_id', 'item_id__type_id')
+            default_qs = Portfolio_Items.objects.filter(
+                portfolio_id=portfolio,
+                item_id__type_id=item_type
+            ).select_related('item_id', 'item_id__type_id')
+
             default_list = [
                 {
                     'title': pi.item_id.title,
@@ -425,7 +427,8 @@ class Freelancer:
                 }
                 for pi in default_qs
             ]
-            custom_qs = Custom_items.objects.filter(portfolio_id=portfolio,type_id=item_type).select_related('type_id')
+
+            custom_qs = Custom_items.objects.filter(portfolio_id=portfolio, type_id=item_type).select_related('type_id')
             custom_list = [
                 {
                     'title': ci.title,
@@ -434,14 +437,22 @@ class Freelancer:
                 }
                 for ci in custom_qs
             ]
-            listItem[item_type.name] = {
-                'default': default_list,
-                'custom': custom_list
-            }
 
-        listSkill={}
+            items_list.append(
+                {
+                    'type':item_type.name,
+                    'default': default_list,
+                    'custom': custom_list
+                }
+            )
+
+
+        skills_list = []
         for cate in Skill_Categories.objects.all():
-            listSkill[cate.title] = [ps.skill.skill_name for ps in Portfolio_Skills.objects.filter(portfolio_id=portfolio, skill__category_id=cate)]
+            skills_qs = Portfolio_Skills.objects.filter(portfolio_id=portfolio, skill__category_id=cate).select_related('skill')
+            skill_names = [ps.skill.skill_name for ps in skills_qs]
+            skills_list.append({cate.title: skill_names})
+
 
         portfolio_obj={
             'freelancer_name': portfolio.freelancer_id.full_name,
@@ -451,8 +462,8 @@ class Freelancer:
             'description': portfolio.description,
             'complete': portfolio.complete,
             'rating':portfolio.rating,
-            'items': listItem,
-            'skills': listSkill
+            'items': items_list,
+            'skills': skills_list
         }
         return JsonResponse({'success':True,'portfolio': portfolio_obj}, status=200)
 
@@ -698,9 +709,9 @@ class Freelancer:
                 'rating':rating.rating,
                 'complete':rating.complete,
                 'created_at':rating.created_at,
-                'freelancer_id': rating.contact_id.application_id.freelancer_id.pk,
-                'freelancer_name': rating.contact_id.application_id.freelancer_id.full_name,
-                'freelancer_avatar':rating.contact_id.application_id.freelancer_id.avatar,
+                'employer_id': rating.contact_id.application_id.job_id.employer_id.pk,
+                'employer_name': rating.contact_id.application_id.job_id.employer_id.company_name,
+                'employer_avatar':rating.contact_id.application_id.job_id.employer_id.company_logo,
             })
         return JsonResponse({'success':True,'ratings': result}, status=200)
         

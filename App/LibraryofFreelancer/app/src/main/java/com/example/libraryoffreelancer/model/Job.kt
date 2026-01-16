@@ -3,12 +3,6 @@ package com.example.libraryoffreelancer.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Skill(
-    val id: Int,
-    val name: String
-)
-
-@Serializable
 data class Job(
     val id: Int,
     val employer_name:String,
