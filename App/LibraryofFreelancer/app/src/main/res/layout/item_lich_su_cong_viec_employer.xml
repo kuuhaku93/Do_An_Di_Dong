@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ctlayout_vien_líchuCongViec_item"
+        android:id="@+id/ctlayout_vien_lichsuCongViec_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -50,7 +50,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txt_noi_dung"
+                android:id="@+id/txt_tenCongTy_lichSuCongViec"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -69,8 +69,8 @@
                 android:text="TextView"
                 android:textColor="#FDFDFD"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txt_noi_dung"
-                app:layout_constraintTop_toBottomOf="@+id/txt_noi_dung" />
+                app:layout_constraintStart_toStartOf="@+id/txt_tenCongTy_lichSuCongViec"
+                app:layout_constraintTop_toBottomOf="@+id/txt_tenCongTy_lichSuCongViec" />
 
             <TextView
                 android:id="@+id/txt_thoi_gian"

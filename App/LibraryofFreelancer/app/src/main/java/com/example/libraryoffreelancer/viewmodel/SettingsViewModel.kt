@@ -16,33 +16,7 @@ class SettingsViewModel {
     val client= OkHttpClient()
     val urlRoot="http://10.0.2.2:8000/api"
 
-    fun Logout(token: String?): Check{
-        var check = Check(false, "")
-        val res= Request.Builder()
-            .url("$urlRoot/logout/")
-            .addHeader("Content-Type","application/json")
-            .addHeader("Authorization","Token $token")
-            .get()
-            .build()
 
-        val thread = Thread{
-            client.newCall(res).execute().use { response ->
-                val body=response.body?.string().orEmpty()
-                Log.d("md",body)
-                if (response.isSuccessful){
-                    check.isSuccess=true
-                    check.message = response.message
-                }
-                else{
-                    check.isSuccess = false
-                    check.message = response.message
-                }
-            }
-        }
-        thread.start()
-        thread.join()
-        return check
-    }
 }
 
 fun dateconvert(input: String): String {

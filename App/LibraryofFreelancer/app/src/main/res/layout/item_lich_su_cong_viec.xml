@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ctlayout_vien_líchuCongViec_item"
+        android:id="@+id/ctlayout_vien_lichsuCongViec_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -38,48 +38,38 @@
                 android:id="@+id/txt_ten_cong_viec_Employer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="29dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:text="TextView"
                 android:textColor="#FBF9F9"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/img_avatar_historyJob"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txt_noi_dung"
+                android:id="@+id/txt_tenCongTy_lichSuCongViec"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="TextView"
                 android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/txt_ten_cong_viec_Employer"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/txt_ten_cong_viec_Employer"
                 app:layout_constraintTop_toBottomOf="@+id/txt_ten_cong_viec_Employer" />
-
-            <TextView
-                android:id="@+id/txt_tien_trinh"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="TextView"
-                android:textColor="#FDFDFD"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txt_noi_dung"
-                app:layout_constraintTop_toBottomOf="@+id/txt_noi_dung" />
 
             <TextView
                 android:id="@+id/txt_thoi_gian"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="10dp"
                 android:text="Công việc đã kết thúc vào"
                 android:textColor="#FFFEFE"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/img_so_luong_yeu_cau"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_so_luong_yeu_cau"
                 app:layout_constraintTop_toTopOf="@+id/img_so_luong_yeu_cau" />
@@ -88,9 +78,57 @@
                 android:id="@+id/img_so_luong_yeu_cau"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@+id/txt_tien_trinh"
-                app:srcCompat="@drawable/nest_clock_farsight_analog_24"
-                tools:layout_editor_absoluteY="127dp" />
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_dangGiaLichSu_Freelancer"
+                app:srcCompat="@drawable/nest_clock_farsight_analog_24" />
+
+            <ImageView
+                android:id="@+id/img_avatar_historyJob"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/about" />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:text="★"
+                android:textColor="#FFEB3B"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_avatar_historyJob" />
+
+            <TextView
+                android:id="@+id/txt_dangGiaLichSu_Freelancer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:textColor="#FFEB3B"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/textView23"
+                app:layout_constraintTop_toBottomOf="@+id/img_avatar_historyJob" />
+
+            <TextView
+                android:id="@+id/txt_trangThaiLichSu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="TextView"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/txt_tenCongTy_lichSuCongViec"
+                app:layout_constraintStart_toStartOf="@+id/txt_tenCongTy_lichSuCongViec"
+                app:layout_constraintTop_toBottomOf="@+id/txt_tenCongTy_lichSuCongViec" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,6 +44,12 @@ class TrangChuFreeLancerActivity : AppCompatActivity(), OnItemClickListener {
 
             val alertDialog = builder.create()
 
+//            val rev_KyNangTrangHoSo = dialogView.findViewById<RecyclerView>(R.id.rcv_KyNangTrangHoSo)
+//            val rev_LoaiHinh = dialogView.findViewById<RecyclerView>(R.id.rcv_LoaiHinh)
+//            val rev_NgonNgu = dialogView.findViewById<RecyclerView>(R.id.rcv_NgonNgu)
+//            rev_KyNangTrangHoSo.layoutManager = LinearLayoutManager(this)
+
+
             val btnApDung = dialogView.findViewById<Button>(R.id.btn_ApDung)
             val btnHuy = dialogView.findViewById<Button>(R.id.btn_huy)
 

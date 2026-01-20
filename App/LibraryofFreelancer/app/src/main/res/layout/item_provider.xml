@@ -96,10 +96,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:background="null"
         app:layout_constraintEnd_toEndOf="@+id/txt_salary"
         app:layout_constraintStart_toStartOf="@+id/txt_salary"
         app:layout_constraintTop_toBottomOf="@+id/txt_salary"
         app:srcCompat="@drawable/btn_nhannhanvien" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

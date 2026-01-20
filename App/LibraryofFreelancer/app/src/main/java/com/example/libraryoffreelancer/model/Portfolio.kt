@@ -55,3 +55,23 @@ data class ListRatingResponse(
     val ratings: List<Rating> =emptyList(),
     val message: String=""
 )
+
+@Serializable
+data class HistoryJob(
+    val contact_id: Int,
+    val job_title: String,
+    val score: Double,
+    val complete: Boolean,
+    val company_name: String,
+    val company_avatar: String,
+    val employer_id: Int,
+    val start_date: String,
+    val end_date: String
+)
+
+@Serializable
+data class ListHistory(
+    val success: Boolean,
+    val jobs: List<HistoryJob> = emptyList(),
+    val message: String=""
+)

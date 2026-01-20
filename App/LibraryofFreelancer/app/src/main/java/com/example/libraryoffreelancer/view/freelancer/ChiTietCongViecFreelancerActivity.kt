@@ -61,11 +61,18 @@ class ChiTietCongViecFreelancerActivity : AppCompatActivity() {
         rev_kyNang_chiTietCongViec.layoutManager= GridLayoutManager(this, 3)
         rev_kyNang_chiTietCongViec.adapter= TrangChuFreelancerItemAdapter(job.requirements)
 
+
         val btn_ungtuyencongviec = findViewById<Button>(R.id.btn_ungtuyencongviec)
         btn_ungtuyencongviec.setOnClickListener {
             val intent = Intent(this, DangKyCongViecActivity::class.java)
+            intent.putExtra("job_id",job.id)
             startActivity(intent)
         }
+        if(job.is_applied) {
+            btn_ungtuyencongviec.isEnabled=false
+            btn_ungtuyencongviec.text="Đã ứng tuyển"
+        }
+
         val btn_QuayLaiTrangChu=findViewById<ImageView>(R.id.btn_QuayLaiTrangChu)
         btn_QuayLaiTrangChu.setOnClickListener {
             this.finish()

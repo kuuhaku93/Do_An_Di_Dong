@@ -1,9 +1,12 @@
 package com.example.libraryoffreelancer.viewmodel
 
 import android.util.Log
+import com.example.libraryoffreelancer.model.APIResponse
 import com.example.libraryoffreelancer.model.Account
 import com.example.libraryoffreelancer.model.Check
+import com.example.libraryoffreelancer.model.HistoryJob
 import com.example.libraryoffreelancer.model.Job
+import com.example.libraryoffreelancer.model.ListHistory
 import com.example.libraryoffreelancer.model.ListJobsRespone
 import com.example.libraryoffreelancer.model.ListRatingResponse
 import com.example.libraryoffreelancer.model.LoadPortfolioApiResponse
@@ -120,5 +123,65 @@ class FreelancerViewModel {
         thread.start()
         thread.join()
         return listRating
+    }
+
+    fun Apply_job(job_id: Int, token: String, wanted_salary: Double, description:String): APIResponse {
+        var apiResponse: APIResponse = APIResponse(false,"")
+        val bodyString= JSONObject()
+            .put("description", description)
+            .put("job_id", job_id)
+            .put("wanted_salary", wanted_salary)
+            .toString()
+        Log.d("mydebug",bodyString)
+        val JSON = "application/json; charset=utf-8".toMediaType()
+        val body = bodyString.toRequestBody(JSON)
+        val req = Request.Builder()
+            .url("$urlRoot/apply_job")
+            .addHeader("Content-Type","application/json")
+            .addHeader("Authorization","Token $token")
+            .post(body)
+            .build()
+        val thread = Thread{
+            client.newCall(req).execute().use { response ->
+                val body = response.body?.string().orEmpty()
+                Log.d("mydebug",body)
+                apiResponse = customJson.decodeFromString<APIResponse>(body)
+            }
+        }
+        thread.start()
+        thread.join()
+        return apiResponse
+    }
+
+    fun Load_history_job(token: String): List<HistoryJob>{
+        Log.d("mydebug",token)
+        var listJob : List<HistoryJob> = emptyList()
+        val req = Request.Builder()
+            .url("$urlRoot/load_history_job")
+            .addHeader("Content-Type","application/json")
+            .addHeader("Authorization","Token $token")
+            .get()
+            .build()
+        val thread = Thread{
+            client.newCall(req).execute().use { response ->
+                val body = response.body?.string().orEmpty()
+                Log.d("mydebug",body)
+                if (response.isSuccessful){
+                    val listHistory = customJson.decodeFromString<ListHistory>(body)
+                    if (listHistory.success) {
+                        listJob = listHistory.jobs
+                    }
+                    else{
+                        Log.d("mydebug",listHistory.message)
+                    }
+                }
+                else{
+                    Log.d("mydebug",response.message)
+                }
+            }
+        }
+        thread.start()
+        thread.join()
+        return listJob
     }
 }

@@ -374,9 +374,13 @@ class Freelancer:
             return JsonResponse({'success':False,'message': 'wanted_salary is required.'}, status=400)
         if job_id is None:
             return JsonResponse({'success':False,'message': 'job_id is required.'}, status=400)
+        try:
+            job=Jobs.objects.get(id=job_id)
+        except Jobs.DoesNotExist:
+            return JsonResponse({'success':False,'message': 'job does not exits.'}, status=400)
         
         apply=Applications(
-            job_id=Jobs.objects.get(id=job_id),
+            job_id=job,
             freelancer_id=freelancer,
             description=description,
             wanted_salary=wanted_salary

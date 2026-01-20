@@ -17,3 +17,8 @@ admin.site.register(Skills)
 admin.site.register(Portfolio_Skills)
 admin.site.register(Job_Requirement_Skills)
 admin.site.register(EmailOTP)
+
+
+admin.site.site_header = "LIBRARIAN"     
+admin.site.site_title = "Trang quản trị của Library of Freelancer"  
+admin.site.index_title = "Chào mừng đến trang quản trị"

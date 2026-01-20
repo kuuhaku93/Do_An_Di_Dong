@@ -91,7 +91,6 @@ class AccountViewModel {
         thread.join()
         return result
     }
-
     fun Send_otp(email:String): APIResponse {
         var result = APIResponse(false, "")
         val bodyString= JSONObject()
@@ -118,7 +117,6 @@ class AccountViewModel {
         thread.join()
         return result
     }
-
     fun Check_otp(otp:String): APIResponse {
         var result = APIResponse(false, "")
         val bodyString= JSONObject()
@@ -145,7 +143,6 @@ class AccountViewModel {
         thread.join()
         return result
     }
-
     fun Change_password(otp:String,new_password: String): APIResponse {
         var result = APIResponse(false, "")
         val bodyString= JSONObject()
@@ -172,5 +169,26 @@ class AccountViewModel {
         thread.start()
         thread.join()
         return result
+    }
+
+    fun Logout(token: String?): APIResponse{
+        var apiResponse= APIResponse(false,"")
+        val res= Request.Builder()
+            .url("$urlRoot/logout")
+            .addHeader("Content-Type","application/json")
+            .addHeader("Authorization","Token $token")
+            .get()
+            .build()
+
+        val thread = Thread{
+            client.newCall(res).execute().use { response ->
+                val body=response.body?.string().orEmpty()
+                Log.d("md",body)
+                apiResponse=customJson.decodeFromString(body)
+            }
+        }
+        thread.start()
+        thread.join()
+        return apiResponse
     }
 }
