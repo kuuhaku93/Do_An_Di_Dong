@@ -16,7 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.libraryoffreelancer.R
-import com.example.libraryoffreelancer.view.ChiTietCongViecActivity
+import com.example.libraryoffreelancer.view.employer.ChiTietCongViecActivity
 import com.example.libraryoffreelancer.view.adapter.OnItemClickListener
 import com.example.libraryoffreelancer.view.adapter.TrangChuFreelancerAdapter
 import com.example.libraryoffreelancer.viewmodel.FreelancerViewModel

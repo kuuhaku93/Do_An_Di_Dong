@@ -62,7 +62,6 @@ class DangNhapActivity : AppCompatActivity() {
             if (login.isSuccess) {
                 Log.d("mydebug", login.toString())
                 val token = login.token
-                Log.d("mydebugE", token.toString())
                 when (vaitrodachon) {
                     "Freelancer" -> {
                         if (login.freelancer_status == true) {

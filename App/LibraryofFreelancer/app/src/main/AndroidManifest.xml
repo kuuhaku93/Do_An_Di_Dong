@@ -24,7 +24,7 @@
             android:name=".view.LichSuCongViecEmployerActivity"
             android:exported="false" />
         <activity
-            android:name=".view.ChiTietCongViecActivity"
+            android:name=".view.employer.ChiTietCongViecActivity"
             android:exported="false" />
         <activity
             android:name=".view.DanhSachAppliedActivity"

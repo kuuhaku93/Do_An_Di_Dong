@@ -1,4 +1,4 @@
-package com.example.libraryoffreelancer.view
+package com.example.libraryoffreelancer.view.employer
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.libraryoffreelancer.R
+import com.example.libraryoffreelancer.view.DanhSachKyNangActivity
 
 class FormThemCongViecActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

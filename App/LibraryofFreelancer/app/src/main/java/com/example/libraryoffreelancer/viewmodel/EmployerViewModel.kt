@@ -1,13 +1,14 @@
 package com.example.libraryoffreelancer.viewmodel
 
 import android.util.Log
+import com.example.libraryoffreelancer.model.CreateJobResponse
+import com.example.libraryoffreelancer.model.EmployerJob
+import com.example.libraryoffreelancer.model.EmployerJobResponse
 import com.example.libraryoffreelancer.model.EmployerProfile
 import com.example.libraryoffreelancer.model.EmployerProfileResponse
 import com.example.libraryoffreelancer.model.EmployerReview
 import com.example.libraryoffreelancer.model.EmployerReviewResponse
 import com.example.libraryoffreelancer.model.Job
-import com.example.libraryoffreelancer.model.LoadPortfolioApiResponse
-import com.example.libraryoffreelancer.model.Portfolio
 import com.example.libraryoffreelancer.model.customJson
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -23,6 +24,38 @@ private val json = Json{
 class EmployerViewModel {
     val client= OkHttpClient()
     val urlRoot="http://10.0.2.2:8000/api"
+
+    fun loadTrangChuEmployer(token: String): List<EmployerJob>{
+        Log.d("mydebug",token)
+        var listCongViec : List<EmployerJob> = emptyList()
+        val req = Request.Builder()
+            .url("$urlRoot/employer/load_list_job")
+            .addHeader("Content-Type","application/json")
+            .addHeader("Authorization","Token $token")
+            .get()
+            .build()
+        val thread = Thread{
+            client.newCall(req).execute().use { response ->
+                val body = response.body?.string().orEmpty()
+                Log.d("mydebug",body)
+                if (response.isSuccessful){
+                    val employerListJobResponse = customJson.decodeFromString<EmployerJobResponse>(body)
+                    if (employerListJobResponse.success) {
+                        listCongViec = employerListJobResponse.jobs
+                    }
+                    else{
+                        Log.d("mydebug",employerListJobResponse.message)
+                    }
+                }
+                else{
+                    Log.d("mydebug",response.message)
+                }
+            }
+        }
+        thread.start()
+        thread.join()
+        return listCongViec
+    }
 
     fun loadProfileEmployer(token: String, employerId: Int): EmployerProfile {
         var profile : EmployerProfile= EmployerProfile("","","","","","","", 0.0)

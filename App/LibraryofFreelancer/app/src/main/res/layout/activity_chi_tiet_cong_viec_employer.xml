@@ -44,29 +44,29 @@
         app:layout_constraintTop_toTopOf="@+id/imageButton2" />
 
     <TextView
-        android:id="@+id/txt_TenCongTy"
+        android:id="@+id/txt_TenCongTyEmployer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:text="TextView"
         android:textColor="#ffff"
-        app:layout_constraintEnd_toStartOf="@+id/img_avatar_chiTietCongViec"
+        app:layout_constraintEnd_toStartOf="@+id/img_avatar_chiTietCongViecEmployer"
         app:layout_constraintStart_toStartOf="@+id/imageButton2"
         app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
 
     <TextView
-        android:id="@+id/txt_TenCongViecEmployer"
+        android:id="@+id/txt_TenCongViec"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="TextView"
         android:textColor="#ffff"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/txt_TenCongTy"
+        app:layout_constraintEnd_toEndOf="@+id/txt_TenCongTyEmployer"
         app:layout_constraintHorizontal_bias="0.071"
-        app:layout_constraintStart_toStartOf="@+id/txt_TenCongTy"
-        app:layout_constraintTop_toBottomOf="@+id/txt_TenCongTy" />
+        app:layout_constraintStart_toStartOf="@+id/txt_TenCongTyEmployer"
+        app:layout_constraintTop_toBottomOf="@+id/txt_TenCongTyEmployer" />
 
     <TextView
         android:id="@+id/txt_mucluongemploy"
@@ -81,14 +81,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rev_kyNang_chiTietCongViec"
+        android:id="@+id/rev_kyNang_chiTiet"
         android:layout_width="0dp"
         android:layout_height="90dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_TenCongViecEmployer" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_TenCongViec" />
 
     <TextView
         android:id="@+id/textView24"
@@ -157,7 +157,7 @@
         android:id="@+id/imageView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="56dp"
         app:layout_constraintEnd_toEndOf="@+id/imageView5"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/imageView5"
@@ -203,18 +203,18 @@
         android:id="@+id/view2"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rev_kyNang_chiTietCongViec" />
+        app:layout_constraintTop_toBottomOf="@+id/rev_kyNang_chiTiet" />
 
     <View
         android:id="@+id/view3"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -241,24 +241,24 @@
         android:text="Thời gian:"
         android:textColor="#ffff"
         android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@+id/txt_TenCongViecEmployer"
-        app:layout_constraintTop_toTopOf="@+id/txt_thoigiandeadline" />
+        app:layout_constraintStart_toStartOf="@+id/txt_TenCongViec"
+        app:layout_constraintTop_toTopOf="@+id/txt_thoiGianDeadline" />
 
     <TextView
-        android:id="@+id/txt_thoigiandeadline"
+        android:id="@+id/txt_thoiGianDeadline"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="TextView"
         android:textColor="#4CAF50"
         android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="@+id/txt_TenCongViecEmployer"
+        app:layout_constraintEnd_toEndOf="@+id/txt_TenCongViec"
         app:layout_constraintHorizontal_bias="0.015"
         app:layout_constraintStart_toEndOf="@+id/textView32"
-        app:layout_constraintTop_toBottomOf="@+id/txt_TenCongViecEmployer" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_TenCongViec" />
 
     <ImageView
-        android:id="@+id/img_avatar_chiTietCongViec"
+        android:id="@+id/img_avatar_chiTietCongViecEmployer"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginEnd="10dp"
@@ -268,21 +268,21 @@
 
     <ImageButton
         android:id="@+id/btn_off"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_width="158dp"
+        android:layout_height="81dp"
+        android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_commentcongviecEmployer"
-        app:layout_constraintHorizontal_bias="0.672"
+        app:layout_constraintHorizontal_bias="0.614"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/btn_off" />
 
     <ImageButton
         android:id="@+id/btn_commentcongviecEmployer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="40dp"
+        android:layout_width="128dp"
+        android:layout_height="81dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="12dp"
         android:background="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

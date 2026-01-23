@@ -36,7 +36,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_CongViecEmployer"
         android:layout_width="410dp"
-        android:layout_height="543dp"
+        android:layout_height="347dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
@@ -57,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_themCongViec" />
 
     <TextView
         android:id="@+id/textView22"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/btn_themCongViec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

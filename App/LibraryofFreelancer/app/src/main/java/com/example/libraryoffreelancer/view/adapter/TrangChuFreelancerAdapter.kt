@@ -20,7 +20,7 @@ class TrangChuFreelancerAdapter(private val listJob: List<Job>, private val list
         val txt_mucLuong=itemView.findViewById<TextView>(R.id.txt_mucLuong_trangChuFreelancer_item)
         val txt_thoiGian=itemView.findViewById<TextView>(R.id.txt_thoiGianCongViec_trangChuFreelancer_item)
         val rev_skill=itemView.findViewById<RecyclerView>(R.id.rev_trangChuFreelancer)
-        val  txt_soLuong=itemView.findViewById<TextView>(R.id.txt_soLuong_kyNagnTrangChuFreelanxer_item)
+        val txt_soLuong=itemView.findViewById<TextView>(R.id.txt_soLuong_kyNagnTrangChuFreelanxer_item)
         val layout_item=itemView.findViewById<View>(R.id.layout_itemFreelancer)
 
 
