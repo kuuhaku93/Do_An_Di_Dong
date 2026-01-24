@@ -35,6 +35,7 @@ class TrangChuFreeLancerActivity : AppCompatActivity(), OnItemClickListener {
         }
         val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         val token=sharedPref.getString("token","").orEmpty()
+        val userID=sharedPref.getInt("ACCOUNT_ID",0)
 
         val btn_loc_trangchu = findViewById<ImageButton>(R.id.btn_loc_trangchu)
         btn_loc_trangchu.setOnClickListener {
@@ -84,7 +85,7 @@ class TrangChuFreeLancerActivity : AppCompatActivity(), OnItemClickListener {
                     true
                 }
                 R.id.nav_profile -> {
-                    startActivity(Intent(applicationContext, HoSoFreelancerActivity::class.java))
+                    startActivity(Intent(applicationContext, HoSoFreelancerActivity::class.java).putExtra("self",true).putExtra("freelancer_id",userID))
                     overrideActivityTransition(
                         OVERRIDE_TRANSITION_OPEN,
                         android.R.anim.slide_out_right,

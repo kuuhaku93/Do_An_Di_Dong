@@ -11,7 +11,7 @@ class Accounts(AbstractUser):
     freelancer_status = models.BooleanField(default=True)
     employer_status = models.BooleanField(default=True)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
-    avatar = models.CharField(max_length=255, blank=True, null=True,default=None)
+    avatar = models.CharField(max_length=255, blank=True, null=True,default="https://static.vecteezy.com/system/resources/previews/026/434/417/original/default-avatar-profile-icon-of-social-media-user-photo-vector.jpg")
     company_logo = models.CharField(max_length=255, blank=True, null=True,default=None)
     website = models.CharField(max_length=255, blank=True, null=True,default=None)
     address = models.CharField(max_length=255, blank=True, null=True,default=None)

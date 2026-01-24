@@ -26,6 +26,7 @@ urlpatterns = [
     path("employer/create_job", views.Employer.create_job, name="create_job_employer"),
     path("employer/load_profile", views.Employer.load_profile, name="load_profile_employer"),
     path("employer/create_contact", views.Employer.create_contact, name="create_contact_employer"),
+    path("employer/close_job", views.Employer.close_job, name="close_job_employer"),
     path("employer/load_current_job", views.Employer.load_current_job, name="load_current_job_employer"),
     path("employer/create_rating", views.Employer.create_rating, name="create_rating_employer"),
     path("employer/load_review", views.Employer.load_review, name="load_review_employer"),

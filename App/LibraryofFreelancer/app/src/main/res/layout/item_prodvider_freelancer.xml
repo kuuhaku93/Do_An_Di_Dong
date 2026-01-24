@@ -7,12 +7,12 @@
     android:background="#050505">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ctlayout_apply_job"
+        android:id="@+id/ctlayout_applyJob_itemProvider_freelancer"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
         android:background="#64DB15"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,20 +31,17 @@
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             android:background="#000000"
-            app:layout_constraintBottom_toBottomOf="@+id/ctlayout_apply_job"
-            app:layout_constraintEnd_toEndOf="@+id/ctlayout_apply_job"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/ctlayout_apply_job"
-            app:layout_constraintTop_toTopOf="@+id/ctlayout_apply_job">
+            app:layout_constraintBottom_toBottomOf="@+id/ctlayout_applyJob_itemProvider_freelancer"
+            app:layout_constraintEnd_toEndOf="@+id/ctlayout_applyJob_itemProvider_freelancer"
+            app:layout_constraintStart_toStartOf="@+id/ctlayout_applyJob_itemProvider_freelancer"
+            app:layout_constraintTop_toTopOf="@+id/ctlayout_applyJob_itemProvider_freelancer">
 
             <ImageView
-                android:id="@+id/imageViewAvatar"
+                android:id="@+id/img_avatar_ItemProvider_Freelancer"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
@@ -58,12 +55,12 @@
                 android:text="TextView"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
-                app:layout_constraintEnd_toStartOf="@+id/txt_salary"
-                app:layout_constraintStart_toEndOf="@+id/imageViewAvatar"
-                app:layout_constraintTop_toTopOf="@+id/imageViewAvatar" />
+                app:layout_constraintEnd_toStartOf="@+id/txt_wantedsalary_itemProvider_freelancer"
+                app:layout_constraintStart_toEndOf="@+id/img_avatar_ItemProvider_Freelancer"
+                app:layout_constraintTop_toTopOf="@+id/img_avatar_ItemProvider_Freelancer" />
 
             <TextView
-                android:id="@+id/txt_message_freelancer"
+                android:id="@+id/txt_message_itemProvide_freelancer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -73,32 +70,22 @@
                 app:layout_constraintEnd_toEndOf="@+id/txt_fullName_itemProvider_Freelancer"
                 app:layout_constraintHorizontal_bias="0.481"
                 app:layout_constraintStart_toStartOf="@+id/txt_fullName_itemProvider_Freelancer"
-                app:layout_constraintTop_toBottomOf="@+id/txt_fullName_itemProvider_Freelancer" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_time_itemProvider_freelancer" />
 
             <TextView
-                android:id="@+id/txt_salary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#0C9300"
-                app:layout_constraintEnd_toEndOf="@+id/textView25"
-                app:layout_constraintStart_toStartOf="@+id/txt_review_freelancer"
-                app:layout_constraintTop_toBottomOf="@+id/textView25" />
-
-            <TextView
-                android:id="@+id/txt_time_freelancer"
+                android:id="@+id/txt_time_itemProvider_freelancer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="TextView"
                 android:textColor="#F4F4F4"
-                app:layout_constraintEnd_toEndOf="@+id/txt_message_freelancer"
+                app:layout_constraintEnd_toEndOf="@+id/txt_fullName_itemProvider_Freelancer"
                 app:layout_constraintHorizontal_bias="0.372"
-                app:layout_constraintStart_toStartOf="@+id/txt_message_freelancer"
-                app:layout_constraintTop_toBottomOf="@+id/txt_message_freelancer" />
+                app:layout_constraintStart_toStartOf="@+id/txt_fullName_itemProvider_Freelancer"
+                app:layout_constraintTop_toBottomOf="@+id/txt_fullName_itemProvider_Freelancer" />
 
             <TextView
-                android:id="@+id/txt_review_freelancer"
+                android:id="@+id/txt_review_itemProvider_freelancer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4"
@@ -116,8 +103,33 @@
                 android:textColor="#FFEB3B"
                 android:textSize="34sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/txt_fullName_itemProvider_Freelancer"
+                app:layout_constraintTop_toBottomOf="@+id/txt_wantedsalary_itemProvider_freelancer"
                 tools:text="★" />
+
+            <TextView
+                android:id="@+id/txt_wantedsalary_itemProvider_freelancer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="400$"
+                android:textAlignment="textEnd"
+                android:textColor="#63D915"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_fullName_itemProvider_Freelancer" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rev_skill_itemProvider_Freelancer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_avatar_ItemProvider_Freelancer" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -36,6 +37,7 @@ class HoSoFreelancerActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val is_self = intent.getBooleanExtra("self", false)
         val ChinhSua = findViewById<ImageButton>(R.id.btn_ChinhSuaHoSoFreelancer)
         ChinhSua.setOnClickListener {
             startActivity(Intent(applicationContext, ChinhSuaHoSoFreelancerActivity::class.java))
@@ -47,11 +49,16 @@ class HoSoFreelancerActivity : AppCompatActivity() {
             val intent = Intent(this, NutCaiDatActivity::class.java)
             startActivity(intent)
         }
+        val btn_back=findViewById<ImageButton>(R.id.btn_back_portfolio_freelancer)
+        btn_back.setOnClickListener {
+            this.finish()
+        }
+
  //Load thông tin freelancer
         val freelancerViewModel= FreelancerViewModel()
         val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         val token = sharedPref.getString("token", "")
-        val freelancer_id = sharedPref.getInt("id", 0)
+        val freelancer_id = intent.getIntExtra("freelancer_id", 0)
         val portfolio = freelancerViewModel.Load_portfolio(freelancer_id,token!!)
         val image_anhdaidien = findViewById<ImageView>(R.id.image_anhdaidien)
         Glide.with(this )
@@ -92,20 +99,6 @@ class HoSoFreelancerActivity : AppCompatActivity() {
         val txt_so_cong_viec = findViewById<TextView>(R.id.so_cong_viec)
         txt_so_cong_viec.text = listRating.size.toString()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         bottomNavigationView.setOnItemSelectedListener { item ->
             if (item.itemId == R.id.nav_profile) {
                 return@setOnItemSelectedListener true
@@ -133,6 +126,18 @@ class HoSoFreelancerActivity : AppCompatActivity() {
                 }
                 else -> false
             }
+        }
+        if (is_self) {
+            ChinhSua.visibility = View.VISIBLE
+            btn_caiDat.visibility = View.VISIBLE
+            btn_back.visibility = View.GONE
+            bottomNavigationView.visibility = View.VISIBLE
+        }
+        else{
+            bottomNavigationView.visibility = View.GONE
+            ChinhSua.visibility = View.GONE
+            btn_caiDat.visibility = View.GONE
+            btn_back.visibility = View.VISIBLE
         }
     }
 }

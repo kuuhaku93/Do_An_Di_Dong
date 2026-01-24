@@ -73,7 +73,7 @@ class EmployerViewModel {
         val thread = Thread{
             client.newCall(req).execute().use { response ->
                 val body = response.body?.string().orEmpty()
-                val loadProfile = json.decodeFromString<EmployerProfileResponse>(body)
+                val loadProfile = customJson.decodeFromString<EmployerProfileResponse>(body)
                 if (response.isSuccessful) {
                     if (loadProfile.success) {
                         profile = loadProfile.profile

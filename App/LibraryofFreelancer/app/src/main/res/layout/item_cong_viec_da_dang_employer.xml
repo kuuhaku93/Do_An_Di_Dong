@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/txt_Ten_Cong_Viec"
+            android:id="@+id/txt_TenCongViec_congViecHienTai_feelancer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
@@ -27,7 +27,7 @@
             tools:layout_editor_absoluteY="16dp" />
 
         <TextView
-            android:id="@+id/txt_tien_do"
+            android:id="@+id/txt_trangThai_congViecHienTai_freelancer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -39,26 +39,26 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txt_CongTy"
+            android:id="@+id/txt_TenCongTy_congViecHienTai_freelancer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="TextView"
             android:textColor="#ffff"
-            app:layout_constraintEnd_toEndOf="@+id/txt_Ten_Cong_Viec"
+            app:layout_constraintEnd_toEndOf="@+id/txt_TenCongViec_congViecHienTai_feelancer"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txt_Ten_Cong_Viec"
-            app:layout_constraintTop_toBottomOf="@+id/txt_Ten_Cong_Viec" />
+            app:layout_constraintStart_toStartOf="@+id/txt_TenCongViec_congViecHienTai_feelancer"
+            app:layout_constraintTop_toBottomOf="@+id/txt_TenCongViec_congViecHienTai_feelancer" />
 
         <ImageView
             android:id="@+id/imageView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            app:layout_constraintEnd_toEndOf="@+id/txt_CongTy"
+            app:layout_constraintEnd_toEndOf="@+id/txt_TenCongTy_congViecHienTai_freelancer"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txt_CongTy"
-            app:layout_constraintTop_toBottomOf="@+id/txt_CongTy"
+            app:layout_constraintStart_toStartOf="@+id/txt_TenCongTy_congViecHienTai_freelancer"
+            app:layout_constraintTop_toBottomOf="@+id/txt_TenCongTy_congViecHienTai_freelancer"
             app:srcCompat="@drawable/nest_clock_farsight_analog_24" />
 
         <TextView
@@ -73,7 +73,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btn_DanhGia"
+            android:id="@+id/btn_DanhGia_congViecHienTai_freelancer"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginTop="96dp"
@@ -92,7 +92,7 @@
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_CongTy"
+            app:layout_constraintTop_toBottomOf="@+id/txt_TenCongTy_congViecHienTai_freelancer"
             app:layout_constraintVertical_bias="1.0"
             tools:srcCompat="@tools:sample/avatars" />
 
@@ -103,7 +103,7 @@
             android:layout_marginStart="12dp"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_DanhGia"
+            app:layout_constraintEnd_toStartOf="@+id/btn_DanhGia_congViecHienTai_freelancer"
             app:layout_constraintStart_toEndOf="@+id/img_freelancer"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.788" />

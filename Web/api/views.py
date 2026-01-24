@@ -243,12 +243,14 @@ class General:
             result.append({
                 'id': application.id,
                 'freelancer_id':application.freelancer_id.pk,
-                'freelancer_name': application.freelancer_id.full_name,
+                #'freelancer_avatar':application.freelancer_id.avatar,
+                #'freelancer_name': application.freelancer_id.full_name,
                 'description': application.description,
                 'apply_status': application.apply_status,
                 'wanted_salary': application.wanted_salary,
                 'applied_date': application.applied_date,
-                'skills': [skill.skill.skill_name for skill in Portfolio_Skills.objects.filter(portfolio_id__freelancer_id=application.freelancer_id)]
+                'skills': [skill.skill.skill_name for skill in Portfolio_Skills.objects.filter(portfolio_id__freelancer_id=application.freelancer_id)],
+                'is_applied': Contacts.objects.filter(application_id=application).exists()
             })
         return JsonResponse({'success':True,'applications': result}, status=200)
         
@@ -624,8 +626,9 @@ class Freelancer:
             result.append({
                 'contact_id':contact.pk,
                 'job_title':contact.application_id.job_id.title,
-                'company_name':contact.application_id.job_id.employer_id.company_name,
-                'company_logo':contact.application_id.job_id.employer_id.company_logo,
+                'company_id':contact.application_id.job_id.employer_id.pk,
+                # 'company_name':contact.application_id.job_id.employer_id.company_name,
+                # 'company_logo':contact.application_id.job_id.employer_id.company_logo,
                 'is_done':not contact.current_status,
                 'is_rating':bool(contact.has_review)
             })
@@ -789,6 +792,7 @@ class Employer:
                 'max_employee': job.max_employee,
                 'current_employee': job.current_employee,
                 'requirements': [skill.skill_id.skill_name for skill in Job_Requirement_Skills.objects.filter(job_id=job)],
+                'status':job.status
             })
         return JsonResponse({'success':True,'jobs': result}, status=200)
 
@@ -930,7 +934,7 @@ class Employer:
         with transaction.atomic():
             job = Jobs.objects.select_for_update().get(pk=job.pk)
             if job.employer_id_id != user.id:
-                return JsonResponse({'success': False, 'message': 'User does not have permission'}, status=403)
+                return JsonResponse({'success': False, 'message': 'User does not have permission'}, status=400)
             if not application.apply_status:
                 return JsonResponse({'success': False, 'message': 'Application is not in applied state'}, status=400)
             if job.current_employee >= job.max_employee:
@@ -946,6 +950,45 @@ class Employer:
         job.save()
         job.refresh_from_db(fields=['current_employee'])
         return JsonResponse({'success':True,'message': 'Contact created successfully'}, status=200)
+
+    @csrf_exempt
+    @require_POST
+    def close_job(request):
+        auth_header = request.META.get('HTTP_AUTHORIZATION', '')
+        if not auth_header.startswith('Token '):
+            return JsonResponse({'success':False,'message': 'Authorization header required: Token <key>'}, status=400)
+        token_key = auth_header.split(' ', 1)[1].strip()
+        if not token_key:
+            return JsonResponse({'success':False,'message': 'Token is invalid.'}, status=400)
+        try:
+            token = Token.objects.get(key=token_key)
+        except Token.DoesNotExist:
+            return JsonResponse({'success':False,'message': 'Token does not exist.'}, status=400)
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+        except (ValueError, UnicodeDecodeError):
+            return HttpResponseBadRequest(json.dumps({'success':False,'message': 'Invalid JSON'}), content_type='application/json')
+
+        user=token.user
+        job_id=data.get("job_id")
+        if not job_id:
+            return JsonResponse({'success':False,'message': 'Job id is required'}, status=400)
+
+        with transaction.atomic():
+            try:
+                job = Jobs.objects.get(pk=job_id)
+            except Jobs.DoesNotExist:
+                return JsonResponse({'success':False,'message': 'Jobs does not exist.'}, status=400) 
+            if job.employer_id_id != user.id:
+                return JsonResponse({'success': False, 'message': 'User does not have permission'}, status=400)
+            if job.status is False:
+                return JsonResponse({'success': False, 'message': 'This job is closed'}, status=400)
+
+        job.max_employee=job.current_employee
+        job.status=False
+        job.save()
+
+        return JsonResponse({'success':True,'message': 'Job closed successfully'}, status=200)
 
     @csrf_exempt
     @require_GET
@@ -976,8 +1019,8 @@ class Employer:
                 'job_title':job.title,
                 'company_name':job.employer_id.company_name,
                 'freelancer_id': freelancer.id,
-                'freelancer_name': freelancer.full_name,
-                'freelancer_avatar':freelancer.avatar,
+                # 'freelancer_name': freelancer.full_name,
+                # 'freelancer_avatar':freelancer.avatar,
                 'start_date': contact.start_date.isoformat() if contact.start_date else None,
                 'end_date': contact.end_date.isoformat() if contact.end_date else None,
             })

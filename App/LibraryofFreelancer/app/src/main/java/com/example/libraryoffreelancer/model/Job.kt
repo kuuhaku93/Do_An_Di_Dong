@@ -34,21 +34,37 @@ data class ListJobsRespone(
 )
 
 @Serializable
+data class Application(
+    val id: Int,
+    val freelancer_id: Int,
+    val description: String,
+    val wanted_salary: Double,
+    val applied_date: String,
+    val skills: List<String>,
+    val is_applied: Boolean
+)
+@Serializable
+data class ListApplicationsRespone(
+    val success: Boolean,
+    val applications: List<Application>,
+    val message: String=" ",
+)
+
+@Serializable
 data class EmployerJob(
     val id: Int,
     val employer_name: String,
     val avatar: String,
     val title: String,
     val description: String,
-    val salary_min: Long,
-    val salary_max: Long,
+    val salary_min: Double,
+    val salary_max: Double,
     val location: String = " ",
     val deadline: String,
     val publish_date: String,
     val max_employee: Int,
     val current_employee: Int,
-    val requirements: List<String>,
-    val status: Boolean
+    val requirements: List<String>
 )
 
 @Serializable

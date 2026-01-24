@@ -3,9 +3,13 @@ package com.example.libraryoffreelancer.viewmodel
 import android.util.Log
 import com.example.libraryoffreelancer.model.APIResponse
 import com.example.libraryoffreelancer.model.Account
+import com.example.libraryoffreelancer.model.Application
 import com.example.libraryoffreelancer.model.Check
+import com.example.libraryoffreelancer.model.CurrentJob
 import com.example.libraryoffreelancer.model.HistoryJob
 import com.example.libraryoffreelancer.model.Job
+import com.example.libraryoffreelancer.model.ListApplicationsRespone
+import com.example.libraryoffreelancer.model.ListCurrent
 import com.example.libraryoffreelancer.model.ListHistory
 import com.example.libraryoffreelancer.model.ListJobsRespone
 import com.example.libraryoffreelancer.model.ListRatingResponse
@@ -124,7 +128,6 @@ class FreelancerViewModel {
         thread.join()
         return listRating
     }
-
     fun Apply_job(job_id: Int, token: String, wanted_salary: Double, description:String): APIResponse {
         var apiResponse: APIResponse = APIResponse(false,"")
         val bodyString= JSONObject()
@@ -152,7 +155,6 @@ class FreelancerViewModel {
         thread.join()
         return apiResponse
     }
-
     fun Load_history_job(token: String): List<HistoryJob>{
         Log.d("mydebug",token)
         var listJob : List<HistoryJob> = emptyList()
@@ -173,6 +175,72 @@ class FreelancerViewModel {
                     }
                     else{
                         Log.d("mydebug",listHistory.message)
+                    }
+                }
+                else{
+                    Log.d("mydebug",response.message)
+                }
+            }
+        }
+        thread.start()
+        thread.join()
+        return listJob
+    }
+    fun Load_application(job_id: Int,token: String): List<Application>{
+        var listApplication : List<Application> = emptyList()
+        val bodyString= JSONObject()
+            .put("job_id", job_id)
+            .toString()
+        val JSON = "application/json; charset=utf-8".toMediaType()
+        val body = bodyString.toRequestBody(JSON)
+        val req = Request.Builder()
+            .url("http://10.0.2.2:8000/api/load_list_application")
+            .addHeader("Content-Type","application/json")
+            .addHeader("Authorization","Token $token")
+            .post(body)
+            .build()
+        val thread = Thread{
+            client.newCall(req).execute().use { response ->
+                val body = response.body?.string().orEmpty()
+                Log.d("mydebug",body)
+                val listApplicationsRespone = customJson.decodeFromString<ListApplicationsRespone>(body)
+                if (response.isSuccessful){
+                    if (listApplicationsRespone.success) {
+                        listApplication = listApplicationsRespone.applications
+                    }
+                    else{
+                        Log.d("mydebug",listApplicationsRespone.message)
+                    }
+                }
+                else{
+                    Log.d("mydebug",response.message)
+                }
+            }
+        }
+        thread.start()
+        thread.join()
+        return listApplication
+    }
+    fun Load_current_job(token: String): List<CurrentJob>{
+        Log.d("mydebug",token)
+        var listJob : List<CurrentJob> = emptyList()
+        val req = Request.Builder()
+            .url("$urlRoot/load_current_job")
+            .addHeader("Content-Type","application/json")
+            .addHeader("Authorization","Token $token")
+            .get()
+            .build()
+        val thread = Thread{
+            client.newCall(req).execute().use { response ->
+                val body = response.body?.string().orEmpty()
+                Log.d("mydebug",body)
+                if (response.isSuccessful){
+                    val listCurent = customJson.decodeFromString<ListCurrent>(body)
+                    if (listCurent.success) {
+                        listJob = listCurent.jobs
+                    }
+                    else{
+                        Log.d("mydebug",listCurent.message)
                     }
                 }
                 else{

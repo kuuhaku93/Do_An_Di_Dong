@@ -27,7 +27,7 @@
             android:name=".view.employer.ChiTietCongViecActivity"
             android:exported="false" />
         <activity
-            android:name=".view.DanhSachAppliedActivity"
+            android:name=".view.freelancer.DanhSachAppliedFreelancerActivity"
             android:exported="false" />
         <activity
             android:name=".view.ChinhSuaHoSoEmployerActivity"

@@ -8,8 +8,8 @@ data class EmployerProfile(
     val company_logo: String,
     val email: String,
     val phone_number: String,
-    val website: String,
-    val address: String,
+    val website: String = "",
+    val address: String = "",
     val employer_description: String,
     val rating: Double
 )

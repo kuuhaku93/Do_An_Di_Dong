@@ -75,3 +75,19 @@ data class ListHistory(
     val jobs: List<HistoryJob> = emptyList(),
     val message: String=""
 )
+
+@Serializable
+data class CurrentJob(
+    val contact_id: Int,
+    val job_title: String,
+    val company_id: Int,
+    val is_done: Boolean,
+    val is_rating: Boolean,
+)
+
+@Serializable
+data class ListCurrent(
+    val success: Boolean,
+    val jobs: List<CurrentJob> = emptyList(),
+    val message: String=""
+)
