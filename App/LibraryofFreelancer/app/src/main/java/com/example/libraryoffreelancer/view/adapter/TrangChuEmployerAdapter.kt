@@ -14,7 +14,7 @@ import com.example.libraryoffreelancer.view.adapter.TrangChuFreelancerItemAdapte
 import com.example.libraryoffreelancer.viewmodel.dateconvert
 
 
-class TrangChuEmployerAdapter (private val listCV: List<EmployerJob>, private val listener: OnJobClickListener): RecyclerView.Adapter<TrangChuEmployerAdapter.EmployerViewHolder>(){
+class TrangChuEmployerAdapter (private var listCV: List<EmployerJob>, private val listener: OnJobClickListener): RecyclerView.Adapter<TrangChuEmployerAdapter.EmployerViewHolder>(){
     class EmployerViewHolder(item: View): RecyclerView.ViewHolder(item){
         val layout = item.findViewById<View>(R.id.layout_itemEmployer)
         val anhDaiDien = item.findViewById<ImageView>(R.id.img_anhDaiDien_trangChuEmployer_item)
@@ -26,7 +26,8 @@ class TrangChuEmployerAdapter (private val listCV: List<EmployerJob>, private va
         val soLuong=itemView.findViewById<TextView>(R.id.txt_soLuongNhanVien_item)
     }
     interface OnJobClickListener {
-        fun onJobClick(position: Int)
+        //fun onJobClick(position: Int)
+        fun onJobClick(job: EmployerJob)
     }
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -53,10 +54,14 @@ class TrangChuEmployerAdapter (private val listCV: List<EmployerJob>, private va
         holder.rev_kyNang.layoutManager = GridLayoutManager(holder.itemView.context, 3)
         holder.rev_kyNang.adapter = TrangChuEmployerKyNangAdapter(cv.requirements)
         holder.layout.setOnClickListener {
-            listener.onJobClick(position)
+            //listener.onJobClick(position)
+            listener.onJobClick(cv)
         }
     }
-
+    fun updateData(newList: List<EmployerJob>) {
+        this.listCV = newList
+        notifyDataSetChanged()
+    }
     override fun getItemCount(): Int {
         return listCV.size
     }
@@ -82,6 +87,5 @@ class TrangChuEmployerAdapter (private val listCV: List<EmployerJob>, private va
         override fun getItemCount(): Int {
             return listKN.size
         }
-
     }
 }

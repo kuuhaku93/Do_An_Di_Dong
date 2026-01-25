@@ -151,9 +151,9 @@ class CurrentJobAdapter(private val items: List<CurrentJob>,private val token: S
         Glide.with(holder.itemView.context)
             .load(employer.company_logo)
             .into(holder.img_avatar)
-//        holder.img_avatar.setOnClickListener {
-//            listenner.onItemClick(job.company_id)
-//        }
+        holder.img_avatar.setOnClickListener {
+            listenner.onItemClick(job.company_id)
+        }
 //        holder.btn_danhgia.setOnClickListener {
 //            listenner.onDanhGiaClick(job.contact_id)
 //        }

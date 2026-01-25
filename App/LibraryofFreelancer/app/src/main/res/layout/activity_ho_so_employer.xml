@@ -40,16 +40,25 @@
                 <!-- Ảnh nền header -->
 
                 <!-- Avatar chồng lên header -->
+
                 <ImageView
-                    android:id="@+id/img_company_logo"
+                    android:id="@+id/img_background"
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/bg_profile" />
 
+                <ImageButton
+                    android:id="@+id/btn_back_profile_employer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#0C9200"
+                    app:tint="#FDF9FC"
+                    app:srcCompat="@drawable/baseline_arrow_back_24" />
+
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/image_freelancer"
+                    android:id="@+id/img_company_logo"
                     android:layout_width="145dp"
                     android:layout_height="145dp"
                     android:layout_gravity="center_horizontal"

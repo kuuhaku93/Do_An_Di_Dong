@@ -1,5 +1,6 @@
 package com.example.libraryoffreelancer.view.employer
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -24,6 +25,8 @@ class CongViecDaDangEmployerActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val sharedPref = getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val userID=sharedPref.getInt("ACCOUNT_ID",0)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNavigationView.selectedItemId = R.id.nav_applied_job
 
@@ -43,7 +46,7 @@ class CongViecDaDangEmployerActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_profile -> {
-                    startActivity(Intent(applicationContext, HoSoEmployerActivity::class.java))
+                    startActivity(Intent(applicationContext, HoSoEmployerActivity::class.java).putExtra("self",true).putExtra("employer_id",userID))
                     overrideActivityTransition(
                         OVERRIDE_TRANSITION_OPEN,
                         android.R.anim.slide_out_right,

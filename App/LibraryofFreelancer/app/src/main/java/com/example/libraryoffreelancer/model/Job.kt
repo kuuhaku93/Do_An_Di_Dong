@@ -54,9 +54,9 @@ data class ListApplicationsRespone(
 data class EmployerJob(
     val id: Int,
     val employer_name: String,
-    val avatar: String,
-    val title: String,
-    val description: String,
+    val avatar: String = "https://tse4.mm.bing.net/th/id/OIP.xsKDhQCvjJdx9f2U-SIT5wHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+    val title: String = " ",
+    val description: String = " ",
     val salary_min: Double,
     val salary_max: Double,
     val location: String = " ",
@@ -65,7 +65,7 @@ data class EmployerJob(
     val max_employee: Int,
     val current_employee: Int,
     val requirements: List<String>
-)
+): java.io.Serializable
 
 @Serializable
 data class EmployerJobResponse(
@@ -84,9 +84,4 @@ data class CreateJob(
     val endDate: String,
     val maxEmployee: Int,
     val requirements: List<Int>
-)
-@Serializable
-data class CreateJobResponse(
-    val success: Boolean,
-    val message: String = " "
 )

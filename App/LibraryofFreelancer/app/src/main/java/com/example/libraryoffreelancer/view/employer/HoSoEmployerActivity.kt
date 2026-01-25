@@ -3,6 +3,7 @@ package com.example.libraryoffreelancer.view.employer
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -17,8 +18,6 @@ import com.bumptech.glide.Glide
 import com.example.libraryoffreelancer.R
 import com.example.libraryoffreelancer.view.adapter.EmployerReviewAdapter
 import com.example.libraryoffreelancer.view.NutCaiDatActivity
-import com.example.libraryoffreelancer.view.freelancer.CongViecDaNhanActivity
-import com.example.libraryoffreelancer.view.freelancer.TrangChuFreeLancerActivity
 import com.example.libraryoffreelancer.viewmodel.EmployerViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -33,9 +32,11 @@ class HoSoEmployerActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val is_self = intent.getBooleanExtra("self", false)
+
         val Pref = getSharedPreferences("Pref", MODE_PRIVATE)
         val token = Pref.getString("token", "")
-        val employerId = Pref.getInt("ACCOUNT_ID", 0)
+        val employerId = intent.getIntExtra("employer_id", 0)
         val employerViewModel = EmployerViewModel()
         val profile = employerViewModel.loadProfileEmployer(token!!, employerId)
 
@@ -66,41 +67,58 @@ class HoSoEmployerActivity : AppCompatActivity() {
         rcvDanhGia.layoutManager = LinearLayoutManager(this)
         rcvDanhGia.adapter = reviewAdapter
 
+        val btn_chinhSua = findViewById<ImageButton>(R.id.btn_ChinhSuaHoSoEmployer)
         val btn_caidat = findViewById<ImageButton>(R.id.btn_CaiDat_Employer)
+        val btn_back = findViewById<ImageButton>(R.id.btn_back_profile_employer)
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        bottomNavigationView.selectedItemId = R.id.nav_profile
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            if (item.itemId == R.id.nav_profile) {
+                return@setOnItemSelectedListener true
+            }
+            when (item.itemId) {
+                R.id.nav_applied_job -> {
+                    startActivity(Intent(applicationContext, CongViecDaDangEmployerActivity::class.java))
+                    overrideActivityTransition(
+                        OVERRIDE_TRANSITION_OPEN,
+                        android.R.anim.slide_out_right,
+                        android.R.anim.slide_in_left
+                    )
+                    finish()
+                    true
+                }
+                R.id.nav_home -> {
+                    startActivity(Intent(applicationContext, TrangChuEmployerActivity::class.java))
+                    overrideActivityTransition(
+                        OVERRIDE_TRANSITION_OPEN,
+                        android.R.anim.slide_out_right,
+                        android.R.anim.slide_in_left
+                    )
+                    finish()
+                    true
+                }
+                else -> false
+            }
+        }
+        btn_back.setOnClickListener {
+            this.finish()
+        }
         btn_caidat.setOnClickListener {
             val intent = Intent(this, NutCaiDatActivity::class.java)
             startActivity(intent)
-
-
-            val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
-            bottomNavigationView.setOnItemSelectedListener { item ->
-                if (item.itemId == R.id.nav_profile) {
-                    return@setOnItemSelectedListener true
-                }
-                when (item.itemId) {
-                    R.id.nav_applied_job -> {
-                        startActivity(Intent(applicationContext, CongViecDaDangEmployerActivity::class.java))
-                        overrideActivityTransition(
-                            OVERRIDE_TRANSITION_OPEN,
-                            android.R.anim.slide_out_right,
-                            android.R.anim.slide_in_left
-                        )
-                        finish()
-                        true
-                    }
-                    R.id.nav_home -> {
-                        startActivity(Intent(applicationContext, TrangChuEmployerActivity::class.java))
-                        overrideActivityTransition(
-                            OVERRIDE_TRANSITION_OPEN,
-                            android.R.anim.slide_out_right,
-                            android.R.anim.slide_in_left
-                        )
-                        finish()
-                        true
-                    }
-                    else -> false
-                }
-            }
+        }
+        if (is_self) {
+            btn_chinhSua.visibility = View.VISIBLE
+            btn_caidat.visibility = View.VISIBLE
+            btn_back.visibility = View.GONE
+            bottomNavigationView.visibility = View.VISIBLE
+        }
+        else{
+            bottomNavigationView.visibility = View.GONE
+            btn_chinhSua.visibility = View.GONE
+            btn_caidat.visibility = View.GONE
+            btn_back.visibility = View.VISIBLE
         }
     }
 }

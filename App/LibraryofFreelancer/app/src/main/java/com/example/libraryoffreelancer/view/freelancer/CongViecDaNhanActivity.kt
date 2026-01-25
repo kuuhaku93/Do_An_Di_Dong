@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.libraryoffreelancer.R
 import com.example.libraryoffreelancer.view.adapter.CurrentJobAdapter
+import com.example.libraryoffreelancer.view.employer.HoSoEmployerActivity
 import com.example.libraryoffreelancer.viewmodel.FreelancerViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -69,7 +70,10 @@ class CongViecDaNhanActivity : AppCompatActivity(), CurrentJobAdapter.AvatarEmpl
     }
 
     override fun onItemClick(employer_id: Int) {
-        TODO("Not yet implemented")
+        val intent= Intent(this, HoSoEmployerActivity::class.java)
+        intent.putExtra("employer_id",employer_id)
+        intent.putExtra("self",false)
+        startActivity(intent)
     }
 
     override fun onDanhGiaClick(contact_id: Int) {

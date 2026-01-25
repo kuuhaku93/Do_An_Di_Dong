@@ -65,7 +65,7 @@ class TrangChuFreeLancerActivity : AppCompatActivity(), OnItemClickListener {
         val rev_CongViecFreelancer = findViewById<RecyclerView>(R.id.rcv_CongViecFreelancer)
         rev_CongViecFreelancer.layoutManager = LinearLayoutManager(this)
         val freelancerViewModel= FreelancerViewModel()
-        rev_CongViecFreelancer.adapter= TrangChuFreelancerAdapter(freelancerViewModel.Load_list_job(token),this)
+        rev_CongViecFreelancer.adapter = TrangChuFreelancerAdapter(freelancerViewModel.Load_list_job(token),this)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNavigationView.selectedItemId = R.id.nav_home

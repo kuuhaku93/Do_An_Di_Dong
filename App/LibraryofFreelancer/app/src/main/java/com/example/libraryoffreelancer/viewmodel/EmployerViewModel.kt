@@ -1,7 +1,7 @@
 package com.example.libraryoffreelancer.viewmodel
 
 import android.util.Log
-import com.example.libraryoffreelancer.model.CreateJobResponse
+import com.example.libraryoffreelancer.model.APIResponse
 import com.example.libraryoffreelancer.model.EmployerJob
 import com.example.libraryoffreelancer.model.EmployerJobResponse
 import com.example.libraryoffreelancer.model.EmployerProfile
@@ -25,6 +25,28 @@ class EmployerViewModel {
     val client= OkHttpClient()
     val urlRoot="http://10.0.2.2:8000/api"
 
+    fun closeJob(token: String, jobId: Int, ): APIResponse{
+        var apiResponse= APIResponse(false,"")
+        val bodyString = JSONObject()
+            .put("job_id", jobId).toString()
+        val JSON = "application/json; charset=utf-8".toMediaType()
+        val body = bodyString.toRequestBody(JSON)
+        val req = Request.Builder()
+            .url("$urlRoot/employer/close_job")
+            .addHeader("Authorization", "Token $token")
+            .post(body)
+            .build()
+        val thread= Thread{
+            client.newCall(req).execute().use { response ->
+                val body = response.body?.string().orEmpty()
+                Log.d("mydebug", body)
+                apiResponse = customJson.decodeFromString<APIResponse>(body)
+            }
+        }
+        thread.start()
+        thread.join()
+        return apiResponse
+    }
     fun loadTrangChuEmployer(token: String): List<EmployerJob>{
         Log.d("mydebug",token)
         var listCongViec : List<EmployerJob> = emptyList()

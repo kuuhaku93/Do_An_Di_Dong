@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.libraryoffreelancer.R
+import com.example.libraryoffreelancer.model.EmployerJob
 import com.example.libraryoffreelancer.view.adapter.OnItemClickListener
 import com.example.libraryoffreelancer.view.adapter.TrangChuEmployerAdapter
 import com.example.libraryoffreelancer.view.freelancer.CongViecDaNhanActivity
@@ -21,6 +22,9 @@ import com.example.libraryoffreelancer.viewmodel.EmployerViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class TrangChuEmployerActivity : AppCompatActivity(), TrangChuEmployerAdapter.OnJobClickListener {
+    private val employerViewModel = EmployerViewModel()
+    private lateinit var adapter: TrangChuEmployerAdapter
+    private var token: String = " "
     @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +35,17 @@ class TrangChuEmployerActivity : AppCompatActivity(), TrangChuEmployerAdapter.On
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         val sharedPref = getSharedPreferences("Pref", Context.MODE_PRIVATE)
-        val token=sharedPref.getString("token","").orEmpty()
+        token=sharedPref.getString("token","").orEmpty()
+        val userID=sharedPref.getInt("ACCOUNT_ID",0)
+
         val rev_danhSachCongViec = findViewById<RecyclerView>(R.id.rcv_CongViecEmployer)
         rev_danhSachCongViec.layoutManager = LinearLayoutManager(this)
-        val employerViewModel = EmployerViewModel()
-        rev_danhSachCongViec.adapter = TrangChuEmployerAdapter(employerViewModel.loadTrangChuEmployer(token), this)
+        //rev_danhSachCongViec.adapter = TrangChuEmployerAdapter(employerViewModel.loadTrangChuEmployer(token), this)
+        adapter = TrangChuEmployerAdapter(emptyList(), this)
+        rev_danhSachCongViec.adapter = adapter
+
 
         val btn_them = findViewById<ImageButton>(R.id.btn_themCongViec).setOnClickListener {
             val intent = Intent(this, FormThemCongViecActivity::class.java)
@@ -61,7 +70,7 @@ class TrangChuEmployerActivity : AppCompatActivity(), TrangChuEmployerAdapter.On
                     true
                 }
                 R.id.nav_profile -> {
-                    startActivity(Intent(applicationContext, HoSoEmployerActivity::class.java))
+                    startActivity(Intent(applicationContext, HoSoEmployerActivity::class.java).putExtra("self",true).putExtra("employer_id",userID))
                     overrideActivityTransition(
                         OVERRIDE_TRANSITION_OPEN,
                         android.R.anim.slide_out_right,
@@ -75,9 +84,15 @@ class TrangChuEmployerActivity : AppCompatActivity(), TrangChuEmployerAdapter.On
         }
     }
 
-    override fun onJobClick(position: Int) {
+    override fun onResume() {
+        super.onResume()
+        val list = employerViewModel.loadTrangChuEmployer(token)
+        adapter.updateData(list)
+    }
+    override fun onJobClick(job: EmployerJob) {
         val intent = Intent(this, ChiTietCongViecActivity::class.java)
-        intent.putExtra("position", position)
+        //intent.putExtra("position", position)
+        intent.putExtra("job_object", job)
         startActivity(intent)
     }
 }
