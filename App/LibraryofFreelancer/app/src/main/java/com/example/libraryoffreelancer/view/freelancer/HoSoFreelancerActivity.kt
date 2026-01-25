@@ -98,7 +98,8 @@ class HoSoFreelancerActivity : AppCompatActivity() {
         rev_danh_gia.adapter = RatingAdapter(listRating)
         val txt_so_cong_viec = findViewById<TextView>(R.id.so_cong_viec)
         txt_so_cong_viec.text = listRating.size.toString()
-
+        val txt_so_review = findViewById<TextView>(R.id.so_review)
+        txt_so_review.text = "${listRating.size} review"
         bottomNavigationView.setOnItemSelectedListener { item ->
             if (item.itemId == R.id.nav_profile) {
                 return@setOnItemSelectedListener true

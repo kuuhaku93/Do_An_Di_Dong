@@ -9,7 +9,7 @@ from datetime import datetime
 from django.core.mail import send_mail
 from django.db import transaction
 from django.db.models import Count,Q,Avg,OuterRef,Exists,F
-import json,random
+import json,random,ast
 from decouple import config
 from .models import Accounts,Jobs,Applications,Contacts,Employer_Reviews,Freelancer_Ratings,Portfolios,Item_types,Default_Items,Portfolio_Items,Custom_items,Skill_Categories,Skills,Portfolio_Skills,Job_Requirement_Skills,EmailOTP
 
@@ -186,7 +186,8 @@ class General:
             skills_in_category = Skills.objects.filter(category_id=cate)
             skill_list = [{'id': skill.id, 'skill_name': skill.skill_name} for skill in skills_in_category]
             list_skills.append({
-                cate.title: skill_list
+                'type':cate.title,
+                'skills': skill_list
             })
         return JsonResponse({'success':True,'skills':list_skills},status=200)
 
@@ -313,8 +314,10 @@ class Freelancer:
         except (ValueError, UnicodeDecodeError):
             return HttpResponseBadRequest(json.dumps({'success':False,'message': 'Invalid JSON'}), content_type='application/json')
         keyword = data.get('keyword','').strip()
-        requirement_ids = data.get('requirement', []) or []
-
+        requirement_ids = ast.literal_eval(data.get('requirement', '[]'))
+        print(data)
+        print(keyword)
+        print(requirement_ids)
         try:
             requirement_ids = [int(x) for x in requirement_ids]
         except (TypeError, ValueError):
@@ -332,6 +335,7 @@ class Freelancer:
         for job in qs:
             result.append({
                 'id': job.id,
+                'employer_id':job.employer_id.pk,
                 'employer_name': job.employer_id.company_name,
                 'avatar': job.employer_id.company_logo,
                 'title': job.title,
@@ -346,7 +350,7 @@ class Freelancer:
                 'requirements': [skill.skill_id.skill_name for skill in Job_Requirement_Skills.objects.filter(job_id=job)],
                 'is_applied': Applications.objects.filter(job_id=job, freelancer_id=freelancer).exists()
             })
-        return JsonResponse({'success':True,'jobs': resuilt}, status=200)
+        return JsonResponse({'success':True,'jobs': result}, status=200)
 
     @csrf_exempt
     @require_POST
@@ -498,9 +502,9 @@ class Freelancer:
         email = data.get('email','').strip()
         phone_number = data.get('phone_number','').strip()
         description = data.get('description','').strip()
-        skills=data.get('skills',[])or []
-        items=data.get('items',[])or[]
-        custom=data.get('customs',[])or []
+        skills=ast.literal_eval(data.get('skills', '[]'))
+        items=ast.literal_eval(data.get('items', '[]'))
+        custom=ast.literal_eval(data.get('customs', '[]'))
 
         try:
             portfolio = Portfolios.objects.get(freelancer_id=freelancer)
@@ -676,7 +680,7 @@ class Freelancer:
         if contact.current_status:
             return JsonResponse({'success': False, 'message': 'Contact is not complete'}, status=404)     
         if contact.application_id.freelancer_id != freelancer:
-            return JsonResponse({'success':False,'message': 'user is not have permision'}, status=400)
+            return JsonResponse({'success':False,'message': 'user is not have permission'}, status=400)
         review=Employer_Reviews(contact_id=contact,comment=comment,score=score)
         review.save()
         return JsonResponse({'success':True,'message': 'Review created successfully'}, status=200)
@@ -850,7 +854,7 @@ class Employer:
         )
 
         new_job.save()
-        requirements=data.get('requirements',[])
+        requirements=ast.literal_eval(data.get('requirements', '[]'))
         for req in requirements:
             skill_obj=Skills.objects.filter(id=req).first()
             if skill_obj:

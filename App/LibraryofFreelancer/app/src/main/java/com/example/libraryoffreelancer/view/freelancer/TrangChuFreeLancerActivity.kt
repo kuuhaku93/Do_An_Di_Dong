@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
@@ -16,13 +17,16 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.libraryoffreelancer.R
-import com.example.libraryoffreelancer.view.employer.ChiTietCongViecActivity
+import com.example.libraryoffreelancer.view.adapter.ItemKyNangClick
+import com.example.libraryoffreelancer.view.adapter.ListTypeAdapter
 import com.example.libraryoffreelancer.view.adapter.OnItemClickListener
 import com.example.libraryoffreelancer.view.adapter.TrangChuFreelancerAdapter
 import com.example.libraryoffreelancer.viewmodel.FreelancerViewModel
+import com.example.libraryoffreelancer.viewmodel.SettingsViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class TrangChuFreeLancerActivity : AppCompatActivity(), OnItemClickListener {
+class TrangChuFreeLancerActivity : AppCompatActivity(), OnItemClickListener, ItemKyNangClick {
+    val listIDSkill=mutableListOf<Int>()
     @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,35 +41,12 @@ class TrangChuFreeLancerActivity : AppCompatActivity(), OnItemClickListener {
         val token=sharedPref.getString("token","").orEmpty()
         val userID=sharedPref.getInt("ACCOUNT_ID",0)
 
-        val btn_loc_trangchu = findViewById<ImageButton>(R.id.btn_loc_trangchu)
-        btn_loc_trangchu.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            val dialogView = layoutInflater.inflate(R.layout.dialog_loctimkiem, null)
-            builder.setView(dialogView)
 
-            val alertDialog = builder.create()
-
-//            val rev_KyNangTrangHoSo = dialogView.findViewById<RecyclerView>(R.id.rcv_KyNangTrangHoSo)
-//            val rev_LoaiHinh = dialogView.findViewById<RecyclerView>(R.id.rcv_LoaiHinh)
-//            val rev_NgonNgu = dialogView.findViewById<RecyclerView>(R.id.rcv_NgonNgu)
-//            rev_KyNangTrangHoSo.layoutManager = LinearLayoutManager(this)
-
-
-            val btnApDung = dialogView.findViewById<Button>(R.id.btn_ApDung)
-            val btnHuy = dialogView.findViewById<Button>(R.id.btn_huy)
-
-            btnApDung.setOnClickListener {
-
-            }
-
-            btnHuy.setOnClickListener { alertDialog.dismiss() }
-
-            alertDialog.show()
-        }
         val rev_CongViecFreelancer = findViewById<RecyclerView>(R.id.rcv_CongViecFreelancer)
         rev_CongViecFreelancer.layoutManager = LinearLayoutManager(this)
         val freelancerViewModel= FreelancerViewModel()
-        rev_CongViecFreelancer.adapter = TrangChuFreelancerAdapter(freelancerViewModel.Load_list_job(token),this)
+        var listJobAdapter = TrangChuFreelancerAdapter(freelancerViewModel.Load_list_job(token),this)
+        rev_CongViecFreelancer.adapter= listJobAdapter
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNavigationView.selectedItemId = R.id.nav_home
@@ -97,11 +78,56 @@ class TrangChuFreeLancerActivity : AppCompatActivity(), OnItemClickListener {
                 else -> false
             }
         }
+        val btn_loc_trangchu = findViewById<ImageButton>(R.id.btn_loc_trangchu)
+        btn_loc_trangchu.setOnClickListener {
+
+            val builder = AlertDialog.Builder(this)
+            val dialogView = layoutInflater.inflate(R.layout.dialog_loctimkiem, null)
+            builder.setView(dialogView)
+
+            val alertDialog = builder.create()
+
+            val btn_ApDung = dialogView.findViewById<Button>(R.id.btn_ApDung)
+            val btn_Huy = dialogView.findViewById<Button>(R.id.btn_huy)
+            btn_ApDung.setOnClickListener {
+                Log.d("mydebug", listIDSkill.toString())
+                alertDialog.dismiss()
+            }
+            val rev_boLocTimKiem=dialogView.findViewById<RecyclerView>(R.id.rev_boLocTimKiem_trangChu_Freelancer)
+            rev_boLocTimKiem.layoutManager= LinearLayoutManager(this)
+            val settingsViewModel= SettingsViewModel()
+            rev_boLocTimKiem.adapter= ListTypeAdapter(settingsViewModel.Load_list_skill(token),listIDSkill, this)
+
+            btn_Huy.setOnClickListener { alertDialog.dismiss() }
+
+            alertDialog.show()
+        }
+        val txt_timkiem_trangchu=findViewById<EditText>(R.id.txt_timkiem_trangchu)
+        val btn_tim=findViewById<ImageButton>(R.id.btn_tim_trangChu_Freelancer)
+        btn_tim.setOnClickListener {
+            if(txt_timkiem_trangchu.text.toString()==""&&listIDSkill.isEmpty()){
+                listJobAdapter= TrangChuFreelancerAdapter(freelancerViewModel.Load_list_job(token),this)
+            }
+            else{
+                listJobAdapter= TrangChuFreelancerAdapter(freelancerViewModel.Load_list_job_by_search(token,txt_timkiem_trangchu.text.toString(),listIDSkill),this)
+            }
+            rev_CongViecFreelancer.adapter= listJobAdapter
+            rev_CongViecFreelancer.adapter?.notifyDataSetChanged()
+        }
     }
 
     override fun onItemClick(position: Int) {
         val intent = Intent(this, ChiTietCongViecFreelancerActivity::class.java)
         intent.putExtra("position", position)
         startActivity(intent)
+    }
+    override fun onKyNangCheck(skillID: Int) {
+        if (!listIDSkill.contains(skillID)) {
+            listIDSkill.add(skillID)
+        }
+    }
+
+    override fun onKyNangUnCheck(skillID: Int) {
+        listIDSkill.remove(skillID)
     }
 }

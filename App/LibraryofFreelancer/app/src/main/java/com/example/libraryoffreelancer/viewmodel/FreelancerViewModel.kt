@@ -58,6 +58,43 @@ class FreelancerViewModel {
         thread.join()
         return listJob
     }
+    fun Load_list_job_by_search(token: String,keyword: String,requirement: List<Int>): List<Job>{
+        Log.d("mydebug",token)
+        var listJob : List<Job> = emptyList()
+        val bodyString= JSONObject()
+            .put("keyword", keyword)
+            .put("requirement", requirement)
+            .toString()
+        val JSON = "application/json; charset=utf-8".toMediaType()
+        val body = bodyString.toRequestBody(JSON)
+        val req = Request.Builder()
+            .url("$urlRoot/load_list_job_by_search")
+            .addHeader("Content-Type","application/json")
+            .addHeader("Authorization","Token $token")
+            .post(body)
+            .build()
+        val thread = Thread{
+            client.newCall(req).execute().use { response ->
+                val body = response.body?.string().orEmpty()
+                Log.d("mydebug",body)
+                if (response.isSuccessful){
+                    val listJobsRespone = customJson.decodeFromString<ListJobsRespone>(body)
+                    if (listJobsRespone.success) {
+                        listJob = listJobsRespone.jobs
+                    }
+                    else{
+                        Log.d("mydebug",listJobsRespone.message)
+                    }
+                }
+                else{
+                    Log.d("mydebug",response.message)
+                }
+            }
+        }
+        thread.start()
+        thread.join()
+        return listJob
+    }
     fun Load_portfolio(freelancer_id: Int,token: String): Portfolio{
         var portfolio : Portfolio= Portfolio("","","","","",0.0,0.0,emptyList(), emptyList())
         val bodyString= JSONObject()

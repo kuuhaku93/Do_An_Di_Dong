@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_KyNangTrangHoSo"
+            android:id="@+id/rev_boLocTimKiem_trangChu_Freelancer"
             android:layout_width="334dp"
             android:layout_height="439dp"
             android:layout_marginTop="8dp"
@@ -46,10 +46,10 @@
             android:backgroundTint="#0EA401"
             android:text="Áp dụng"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/rcv_KyNangTrangHoSo"
+            app:layout_constraintEnd_toEndOf="@+id/rev_boLocTimKiem_trangChu_Freelancer"
             app:layout_constraintHorizontal_bias="0.995"
-            app:layout_constraintStart_toStartOf="@+id/rcv_KyNangTrangHoSo"
-            app:layout_constraintTop_toBottomOf="@+id/rcv_KyNangTrangHoSo" />
+            app:layout_constraintStart_toStartOf="@+id/rev_boLocTimKiem_trangChu_Freelancer"
+            app:layout_constraintTop_toBottomOf="@+id/rev_boLocTimKiem_trangChu_Freelancer" />
 
         <Button
             android:id="@+id/button2"
@@ -60,10 +60,10 @@
             android:text="Hủy"
             android:textColor="#0C9300"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/rcv_KyNangTrangHoSo"
+            app:layout_constraintEnd_toEndOf="@+id/rev_boLocTimKiem_trangChu_Freelancer"
             app:layout_constraintHorizontal_bias="0.546"
-            app:layout_constraintStart_toStartOf="@+id/rcv_KyNangTrangHoSo"
-            app:layout_constraintTop_toBottomOf="@+id/rcv_KyNangTrangHoSo" />
+            app:layout_constraintStart_toStartOf="@+id/rev_boLocTimKiem_trangChu_Freelancer"
+            app:layout_constraintTop_toBottomOf="@+id/rev_boLocTimKiem_trangChu_Freelancer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

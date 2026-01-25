@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C1B1B"
+    tools:context=".view.freelancer.BoLocTimKiemActivity">
+
+    <Button
+        android:id="@+id/btn_ApDung_boLocTimKiem_freelancer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#0C9300"
+        android:text="Áp dụng"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btn_huy_boLocTimKiem_Freelancer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="#3C3C3C"
+        android:text="Hủy"
+        android:textColor="#0C9300"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_ApDung_boLocTimKiem_freelancer"
+        app:layout_constraintEnd_toStartOf="@+id/btn_ApDung_boLocTimKiem_freelancer" />
+
+    <ImageButton
+        android:id="@+id/btn_back_boLocTimKiem_Freelancer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#1C1B1B"
+        android:tint="#FFFEFE"
+        app:srcCompat="@drawable/baseline_arrow_back_24"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="7dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rev_boLocTimKiem"
+        android:layout_width="409dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_huy_boLocTimKiem_Freelancer"
+        app:layout_constraintTop_toBottomOf="@+id/btn_back_boLocTimKiem_Freelancer"
+        tools:layout_editor_absoluteX="1dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
