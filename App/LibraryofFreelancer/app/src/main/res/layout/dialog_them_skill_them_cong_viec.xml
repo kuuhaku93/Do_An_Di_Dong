@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C1B1B">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dialog_them_skill_CongViec"
+        android:layout_width="366dp"
+        android:layout_height="569dp"
+        android:background="@drawable/alerdialog_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btn_ApDung_ThemCongViec"
+            android:layout_width="96dp"
+            android:layout_height="37dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="#0EA401"
+            android:text="Áp dụng"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btn_huy_themCongViec"
+            android:layout_width="96dp"
+            android:layout_height="37dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="#3C3C3C"
+            android:text="Hủy"
+            android:textColor="#0C9300"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_ApDung_ThemCongViec"
+            app:layout_constraintEnd_toStartOf="@+id/btn_ApDung_ThemCongViec" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rev_danhSachKyNang_themCongViec"
+            android:layout_width="330dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_huy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

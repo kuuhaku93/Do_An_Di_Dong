@@ -45,6 +45,39 @@ data class ListApplicationsRespone(
 )
 
 @Serializable
+data class CreateJobRequest(
+    val title: String,
+    val description: String,
+    val salaryMin: Double,
+    val salaryMax: Double,
+    val location: String,
+    val deadline: String,
+    val endDate: String,
+    val maxEmployee: Int,
+    val requirements: List<Int>
+)
+
+@Serializable
+data class EmployerJobHistory(
+    val contact_id: Int,
+    val job_title: String,
+    val score: Double,
+    val complete: Boolean,
+    val company_name: String,
+    val freelancer_id: Int,
+    val freelancer_name: String,
+    val freelancer_avatar: String = "https://tse4.mm.bing.net/th/id/OIP.xsKDhQCvjJdx9f2U-SIT5wHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+    val start_date: String,
+    val end_date: String
+)
+
+@Serializable
+data class ListJobHistory(
+    val success: Boolean,
+    val jobs: List<EmployerJobHistory> = emptyList(),
+    val message: String=""
+)
+@Serializable
 data class EmployerJob(
     val id: Int,
     val employer_name: String,
@@ -66,16 +99,4 @@ data class EmployerJobResponse(
     val success: Boolean,
     val jobs: List<EmployerJob>,
     val message: String = " "
-)
-
-data class CreateJob(
-    val title: String,
-    val description: String,
-    val salaryMin: Long,
-    val salaryMax: Long,
-    val location: String,
-    val deadline: String,
-    val endDate: String,
-    val maxEmployee: Int,
-    val requirements: List<Int>
 )

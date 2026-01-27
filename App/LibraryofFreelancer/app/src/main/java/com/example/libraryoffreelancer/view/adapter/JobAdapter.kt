@@ -1,30 +1,76 @@
 package com.example.libraryoffreelancer.view.adapter
 
 import android.graphics.Color
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.libraryoffreelancer.R
 import com.example.libraryoffreelancer.model.Application
 import com.example.libraryoffreelancer.model.CurrentJob
+import com.example.libraryoffreelancer.model.EmployerJobHistory
 import com.example.libraryoffreelancer.model.HistoryJob
 import com.example.libraryoffreelancer.view.adapter.ApplicationAdapter.AvatarFreelancerClick
+import com.example.libraryoffreelancer.view.adapter.HistoryJobAdapter.HistoryJobViewHolder
 import com.example.libraryoffreelancer.viewmodel.EmployerViewModel
 import com.example.libraryoffreelancer.viewmodel.FreelancerViewModel
 import com.example.libraryoffreelancer.viewmodel.dateconvert
 
+class EmployerJobHistoryAdapter(private val items: List<EmployerJobHistory>): RecyclerView.Adapter<EmployerJobHistoryAdapter.JobHistoryViewHolder>(){
+    class JobHistoryViewHolder(item: View) : RecyclerView.ViewHolder(item){
+        val txt_tenCongViec = item.findViewById<TextView>(R.id.txt_ten_cong_viec_Employer)
+        val txt_tenCongTy = item.findViewById<TextView>(R.id.txt_tenCongTy_lichSuCongViec)
+        val txt_tienTrinh = item.findViewById<TextView>(R.id.txt_tien_trinh)
+        val txt_thoiGian = item.findViewById<TextView>(R.id.txt_thoi_gian)
+        val layout_vien=item.findViewById<View>(R.id.layout_vien_lichsuCongViec_item)
+
+    }
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): EmployerJobHistoryAdapter.JobHistoryViewHolder {
+        val view= LayoutInflater.from(parent.context).inflate(R.layout.item_lich_su_cong_viec_employer,parent,false)
+        return JobHistoryViewHolder(view)
+    }
+
+    override fun onBindViewHolder(
+        holder: EmployerJobHistoryAdapter.JobHistoryViewHolder,
+        position: Int
+    ) {
+        val job=items[position]
+        holder.txt_tenCongViec.text=job.job_title
+        holder.txt_tenCongTy.text=job.company_name
+        holder.txt_thoiGian.text=dateconvert(job.start_date)+" - "+dateconvert(job.end_date)
+        if(job.complete){
+            holder.txt_tienTrinh.text="Hoàn Thành"
+            holder.txt_tienTrinh.setTextColor(Color.GREEN)
+            holder.layout_vien.setBackgroundColor(Color.GREEN)
+        }
+        else{
+            holder.txt_tienTrinh.text="Không Hoàn Thành"
+            holder.txt_tienTrinh.setTextColor(Color.RED)
+            holder.layout_vien.setBackgroundColor(Color.RED)
+        }
+    }
+
+    override fun getItemCount(): Int {
+        return items.size
+    }
+
+}
 class HistoryJobAdapter(private val items: List<HistoryJob>): RecyclerView.Adapter<HistoryJobAdapter.HistoryJobViewHolder>() {
     class HistoryJobViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val img_avatar=itemView.findViewById<ImageView>(R.id.img_avatar_historyJob)
         val txt_tenCongViec=itemView.findViewById<TextView>(R.id.txt_ten_cong_viec_Employer)
         val txt_tenCongTy=itemView.findViewById<TextView>(R.id.txt_tenCongTy_lichSuCongViec)
-        val txt_thoiGian=itemView.findViewById<TextView>(R.id.txt_thoi_gian)
+        val txt_thoiGian=itemView.findViewById<TextView>(R.id.txt_thoi_gian_Employer)
         val ctlayout_vien=itemView.findViewById<View>(R.id.ctlayout_vien_lichsuCongViec_item)
         val txt_trangThai=itemView.findViewById<TextView>(R.id.txt_trangThaiLichSu)
         val txt_dangGia=itemView.findViewById<TextView>(R.id.txt_dangGiaLichSu_Freelancer)
@@ -37,6 +83,7 @@ class HistoryJobAdapter(private val items: List<HistoryJob>): RecyclerView.Adapt
         return HistoryJobViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onBindViewHolder(
         holder: HistoryJobViewHolder,
         position: Int

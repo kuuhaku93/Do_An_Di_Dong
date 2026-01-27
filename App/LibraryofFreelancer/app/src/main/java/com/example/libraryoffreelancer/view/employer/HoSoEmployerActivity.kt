@@ -33,7 +33,6 @@ class HoSoEmployerActivity : AppCompatActivity() {
             insets
         }
         val is_self = intent.getBooleanExtra("self", false)
-
         val Pref = getSharedPreferences("Pref", MODE_PRIVATE)
         val token = Pref.getString("token", "")
         val employerId = intent.getIntExtra("employer_id", 0)

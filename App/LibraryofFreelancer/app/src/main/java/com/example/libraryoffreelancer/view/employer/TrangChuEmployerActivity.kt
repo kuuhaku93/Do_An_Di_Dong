@@ -91,7 +91,6 @@ class TrangChuEmployerActivity : AppCompatActivity(), TrangChuEmployerAdapter.On
     }
     override fun onJobClick(job: EmployerJob) {
         val intent = Intent(this, ChiTietCongViecActivity::class.java)
-        //intent.putExtra("position", position)
         intent.putExtra("job_object", job)
         startActivity(intent)
     }

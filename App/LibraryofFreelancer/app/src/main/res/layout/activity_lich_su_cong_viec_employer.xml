@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context=".view.LichSuCongViecEmployerActivity">
+    tools:context=".view.employer.LichSuCongViecEmployerActivity">
 
     <ImageButton
-        android:id="@+id/btn_QuayLaiTrangNutCaiDatFreelancer"
+        android:id="@+id/btn_QuayLai_LichSuEmployer"
         android:layout_width="44dp"
         android:layout_height="41dp"
         android:layout_marginStart="16dp"
@@ -21,7 +21,7 @@
         app:tint="#6C6C6C" />
 
     <TextView
-        android:id="@+id/label_lichSuCongViec"
+        android:id="@+id/txt_lichSuCongViec"
         android:layout_width="378dp"
         android:layout_height="70dp"
         android:layout_marginStart="16dp"
@@ -34,10 +34,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_lichSuCongViecEmployer"
+        android:id="@+id/rev_lichSuCongViecEmployer"
         android:layout_width="0dp"
         android:layout_height="500dp"
-        app:layout_constraintEnd_toEndOf="@+id/label_lichSuCongViec"
-        app:layout_constraintStart_toStartOf="@+id/label_lichSuCongViec"
-        app:layout_constraintTop_toBottomOf="@+id/label_lichSuCongViec" />
+        app:layout_constraintEnd_toEndOf="@+id/txt_lichSuCongViec"
+        app:layout_constraintStart_toStartOf="@+id/txt_lichSuCongViec"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lichSuCongViec" />
 </androidx.constraintlayout.widget.ConstraintLayout>

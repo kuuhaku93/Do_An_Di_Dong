@@ -24,7 +24,7 @@
             android:name=".view.freelancer.ChiTietCongViecFreelancerActivity"
             android:exported="false" />
         <activity
-            android:name=".view.LichSuCongViecEmployerActivity"
+            android:name=".view.employer.LichSuCongViecEmployerActivity"
             android:exported="false" />
         <activity
             android:name=".view.employer.ChiTietCongViecActivity"

@@ -21,11 +21,41 @@
             android:paddingBottom="24dp">
 
             <!-- Back Button -->
+
+            <EditText
+                android:id="@+id/txt_soLuong_Nhanvien_ToiDa"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/custom_txt"
+                android:inputType="text"
+                android:padding="12dp"
+                android:textColorHint="#999999"
+                app:layout_constraintBottom_toBottomOf="@+id/textView12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.17"
+                app:layout_constraintStart_toEndOf="@+id/textView12"
+                app:layout_constraintTop_toTopOf="@+id/textView12" />
+
+            <ImageButton
+                android:id="@+id/btn_back_add_job"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#000C9200"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/baseline_arrow_back_24"
+                app:tint="#FDF9FC" />
+
+            <!-- Tên công việc -->
+
             <Button
                 android:id="@+id/btn_confirm"
                 android:layout_width="115dp"
                 android:layout_height="44dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="32dp"
                 android:backgroundTint="#00C853"
                 android:text="Đăng"
                 android:textColor="#FFFFFF"
@@ -34,31 +64,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_viTri_congViec" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_soLuong_Nhanvien_ToiDa" />
 
-            <TextView
-                android:id="@+id/txt_return_FormThemCongViec"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:padding="8dp"
-                android:text="←"
-                android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <!-- Tên công việc -->
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="44dp"
                 android:text="Tên công việc"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_return_FormThemCongViec" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_back_add_job" />
 
             <EditText
                 android:id="@+id/txt_jobname"
@@ -89,33 +106,34 @@
 
             <EditText
                 android:id="@+id/txt_luong_toi_thieu"
-                android:layout_width="0dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/custom_txt"
-                android:hint="Mức lương tối thiểu"
+                android:hint="Tối thiểu"
                 android:inputType="number"
                 android:padding="12dp"
                 android:textColorHint="#999999"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView2"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <!-- Thời hạn -->
 
             <EditText
                 android:id="@+id/txt_luong_toi_da"
-                android:layout_width="0dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
                 android:background="@drawable/custom_txt"
-                android:hint="Mức lương tối đa"
+                android:hint="Tối đa"
                 android:inputType="number"
                 android:padding="12dp"
                 android:textColorHint="#999999"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_luong_toi_thieu"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_luong_toi_thieu" />
+                app:layout_constraintStart_toEndOf="@+id/txt_luong_toi_thieu"
+                app:layout_constraintTop_toTopOf="@+id/txt_luong_toi_thieu" />
 
-            <!-- Thời hạn -->
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
@@ -155,7 +173,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txt_deadline" />
 
             <EditText
-                android:id="@+id/txt_deadline2"
+                android:id="@+id/txt_enddate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -178,12 +196,12 @@
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_deadline2" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_enddate" />
 
             <EditText
                 android:id="@+id/txt_moTa_congViec"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/custom_txt"
                 android:gravity="top|start"
@@ -208,18 +226,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/txt_moTa_congViec" />
 
             <!-- Skill chips container -->
+
+            <!-- Vị trí -->
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chip_group_skills"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 app:chipSpacingHorizontal="8dp"
                 app:chipSpacingVertical="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6">
-
-                <!-- Example skills - these would be added dynamically -->
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_add"
@@ -232,7 +251,6 @@
 
             </com.google.android.material.chip.ChipGroup>
 
-            <!-- Vị trí -->
             <TextView
                 android:id="@+id/txt_position"
                 android:layout_width="wrap_content"
@@ -257,6 +275,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_position" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Số lượng nhân viên tối đa:"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_viTri_congViec" />
 
             <!-- Đăng Button -->
 
