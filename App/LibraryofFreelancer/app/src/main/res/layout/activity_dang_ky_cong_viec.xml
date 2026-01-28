@@ -96,6 +96,8 @@
             android:gravity="start"
             android:hint="Nhập điều muốn nói với nhà tuyển dụng"
             android:inputType="text"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
             app:layout_constraintEnd_toEndOf="@+id/txt_mucluongmongmuon_trangdangkycongviec"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/txt_mucluongmongmuon_trangdangkycongviec"

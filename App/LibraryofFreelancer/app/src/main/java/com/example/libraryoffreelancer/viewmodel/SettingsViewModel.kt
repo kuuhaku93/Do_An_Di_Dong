@@ -4,7 +4,9 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.libraryoffreelancer.model.Check
+import com.example.libraryoffreelancer.model.Item
 import com.example.libraryoffreelancer.model.Job
+import com.example.libraryoffreelancer.model.ListItemResponse
 import com.example.libraryoffreelancer.model.ListJobsRespone
 import com.example.libraryoffreelancer.model.ListSkillsRespone
 import com.example.libraryoffreelancer.model.TypeSkill
@@ -62,4 +64,35 @@ class SettingsViewModel {
         thread.join()
         return listTypeSkill
     }
+    fun Load_list_item(token: String): List<Item>{
+        var listTypeItem : List<Item> = emptyList()
+        val req = Request.Builder()
+            .url("$urlRoot/load_list_item")
+            .addHeader("Content-Type","application/json")
+            .addHeader("Authorization","Token $token")
+            .get()
+            .build()
+        val thread = Thread{
+            client.newCall(req).execute().use { response ->
+                val body = response.body?.string().orEmpty()
+                Log.d("mydebug",body)
+                if (response.isSuccessful){
+                    val listItemsRespone = customJson.decodeFromString<ListItemResponse>(body)
+                    if (listItemsRespone.success) {
+                        listTypeItem = listItemsRespone.items
+                    }
+                    else{
+                        Log.d("mydebug",listItemsRespone.message)
+                    }
+                }
+                else{
+                    Log.d("mydebug",response.message)
+                }
+            }
+        }
+        thread.start()
+        thread.join()
+        return listTypeItem
+    }
+
 }

@@ -76,7 +76,11 @@ class CongViecDaNhanActivity : AppCompatActivity(), CurrentJobAdapter.AvatarEmpl
         startActivity(intent)
     }
 
-    override fun onDanhGiaClick(contact_id: Int) {
-        TODO("Not yet implemented")
+    override fun onDanhGiaClick(contact_id: Int, job_title: String, company_name: String) {
+        val intent= Intent(this, DanhGiaEmloyerActivity::class.java)
+        intent.putExtra("contact_id",contact_id)
+        intent.putExtra("job_title",job_title)
+        intent.putExtra("company_name",company_name)
+        startActivity(intent)
     }
 }

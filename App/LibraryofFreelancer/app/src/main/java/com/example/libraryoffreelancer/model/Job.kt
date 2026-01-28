@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Job(
     val id: Int,
+    val employer_id: Int,
     val employer_name:String,
     val avatar:String = "https://tse4.mm.bing.net/th/id/OIP.xsKDhQCvjJdx9f2U-SIT5wHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
     val title: String=" ",
@@ -34,7 +35,7 @@ data class Application(
     val description: String,
     val wanted_salary: Double,
     val applied_date: String,
-    val skills: List<String>,
+    val skills: List<Skill>,
     val is_applied: Boolean
 )
 @Serializable

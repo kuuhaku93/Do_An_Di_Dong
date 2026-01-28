@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.libraryoffreelancer.R
+import com.example.libraryoffreelancer.model.Skill
 import com.example.libraryoffreelancer.view.freelancer.ChinhSuaHoSoFreelancerActivity
 import com.example.libraryoffreelancer.view.NutCaiDatActivity
 import com.example.libraryoffreelancer.view.adapter.PortfolioAdapter
@@ -80,12 +81,10 @@ class HoSoFreelancerActivity : AppCompatActivity() {
         txt_so_sao_review.text = portfolio.rating.toString()
         val rev_kynang = findViewById<RecyclerView>(R.id.rcv_kynang)
         rev_kynang.layoutManager= GridLayoutManager(this,3)
-        val skillsList = mutableListOf<String>()
-        for (map in portfolio.skills) {
-            for ((_, list) in map) {
-                if (!list.isNullOrEmpty()) {
-                    skillsList += list.map { it.trim() }.filter { it.isNotEmpty() }
-                }
+        val skillsList = mutableListOf<Skill>()
+        for (type in portfolio.skills) {
+            for (skill in type.skills) {
+                skillsList.add(skill)
             }
         }
         rev_kynang.adapter = PortfolioSkillAdapter(skillsList)

@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RatingBar
-        android:id="@+id/rating_bar"
+        android:id="@+id/rb_rating_danhGiaEmployer_Freelancer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -80,7 +80,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rating_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/rb_rating_danhGiaEmployer_Freelancer" />
 
     <Button
         android:id="@+id/btn_dang_danh_gia_freelancer"

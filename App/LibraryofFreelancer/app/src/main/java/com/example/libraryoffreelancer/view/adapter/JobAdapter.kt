@@ -23,6 +23,7 @@ import com.example.libraryoffreelancer.viewmodel.EmployerViewModel
 import com.example.libraryoffreelancer.viewmodel.FreelancerViewModel
 import com.example.libraryoffreelancer.viewmodel.dateconvert
 
+
 class EmployerJobHistoryAdapter(private val items: List<EmployerJobHistory>): RecyclerView.Adapter<EmployerJobHistoryAdapter.JobHistoryViewHolder>(){
     class JobHistoryViewHolder(item: View) : RecyclerView.ViewHolder(item){
         val txt_tenCongViec = item.findViewById<TextView>(R.id.txt_ten_cong_viec_Employer)
@@ -40,6 +41,7 @@ class EmployerJobHistoryAdapter(private val items: List<EmployerJobHistory>): Re
         return JobHistoryViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onBindViewHolder(
         holder: EmployerJobHistoryAdapter.JobHistoryViewHolder,
         position: Int
@@ -65,12 +67,13 @@ class EmployerJobHistoryAdapter(private val items: List<EmployerJobHistory>): Re
     }
 
 }
-class HistoryJobAdapter(private val items: List<HistoryJob>): RecyclerView.Adapter<HistoryJobAdapter.HistoryJobViewHolder>() {
+
+class HistoryJobAdapter(private val items: List<HistoryJob>, private val listenner: CurrentJobAdapter.AvatarEmployerClick): RecyclerView.Adapter<HistoryJobAdapter.HistoryJobViewHolder>() {
     class HistoryJobViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val img_avatar=itemView.findViewById<ImageView>(R.id.img_avatar_historyJob)
         val txt_tenCongViec=itemView.findViewById<TextView>(R.id.txt_ten_cong_viec_Employer)
         val txt_tenCongTy=itemView.findViewById<TextView>(R.id.txt_tenCongTy_lichSuCongViec)
-        val txt_thoiGian=itemView.findViewById<TextView>(R.id.txt_thoi_gian_Employer)
+        val txt_thoiGian=itemView.findViewById<TextView>(R.id.txt_thoi_gian)
         val ctlayout_vien=itemView.findViewById<View>(R.id.ctlayout_vien_lichsuCongViec_item)
         val txt_trangThai=itemView.findViewById<TextView>(R.id.txt_trangThaiLichSu)
         val txt_dangGia=itemView.findViewById<TextView>(R.id.txt_dangGiaLichSu_Freelancer)
@@ -93,9 +96,12 @@ class HistoryJobAdapter(private val items: List<HistoryJob>): RecyclerView.Adapt
         Glide.with(holder.itemView.context)
             .load(job.company_avatar)
             .into(holder.img_avatar)
+        holder.img_avatar.setOnClickListener {
+            listenner.onItemClick(job.employer_id)
+        }
         holder.txt_tenCongViec.text=job.job_title
         holder.txt_tenCongTy.text=job.company_name
-        holder.txt_thoiGian.text=dateconvert(job.start_date)+" - "+dateconvert(job.end_date)
+        holder.txt_thoiGian.setText(dateconvert(job.start_date)+" - "+dateconvert(job.end_date))
         holder.txt_dangGia.text=job.score.toString()
         if(job.complete){
             holder.txt_trangThai.text="Hoàn Thành"
@@ -133,6 +139,7 @@ class ApplicationAdapter(private val items: List<Application>,private val token:
         return ApplicationViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onBindViewHolder(
         holder: ApplicationViewHolder,
         position: Int
@@ -201,9 +208,9 @@ class CurrentJobAdapter(private val items: List<CurrentJob>,private val token: S
         holder.img_avatar.setOnClickListener {
             listenner.onItemClick(job.company_id)
         }
-//        holder.btn_danhgia.setOnClickListener {
-//            listenner.onDanhGiaClick(job.contact_id)
-//        }
+        holder.btn_danhgia.setOnClickListener {
+            listenner.onDanhGiaClick(job.contact_id,job.job_title,employer.company_name)
+        }
         holder.txt_tenCongViec.text=job.job_title
         holder.txt_tenCongTy.text=employer.company_name
         if (job.is_done){
@@ -230,6 +237,6 @@ class CurrentJobAdapter(private val items: List<CurrentJob>,private val token: S
     }
     interface AvatarEmployerClick{
         fun onItemClick(employer_id: Int)
-        fun onDanhGiaClick(contact_id: Int)
+        fun onDanhGiaClick(contact_id: Int,job_title:String,company_name: String)
     }
 }

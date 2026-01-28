@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.libraryoffreelancer.R
 import com.example.libraryoffreelancer.model.Item
 import com.example.libraryoffreelancer.model.Rating
+import com.example.libraryoffreelancer.model.Skill
 
 class PortfolioAdapter(private val items: List<Item>): RecyclerView.Adapter<PortfolioAdapter.PortfolioViewHolder>() {
     class PortfolioViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
@@ -82,7 +83,7 @@ class PortfolioItemAdapter(private val item: Item): RecyclerView.Adapter<Portfol
     }
 }
 
-class PortfolioSkillAdapter(private val listSkill: List<String>): RecyclerView.Adapter<PortfolioSkillAdapter.PortfolioSkillViewHolder>() {
+class PortfolioSkillAdapter(private val listSkill: List<Skill>): RecyclerView.Adapter<PortfolioSkillAdapter.PortfolioSkillViewHolder>() {
     class PortfolioSkillViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val txt_kyNang=itemView.findViewById<TextView>(R.id.txt_item_kynang_congviec)
 
@@ -99,7 +100,7 @@ class PortfolioSkillAdapter(private val listSkill: List<String>): RecyclerView.A
         holder: PortfolioSkillViewHolder,
         position: Int
     ) {
-        holder.txt_kyNang.text=listSkill[position]
+        holder.txt_kyNang.text=listSkill[position].skill_name
     }
 
     override fun getItemCount(): Int {

@@ -2,11 +2,13 @@ package com.example.libraryoffreelancer.view.freelancer
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -15,10 +17,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.libraryoffreelancer.R
 import com.example.libraryoffreelancer.view.adapter.TrangChuFreelancerItemAdapter
+import com.example.libraryoffreelancer.view.employer.HoSoEmployerActivity
 import com.example.libraryoffreelancer.viewmodel.FreelancerViewModel
 import com.example.libraryoffreelancer.viewmodel.dateconvert
 
 class ChiTietCongViecFreelancerActivity : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -39,6 +43,12 @@ class ChiTietCongViecFreelancerActivity : AppCompatActivity() {
         Glide.with(this)
             .load(job.avatar)
             .into(img_avatar_chiTietCongViec)
+        img_avatar_chiTietCongViec.setOnClickListener {
+            val intent= Intent(this, HoSoEmployerActivity::class.java)
+            intent.putExtra("employer_id",job.employer_id)
+            intent.putExtra("self",false)
+            startActivity(intent)
+        }
         val txt_soNguoiDaThamGia=findViewById<TextView>(R.id.txt_SoNguoiDaThamGia)
         txt_soNguoiDaThamGia.text=job.current_employee.toString()+"/"+job.max_employee.toString()
         val txt_TenCongTy=findViewById<TextView>(R.id.txt_TenCongTy)

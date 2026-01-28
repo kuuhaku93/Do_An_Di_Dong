@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="330dp"
+    android:layout_height="wrap_content"
+    android:background="#1C1B1B">
+
+    <Button
+        android:id="@+id/btn_ApDung_ThemItemCustom_freelancer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#0C9300"
+        android:text="Áp dụng"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_mota_thmeChungNhan_freelancer" />
+
+    <Button
+        android:id="@+id/btn_Huy_themItem_freelancer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="#3C3C3C"
+        android:text="Hủy"
+        android:textColor="#0C9300"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_ApDung_ThemItemCustom_freelancer"
+        app:layout_constraintEnd_toStartOf="@+id/btn_ApDung_ThemItemCustom_freelancer"
+        app:layout_constraintTop_toTopOf="@+id/btn_ApDung_ThemItemCustom_freelancer" />
+
+    <EditText
+        android:id="@+id/txt_mota_thmeChungNhan_freelancer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/custum_txt_mota"
+        android:ems="10"
+        android:gravity="start"
+        android:hint="Nhập điều muốn nói với nhà tuyển dụng"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tenChungNhan_themChungNhan_freelancer" />
+
+    <EditText
+        android:id="@+id/txt_tenChungNhan_themChungNhan_freelancer"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/custom_txt"
+        android:ems="10"
+        android:hint="Họ và tên"
+        android:inputType="text"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_loaiChungNhan_themChungNhan_freelancer" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mô tả"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_mota_thmeChungNhan_freelancer"
+        app:layout_constraintStart_toStartOf="@+id/txt_mota_thmeChungNhan_freelancer" />
+
+    <Spinner
+        android:id="@+id/sp_loaiChungNhan_themChungNhan_freelancer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Thêm Chứng Nhận Mới"
+        android:textColor="#0c9300"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Loại chứng nhận"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/sp_loaiChungNhan_themChungNhan_freelancer"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên chứng nhận"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_tenChungNhan_themChungNhan_freelancer"
+        app:layout_constraintStart_toStartOf="@+id/txt_tenChungNhan_themChungNhan_freelancer" />
+</androidx.constraintlayout.widget.ConstraintLayout>

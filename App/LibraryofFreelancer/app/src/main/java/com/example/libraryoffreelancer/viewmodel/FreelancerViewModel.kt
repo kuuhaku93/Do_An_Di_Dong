@@ -6,7 +6,9 @@ import com.example.libraryoffreelancer.model.Account
 import com.example.libraryoffreelancer.model.Application
 import com.example.libraryoffreelancer.model.Check
 import com.example.libraryoffreelancer.model.CurrentJob
+import com.example.libraryoffreelancer.model.CustomItem
 import com.example.libraryoffreelancer.model.HistoryJob
+import com.example.libraryoffreelancer.model.ItemRequest
 import com.example.libraryoffreelancer.model.Job
 import com.example.libraryoffreelancer.model.ListApplicationsRespone
 import com.example.libraryoffreelancer.model.ListCurrent
@@ -17,6 +19,7 @@ import com.example.libraryoffreelancer.model.LoadPortfolioApiResponse
 import com.example.libraryoffreelancer.model.Portfolio
 import com.example.libraryoffreelancer.model.Rating
 import com.example.libraryoffreelancer.model.customJson
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -288,5 +291,65 @@ class FreelancerViewModel {
         thread.start()
         thread.join()
         return listJob
+    }
+    fun Create_Review(contact_id: Int, comment: String, score: Double, token: String): APIResponse{
+        var resp= APIResponse(false,"")
+        val bodyString= JSONObject()
+            .put("contact_id", contact_id)
+            .put("comment", comment)
+            .put("score", score)
+            .toString()
+        val JSON = "application/json; charset=utf-8".toMediaType()
+        val body = bodyString.toRequestBody(JSON)
+        val req = Request.Builder()
+            .url("$urlRoot/create_review")
+            .addHeader("Content-Type","application/json")
+            .addHeader("Authorization","Token $token")
+            .post(body)
+            .build()
+        val thread = Thread{
+            client.newCall(req).execute().use { response ->
+                val body = response.body?.string().orEmpty()
+                Log.d("mydebug",body)
+                resp = customJson.decodeFromString<APIResponse>(body)
+
+            }
+        }
+        thread.start()
+        thread.join()
+        return resp
+    }
+    fun Edit_Portfolio(token:String,freelancer_name: String,avatar: String,email: String,phone_number: String,description: String,skills: List<Int>,items: List<ItemRequest>,custom:List<CustomItem>): APIResponse{
+        var resp= APIResponse(false,"")
+        val bodyString= JSONObject()
+            .put("freelancer_name", freelancer_name)
+            .put("avatar", avatar)
+            .put("email", email)
+            .put("phone_number", phone_number)
+            .put("description", description)
+            .put("skills", skills)
+            .put("items", Json.encodeToString(ListSerializer(ItemRequest.serializer()),items))
+            .put("custom", Json.encodeToString(ListSerializer(CustomItem.serializer()),custom))
+            .toString()
+        val JSON = "application/json; charset=utf-8".toMediaType()
+        val body = bodyString.toRequestBody(JSON)
+        val req = Request.Builder()
+            .url("$urlRoot/edit_portfolio")
+            .addHeader("Content-Type","application/json")
+            .addHeader("Authorization","Token $token")
+            .post(body)
+            .build()
+        Log.d("mydebug",bodyString)
+        val thread = Thread{
+            client.newCall(req).execute().use { response ->
+                val body = response.body?.string().orEmpty()
+                Log.d("mydebug",body)
+                resp = customJson.decodeFromString<APIResponse>(body)
+
+            }
+        }
+        thread.start()
+        thread.join()
+        return resp
     }
 }

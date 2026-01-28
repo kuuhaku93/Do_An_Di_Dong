@@ -78,6 +78,9 @@
             android:name=".view.freelancer.ChinhSuaHoSoFreelancerActivity"
             android:exported="false" />
         <activity
+            android:name=".view.freelancer.DanhGiaEmloyerActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.DangNhapActivity"
             android:exported="true">
             <intent-filter>

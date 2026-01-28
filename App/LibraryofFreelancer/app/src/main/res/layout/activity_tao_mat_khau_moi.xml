@@ -37,7 +37,6 @@
 
         <EditText
             android:id="@+id/edt_mat_khau_moi"
-            android:paddingLeft="20dp"
             android:layout_width="342dp"
             android:layout_height="68.61dp"
             android:layout_marginTop="32dp"
@@ -45,6 +44,8 @@
             android:ems="10"
             android:hint="Mật khẩu mới"
             android:inputType="text"
+            android:paddingLeft="20dp"
+            android:password="true"
             app:layout_constraintEnd_toEndOf="@+id/textView2"
             app:layout_constraintHorizontal_bias="0.526"
             app:layout_constraintStart_toStartOf="@+id/textView2"
@@ -52,7 +53,6 @@
 
         <EditText
             android:id="@+id/edt_xac_nhan_mat_khau"
-            android:paddingLeft="20dp"
             android:layout_width="342dp"
             android:layout_height="68.61dp"
             android:layout_marginTop="44dp"
@@ -60,6 +60,8 @@
             android:ems="10"
             android:hint="Nhập lại mật khẩu"
             android:inputType="text"
+            android:paddingLeft="20dp"
+            android:password="true"
             app:layout_constraintEnd_toEndOf="@+id/edt_mat_khau_moi"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/edt_mat_khau_moi"

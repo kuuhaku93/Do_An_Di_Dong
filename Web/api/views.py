@@ -206,15 +206,45 @@ class General:
         except Token.DoesNotExist:
             return JsonResponse({'success':False,'message': 'Token does not exist.'}, status=400)
 
-        list_item = []
-        list_type=Item_types.objects.all()
-        for type_item in list_type:
-            item_in_type = Default_Items.objects.filter(type_id=type_item)
-            item_list = [{'id': item.id , 'title': item.title,'description':item.description} for item in item_in_type]
-            list_item.append({
-                type_item.name: {'piture':type_item.picture,'item':item_list}
-            })
-        return JsonResponse({'success':True,'items':list_item},status=200)
+        items_list = []
+        item_types = Item_types.objects.all()
+        for item_type in item_types:
+            default_qs = Default_Items.objects.filter(
+                type_id=item_type
+            ).select_related('type_id')
+
+            default_list = [
+                {
+                    'id': pi.pk, 
+                    'title': pi.title,
+                    'description': pi.description,
+                    'icon': pi.type_id.picture,
+                    'start_year': 2000,
+                    'end_year': 2000
+                }
+                for pi in default_qs
+            ]
+
+            custom_qs = Custom_items.objects.filter(type_id=item_type).select_related('type_id')
+            custom_list = [
+                {
+                    'type_id': item_type.pk,
+                    'title': ci.title,
+                    'description': ci.description,
+                    'icon': item_type.picture
+                }
+                for ci in custom_qs
+            ]
+
+            items_list.append(
+                {
+                    'type':item_type.name,
+                    'type_id':item_type.pk,
+                    'default': default_list,
+                    'custom': custom_list
+                }
+            )
+        return JsonResponse({'success':True,'items':items_list},status=200)
 
     @csrf_exempt
     @require_POST
@@ -250,7 +280,7 @@ class General:
                 'apply_status': application.apply_status,
                 'wanted_salary': application.wanted_salary,
                 'applied_date': application.applied_date,
-                'skills': [skill.skill.skill_name for skill in Portfolio_Skills.objects.filter(portfolio_id__freelancer_id=application.freelancer_id)],
+                'skills': [{'skill_name':skill.skill.skill_name,'id':skill.skill.pk} for skill in Portfolio_Skills.objects.filter(portfolio_id__freelancer_id=application.freelancer_id)],
                 'is_applied': Contacts.objects.filter(application_id=application).exists()
             })
         return JsonResponse({'success':True,'applications': result}, status=200)
@@ -429,6 +459,7 @@ class Freelancer:
 
             default_list = [
                 {
+                    'id': pi.item_id.pk, 
                     'title': pi.item_id.title,
                     'description': pi.item_id.description,
                     'icon': pi.item_id.type_id.picture,
@@ -441,6 +472,7 @@ class Freelancer:
             custom_qs = Custom_items.objects.filter(portfolio_id=portfolio, type_id=item_type).select_related('type_id')
             custom_list = [
                 {
+                    'type_id': item_type.pk,
                     'title': ci.title,
                     'description': ci.description,
                     'icon': item_type.picture
@@ -450,6 +482,7 @@ class Freelancer:
 
             items_list.append(
                 {
+                    'type_id':item_type.pk,
                     'type':item_type.name,
                     'default': default_list,
                     'custom': custom_list
@@ -460,8 +493,8 @@ class Freelancer:
         skills_list = []
         for cate in Skill_Categories.objects.all():
             skills_qs = Portfolio_Skills.objects.filter(portfolio_id=portfolio, skill__category_id=cate).select_related('skill')
-            skill_names = [ps.skill.skill_name for ps in skills_qs]
-            skills_list.append({cate.title: skill_names})
+            skills = [{'skill_name':ps.skill.skill_name,'id':ps.skill.pk} for ps in skills_qs]
+            skills_list.append({'type': cate.title,'skills':skills})
 
 
         portfolio_obj={
@@ -545,8 +578,8 @@ class Freelancer:
             for i in items:
                 try:
                     iid = int(i.get('id',0))
-                    start_year = int(i.get('start_year', 0))
-                    end_year = int(i.get('end_year', 0))
+                    start_year = int(i.get('start_year', 2000))
+                    end_year = int(i.get('end_year', 2000))
                 except Exception:
                     continue
                 Portfolio_Items.objects.update_or_create(

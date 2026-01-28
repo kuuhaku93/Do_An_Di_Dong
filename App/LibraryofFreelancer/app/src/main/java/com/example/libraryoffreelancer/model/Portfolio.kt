@@ -6,29 +6,53 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Portfolio(
     val freelancer_name: String,
-    val avatar: String,
+    var avatar: String,
     val email: String,
     val phone_number: String,
     val description: String,
     val complete: Double,
     val rating: Double,
     val items: List<Item>,
-    val skills: List<Map<String, List<String>>>
+    val skills: List<TypeSkill>
 )
 @Serializable
 data class Item(
     val type: String,
-    val default: List<DefaultItem>,
-    val custom: List<DefaultItem>
+    val type_id: Int,
+    var default: List<DefaultItem>,
+    val custom: List<CustomItem>
 )
 @Serializable
+data class CustomItem(
+    val type_id: Int,
+    val title: String,
+    val description: String,
+    val icon: String?,
+)
+
+@Serializable
 data class DefaultItem(
+    val id: Int,
     val title: String,
     val description: String?,
     val icon: String?,
-    val start_year: Int? = null,
-    val end_year: Int? = null
+    var start_year: Int? = 2000,
+    var end_year: Int? = 2000
 )
+
+@Serializable
+data class ListItemResponse(
+    val success: Boolean=false,
+    val items: List<Item> = emptyList(),
+    val message: String=""
+)
+@Serializable
+data class ItemRequest(
+    val id: Int,
+    var start_year: Int,
+    var end_year: Int
+)
+
 
 @Serializable
 data class LoadPortfolioApiResponse(
