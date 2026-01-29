@@ -9,12 +9,19 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.libraryoffreelancer.R
-import com.example.libraryoffreelancer.view.freelancer.HoSoFreelancerActivity
-import com.example.libraryoffreelancer.view.freelancer.TrangChuFreeLancerActivity
+import com.example.libraryoffreelancer.model.EmployerCurrentJob
+import com.example.libraryoffreelancer.view.adapter.EmployerCurrentJobAdapter
+
+import com.example.libraryoffreelancer.viewmodel.EmployerViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class CongViecDaDangEmployerActivity : AppCompatActivity() {
+class CongViecDaDangEmployerActivity : AppCompatActivity(), EmployerCurrentJobAdapter.OnFinishClickListener {
+    private val employerViewModel = EmployerViewModel()
+    private lateinit var adapter: EmployerCurrentJobAdapter
+    private var token: String = " "
     @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +34,13 @@ class CongViecDaDangEmployerActivity : AppCompatActivity() {
         }
         val sharedPref = getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val userID=sharedPref.getInt("ACCOUNT_ID",0)
+        token=sharedPref.getString("token","").orEmpty()
+
+        val rev_congViecHienTai = findViewById<RecyclerView>(R.id.rev_congViecHienTai_Employer)
+        rev_congViecHienTai.layoutManager = LinearLayoutManager(this)
+        adapter = EmployerCurrentJobAdapter(emptyList(), token, this)
+        rev_congViecHienTai.adapter = adapter
+
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNavigationView.selectedItemId = R.id.nav_applied_job
 
@@ -58,5 +72,16 @@ class CongViecDaDangEmployerActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        val list = employerViewModel.loadCurrentJob(token)
+        adapter.updateData(list)
+    }
+    override fun onFinishClick(job: EmployerCurrentJob) {
+        val intent = Intent(this, DanhGiaFreelancerActivity::class.java)
+        intent.putExtra("contact_id", job.contact_id)
+        intent.putExtra("freelancer_id", job.freelancer_id)
+        startActivity(intent)
     }
 }

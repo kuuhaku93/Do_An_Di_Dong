@@ -1,6 +1,5 @@
 package com.example.libraryoffreelancer.view.employer
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -22,7 +21,7 @@ import com.example.libraryoffreelancer.view.adapter.ItemSkillCheck
 import com.example.libraryoffreelancer.view.adapter.SkillTypeAdapter
 import com.example.libraryoffreelancer.viewmodel.EmployerViewModel
 import com.example.libraryoffreelancer.viewmodel.SettingsViewModel
-import com.example.libraryoffreelancer.viewmodel.dateconvert
+import com.example.libraryoffreelancer.viewmodel.pickDateTime
 
 class FormThemCongViecActivity : AppCompatActivity(), ItemSkillCheck {
     val listIDSkill=mutableListOf<Int>()
@@ -43,7 +42,7 @@ class FormThemCongViecActivity : AppCompatActivity(), ItemSkillCheck {
         val btn_confirm = findViewById<Button>(R.id.btn_confirm)
         val btn_addSkill = findViewById<TextView>(R.id.chip_add)
 
-        btn_addSkill.setOnClickListener(){
+        btn_addSkill.setOnClickListener{
             val builder = AlertDialog.Builder(this)
             val dialogView = layoutInflater.inflate(R.layout.dialog_them_skill_them_cong_viec, null)
             builder.setView(dialogView)
@@ -70,11 +69,21 @@ class FormThemCongViecActivity : AppCompatActivity(), ItemSkillCheck {
         val txt_luong_toi_thieu = findViewById<TextView>(R.id.txt_luong_toi_thieu)
         val txt_luong_toi_da = findViewById<TextView>(R.id.txt_luong_toi_da)
         val txt_deadline = findViewById<TextView>(R.id.txt_deadline)
-        val txt_enddate = findViewById<TextView>(R.id.txt_enddate)
+        var txt_enddate = findViewById<TextView>(R.id.txt_enddate)
         val txt_moTa_congViec = findViewById<TextView>(R.id.txt_moTa_congViec)
         val txt_viTri_congViec = findViewById<TextView>(R.id.txt_viTri_congViec)
         val txt_maxNV = findViewById<TextView>(R.id.txt_soLuong_Nhanvien_ToiDa)
 
+        txt_deadline.isFocusable = false
+        txt_deadline.isClickable = true
+        txt_deadline.setOnClickListener {
+            pickDateTime(supportFragmentManager,txt_deadline)
+        }
+        txt_enddate.isFocusable = false
+        txt_enddate.isClickable = true
+        txt_enddate.setOnClickListener {
+            pickDateTime(supportFragmentManager,txt_enddate)
+        }
         btn_confirm.setOnClickListener {
             val title = txt_jobname.text.toString()
             val desc = txt_moTa_congViec.text.toString()
@@ -83,8 +92,8 @@ class FormThemCongViecActivity : AppCompatActivity(), ItemSkillCheck {
             val location = txt_viTri_congViec.text.toString()
             val maxEmp = txt_maxNV.text.toString().toInt()
 
-            val deadlineString = dateconvert(txt_deadline.text.toString())
-            val endDateString = dateconvert(txt_enddate.text.toString())
+            val deadlineString = txt_deadline.text.toString()
+            val endDateString = txt_enddate.text.toString()
 
             val selectedSkillIds = listIDSkill
 

@@ -42,12 +42,11 @@ class TrangChuEmployerActivity : AppCompatActivity(), TrangChuEmployerAdapter.On
 
         val rev_danhSachCongViec = findViewById<RecyclerView>(R.id.rcv_CongViecEmployer)
         rev_danhSachCongViec.layoutManager = LinearLayoutManager(this)
-        //rev_danhSachCongViec.adapter = TrangChuEmployerAdapter(employerViewModel.loadTrangChuEmployer(token), this)
         adapter = TrangChuEmployerAdapter(emptyList(), this)
         rev_danhSachCongViec.adapter = adapter
 
-
-        val btn_them = findViewById<ImageButton>(R.id.btn_themCongViec).setOnClickListener {
+        val btn_them = findViewById<ImageButton>(R.id.btn_themCongViec)
+        btn_them.setOnClickListener {
             val intent = Intent(this, FormThemCongViecActivity::class.java)
             startActivity(intent)
         }

@@ -2,102 +2,154 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_item_provider"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#000000">
+    android:background="#050505">
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="102dp"
-        android:layout_height="97dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ctlayout_applyJob_itemProvider_Employer"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="#64DB15"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintVertical_bias="0.0">
 
-    <TextView
-        android:id="@+id/txt_fullName_itemProvider"
-        android:layout_width="155dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="112dp"
-        android:text="TextView"
-        android:textColor="#FFFFFF"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.431"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_item_provider_Employer"
+            android:layout_width="396dp"
+            android:layout_height="380dp"
+            android:layout_margin="4dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/ctlayout_applyJob_itemProvider_Employer"
+            app:layout_constraintEnd_toEndOf="@+id/ctlayout_applyJob_itemProvider_Employer"
+            app:layout_constraintStart_toStartOf="@+id/ctlayout_applyJob_itemProvider_Employer"
+            app:layout_constraintTop_toTopOf="@+id/ctlayout_applyJob_itemProvider_Employer">
 
-    <TextView
-        android:id="@+id/txt_message"
-        android:layout_width="141dp"
-        android:layout_height="37dp"
-        android:text="TextView"
-        android:textColor="#FFFEFE"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_fullName_itemProvider" />
+            <ImageView
+                android:id="@+id/img_avatar_ItemProvider_Employer"
+                android:layout_width="98dp"
+                android:layout_height="122dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/txt_salary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        android:textColor="#F6E8E8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.573"
-        app:layout_constraintStart_toEndOf="@+id/txt_fullName_itemProvider"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/txt_fullName_itemProvider_Employer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="TextView"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/txt_wantedsalary_itemProvider_Employer"
+                app:layout_constraintStart_toEndOf="@+id/img_avatar_ItemProvider_Employer"
+                app:layout_constraintTop_toTopOf="@+id/img_avatar_ItemProvider_Employer" />
 
-    <TextView
-        android:id="@+id/txt_rate"
-        android:layout_width="83dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="120dp"
-        android:text="TextView"
-        android:textColor="#FFFFFF"
-        android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.67"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/txt_message_itemProvide_Employer"
+                android:layout_width="204dp"
+                android:layout_height="53dp"
+                android:layout_marginTop="10dp"
+                android:text="TextView"
+                android:textColor="#FFFEFE"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/txt_fullName_itemProvider_Employer"
+                app:layout_constraintHorizontal_bias="0.481"
+                app:layout_constraintStart_toStartOf="@+id/txt_fullName_itemProvider_Employer"
+                app:layout_constraintTop_toBottomOf="@+id/txt_time_itemProvider_Employer" />
 
-    <TextView
-        android:id="@+id/txt_time"
-        android:layout_width="65dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="28dp"
-        android:text="TextView"
-        android:textColor="#F4F4F4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_message" />
+            <TextView
+                android:id="@+id/txt_time_itemProvider_Employer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="TextView"
+                android:textColor="#F4F4F4"
+                app:layout_constraintEnd_toEndOf="@+id/txt_fullName_itemProvider_Employer"
+                app:layout_constraintHorizontal_bias="0.372"
+                app:layout_constraintStart_toStartOf="@+id/txt_fullName_itemProvider_Employer"
+                app:layout_constraintTop_toBottomOf="@+id/txt_fullName_itemProvider_Employer" />
 
-    <TextView
-        android:id="@+id/txt_review"
-        android:layout_width="49dp"
-        android:layout_height="13dp"
-        android:text="TextView"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toEndOf="@+id/txt_rate"
-        tools:layout_editor_absoluteY="134dp" />
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="#FFEB3B"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_wantedsalary_itemProvider_Employer"
+                tools:text="★" />
 
-    <ImageButton
-        android:id="@+id/btn_NhanNhanVien"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="@+id/txt_salary"
-        app:layout_constraintStart_toStartOf="@+id/txt_salary"
-        app:layout_constraintTop_toBottomOf="@+id/txt_salary"
-        app:srcCompat="@drawable/btn_nhannhanvien" />
+            <TextView
+                android:id="@+id/txt_review_itemProvider_Employer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="4"
+                android:textColor="#FFC107"
+                android:textSize="34sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView25"
+                app:layout_constraintEnd_toStartOf="@+id/textView25"
+                app:layout_constraintTop_toTopOf="@+id/textView25"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/txt_wantedsalary_itemProvider_Employer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="400$"
+                android:textAlignment="textEnd"
+                android:textColor="#63D915"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_fullName_itemProvider_Employer" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rev_skill_itemProvider_Employer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_avatar_ItemProvider_Employer"
+                app:layout_constraintVertical_bias="0.111" />
+
+            <ImageButton
+                android:id="@+id/btn_accept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                android:background="#040404"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rev_skill_itemProvider_Employer"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

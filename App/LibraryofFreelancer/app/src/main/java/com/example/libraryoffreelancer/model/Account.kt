@@ -10,6 +10,13 @@ data class APIResponse(
     val message: String
 )
 @Serializable
+data class CreateRatingRequest(
+    val contact_id: Int,
+    val comment: String,
+    val rating: Float,
+    val complete: Boolean
+)
+@Serializable
 data class Account(
     val username: String,
     val password: String,

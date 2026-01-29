@@ -16,18 +16,30 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/txt_TenCongViec_congViecHienTai_feelancer"
+            android:id="@+id/txt_ThoiGian_KetThuc_Item_Employer"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_ThoiGian_batDau_Item_Employer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintStart_toEndOf="@+id/txt_ThoiGian_batDau_Item_Employer"
+            app:layout_constraintTop_toTopOf="@+id/txt_ThoiGian_batDau_Item_Employer"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/txt_TenCongViec_congViecHienTai_Employer"
+            android:layout_width="202dp"
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textColor="#FFFFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.144"
+            app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="16dp" />
 
         <TextView
-            android:id="@+id/txt_trangThai_congViecHienTai_freelancer"
+            android:id="@+id/txt_trangThai_congViecHienTai_Employer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -39,60 +51,61 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txt_TenCongTy_congViecHienTai_freelancer"
+            android:id="@+id/txt_TenCongTy_congViecHienTai_Employer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="TextView"
             android:textColor="#ffff"
-            app:layout_constraintEnd_toEndOf="@+id/txt_TenCongViec_congViecHienTai_feelancer"
+            app:layout_constraintEnd_toEndOf="@+id/txt_TenCongViec_congViecHienTai_Employer"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txt_TenCongViec_congViecHienTai_feelancer"
-            app:layout_constraintTop_toBottomOf="@+id/txt_TenCongViec_congViecHienTai_feelancer" />
+            app:layout_constraintStart_toStartOf="@+id/txt_TenCongViec_congViecHienTai_Employer"
+            app:layout_constraintTop_toBottomOf="@+id/txt_TenCongViec_congViecHienTai_Employer" />
 
         <ImageView
             android:id="@+id/imageView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:layout_constraintEnd_toEndOf="@+id/txt_TenCongTy_congViecHienTai_freelancer"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/txt_TenCongTy_congViecHienTai_Employer"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txt_TenCongTy_congViecHienTai_freelancer"
-            app:layout_constraintTop_toBottomOf="@+id/txt_TenCongTy_congViecHienTai_freelancer"
+            app:layout_constraintStart_toStartOf="@+id/txt_TenCongTy_congViecHienTai_Employer"
+            app:layout_constraintTop_toBottomOf="@+id/txt_TenCongTy_congViecHienTai_Employer"
             app:srcCompat="@drawable/nest_clock_farsight_analog_24" />
 
         <TextView
-            android:id="@+id/txt_ThoiGian_Item_Employer"
+            android:id="@+id/txt_ThoiGian_batDau_Item_Employer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
             android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView7"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.037"
+            app:layout_constraintHorizontal_bias="0.025"
             app:layout_constraintStart_toEndOf="@+id/imageView7"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/imageView7"
+            app:layout_constraintVertical_bias="0.4" />
 
         <Button
-            android:id="@+id/btn_DanhGia_congViecHienTai_freelancer"
+            android:id="@+id/btn_DanhGia_congViecHienTai_Employer"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_marginTop="96dp"
+            android:layout_marginTop="120dp"
             android:backgroundTint="#0C9300"
             android:text="Đánh Giá"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.908"
+            app:layout_constraintHorizontal_bias="0.947"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/img_freelancer"
+            android:id="@+id/img_anhDaiDien_CongViecDaDang"
             android:layout_width="79dp"
             android:layout_height="68dp"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_TenCongTy_congViecHienTai_freelancer"
+            app:layout_constraintTop_toBottomOf="@+id/txt_TenCongViec_congViecHienTai_Employer"
             app:layout_constraintVertical_bias="1.0"
             tools:srcCompat="@tools:sample/avatars" />
 
@@ -102,11 +115,22 @@
             android:layout_height="41dp"
             android:layout_marginStart="12dp"
             android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_DanhGia_congViecHienTai_freelancer"
-            app:layout_constraintStart_toEndOf="@+id/img_freelancer"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.788" />
+            app:layout_constraintBottom_toBottomOf="@+id/img_anhDaiDien_CongViecDaDang"
+            app:layout_constraintEnd_toStartOf="@+id/btn_DanhGia_congViecHienTai_Employer"
+            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintStart_toEndOf="@+id/img_anhDaiDien_CongViecDaDang"
+            app:layout_constraintTop_toTopOf="@+id/img_anhDaiDien_CongViecDaDang" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_ThoiGian_batDau_Item_Employer"
+            app:layout_constraintEnd_toStartOf="@+id/txt_ThoiGian_KetThuc_Item_Employer"
+            app:layout_constraintStart_toEndOf="@+id/txt_ThoiGian_batDau_Item_Employer"
+            app:layout_constraintTop_toTopOf="@+id/txt_ThoiGian_batDau_Item_Employer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

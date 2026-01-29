@@ -3,6 +3,27 @@ package com.example.libraryoffreelancer.model
 import kotlinx.serialization.Serializable
 
 @Serializable
+data class EmployerCurrentJob(
+    val contact_id: Int,
+    val job_title: String,
+    val company_name: String,
+    val freelancer_id: Int,
+    val start_date: String = "",
+    val end_date: String = ""
+)
+@Serializable
+data class EmployerCurrentJobResponse(
+    val success: Boolean,
+    val jobs: List<EmployerCurrentJob> = emptyList(),
+    val message: String = " "
+)
+@Serializable
+data class CreateContactRequest(
+    val application_id: Int,
+    val start_date: String,
+    val end_date: String
+)
+@Serializable
 data class Job(
     val id: Int,
     val employer_id: Int,
@@ -20,7 +41,6 @@ data class Job(
     val requirements: List<String>,
     val is_applied: Boolean,
 )
-
 @Serializable
 data class ListJobsRespone(
     val success: Boolean,
@@ -44,7 +64,6 @@ data class ListApplicationsRespone(
     val applications: List<Application>,
     val message: String=" ",
 )
-
 @Serializable
 data class CreateJobRequest(
     val title: String,
@@ -57,7 +76,6 @@ data class CreateJobRequest(
     val maxEmployee: Int,
     val requirements: List<Int>
 )
-
 @Serializable
 data class EmployerJobHistory(
     val contact_id: Int,

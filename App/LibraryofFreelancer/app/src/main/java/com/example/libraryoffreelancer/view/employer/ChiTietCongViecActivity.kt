@@ -87,9 +87,15 @@ class ChiTietCongViecActivity : AppCompatActivity() {
                 .setNegativeButton("Huỷ") { dialog, which ->
                     dialog.dismiss()
                 }
-
             val dialog: AlertDialog = builder.create()
             dialog.show()
+        }
+        val btn_comment = findViewById<ImageButton>(R.id.btn_commentcongviecEmployer)
+        btn_comment.setOnClickListener {
+            val intent = Intent(this, NhanVienDaAppliedActivity::class.java)
+            intent.putExtra("job_id", job.id)
+            intent.putExtra("job_deadline", job.deadline)
+            startActivity(intent)
         }
     }
 }

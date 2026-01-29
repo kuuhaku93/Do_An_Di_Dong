@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,12 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LibraryOfFreelancer"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name=".view.employer.NhanVienDaAppliedActivity"
+            android:exported="false" />
         <activity
             android:name=".view.freelancer.BoLocTimKiemActivity"
             android:exported="false" />
         <activity
-            android:name=".view.DanhGiaFreelancerActivity"
+            android:name=".view.employer.DanhGiaFreelancerActivity"
             android:exported="false" />
         <activity
             android:name=".view.freelancer.ChiTietCongViecFreelancerActivity"
@@ -33,10 +36,13 @@
             android:name=".view.freelancer.DanhSachAppliedFreelancerActivity"
             android:exported="false" />
         <activity
-            android:name=".view.ChinhSuaHoSoEmployerActivity"
+            android:name=".view.employer.ChinhSuaHoSoEmployerActivity"
             android:exported="false" />
         <activity
             android:name=".view.employer.HoSoEmployerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.employer.FormThemCongViecActivity"
             android:exported="false" />
         <activity
             android:name=".view.freelancer.DangKyCongViecActivity"
@@ -82,7 +88,7 @@
             android:exported="false" />
         <activity
             android:name=".view.DangNhapActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

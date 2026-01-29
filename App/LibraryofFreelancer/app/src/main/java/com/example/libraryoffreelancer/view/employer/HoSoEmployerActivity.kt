@@ -107,6 +107,16 @@ class HoSoEmployerActivity : AppCompatActivity() {
             val intent = Intent(this, NutCaiDatActivity::class.java)
             startActivity(intent)
         }
+        btn_chinhSua.setOnClickListener {
+            val intent = Intent(this, ChinhSuaHoSoEmployerActivity::class.java)
+            intent.putExtra("company_name", txt_tenCongTy.text.toString())
+            intent.putExtra("email", txt_Email.text.toString())
+            intent.putExtra("website", txt_Website.text.toString())
+            intent.putExtra("address", txt_diaChi.text.toString())
+            intent.putExtra("employer_description", txt_moTa.text.toString())
+            intent.putExtra("phone_number", txt_SDT.text.toString())
+            startActivity(intent)
+        }
         if (is_self) {
             btn_chinhSua.visibility = View.VISIBLE
             btn_caidat.visibility = View.VISIBLE

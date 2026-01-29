@@ -2,6 +2,7 @@ package com.example.libraryoffreelancer.view.employer
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +28,7 @@ class LichSuCongViecEmployerActivity : AppCompatActivity() {
         val employerViewModel = EmployerViewModel()
         val sharedPref = getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val token=sharedPref.getString("token","").orEmpty()
+        Log.d("mydebug",token.toString())
         val rev_lichSu = findViewById<RecyclerView>(R.id.rev_lichSuCongViecEmployer)
         rev_lichSu.layoutManager= LinearLayoutManager(this)
         rev_lichSu.adapter= EmployerJobHistoryAdapter(employerViewModel.loadJobHistory(token))
