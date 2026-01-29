@@ -53,7 +53,7 @@ fun pickDateTime(manager: FragmentManager, textView: TextView) {
 
         timePicker.addOnPositiveButtonClickListener {
 
-            val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+            val calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"))
             calendar.timeInMillis = selection
 
             calendar.set(Calendar.HOUR_OF_DAY, timePicker.hour)
@@ -61,11 +61,11 @@ fun pickDateTime(manager: FragmentManager, textView: TextView) {
             calendar.set(Calendar.SECOND, 0)
 
             val sdf = SimpleDateFormat("HH:mm:ss dd-MM-yyyy", Locale.getDefault())
+            sdf.timeZone = TimeZone.getTimeZone("Asia/Ho_Chi_Minh")
             val finalString = sdf.format(calendar.time)
 
             textView.text = finalString
         }
-
         timePicker.show(manager, "TIME_PICKER")
     }
     datePicker.show(manager, "DATE_PICKER")

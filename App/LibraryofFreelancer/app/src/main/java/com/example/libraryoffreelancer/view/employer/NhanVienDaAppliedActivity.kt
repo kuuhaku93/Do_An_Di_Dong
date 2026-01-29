@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.libraryoffreelancer.R
 import com.example.libraryoffreelancer.model.CreateContactRequest
 import com.example.libraryoffreelancer.view.adapter.EmployerApplicationManagerAdapter
+import com.example.libraryoffreelancer.view.adapter.TrangChuEmployerAdapter
 import com.example.libraryoffreelancer.view.freelancer.HoSoFreelancerActivity
 import com.example.libraryoffreelancer.viewmodel.EmployerViewModel
 import com.example.libraryoffreelancer.viewmodel.dateconvert
@@ -25,6 +26,9 @@ import java.util.Locale
 class NhanVienDaAppliedActivity : AppCompatActivity(), EmployerApplicationManagerAdapter.OnApplicantClickListener, EmployerApplicationManagerAdapter.OnAcceptClickListener {
     private var job_deadline = ""
     private var token = ""
+    private var job_id = 0
+    private lateinit var adapter: EmployerApplicationManagerAdapter
+    private var rev_item_job = findViewById<RecyclerView>(R.id.rev_item_info)
     private val employerViewModel= EmployerViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +39,7 @@ class NhanVienDaAppliedActivity : AppCompatActivity(), EmployerApplicationManage
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val job_id = intent.getIntExtra("job_id",0)
+        job_id = intent.getIntExtra("job_id",0)
         job_deadline = intent.getStringExtra("job_deadline").orEmpty()
         val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         token=sharedPref.getString("token","").orEmpty()
@@ -45,10 +49,9 @@ class NhanVienDaAppliedActivity : AppCompatActivity(), EmployerApplicationManage
         btn_return.setOnClickListener {
             this.finish()
         }
-
-        val rev_item_job=findViewById<RecyclerView>(R.id.rev_item_info)
         rev_item_job.layoutManager= LinearLayoutManager(this)
-        rev_item_job.adapter= EmployerApplicationManagerAdapter(employerViewModel.Load_application(job_id,token),token,this, this)
+        adapter = EmployerApplicationManagerAdapter(employerViewModel.Load_application(job_id,token),token,this, this)
+        rev_item_job.adapter= adapter
     }
 
     override fun OnAcceptClick(application_id: Int){
@@ -59,7 +62,7 @@ class NhanVienDaAppliedActivity : AppCompatActivity(), EmployerApplicationManage
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Xác nhận tuyển dụng")
-        builder.setMessage("Hợp đồng sẽ được tạo với thời gian:\n\n- Bắt đầu: $startDate\n- Kết thúc: $endDate (Theo hạn Job)")
+        builder.setMessage("Hợp đồng sẽ được tạo với thời gian:\n\n- Bắt đầu: $startDate\n- Kết thúc: $endDate")
 
         builder.setPositiveButton("Đồng ý") { dialog, _ ->
             val data = CreateContactRequest(application_id, startDate, endDate)
@@ -72,6 +75,12 @@ class NhanVienDaAppliedActivity : AppCompatActivity(), EmployerApplicationManage
             dialog.dismiss()
         }
         builder.create().show()
+    }
+    override fun onResume() {
+        super.onResume()
+        val list = employerViewModel.Load_application(job_id,token)
+        val adapter = EmployerApplicationManagerAdapter(list, token, this@NhanVienDaAppliedActivity, this@NhanVienDaAppliedActivity)
+        rev_item_job.adapter = adapter
     }
     override fun OnApplicantClick(freelancer_id: Int) {
         val intent= Intent(this, HoSoFreelancerActivity::class.java)
