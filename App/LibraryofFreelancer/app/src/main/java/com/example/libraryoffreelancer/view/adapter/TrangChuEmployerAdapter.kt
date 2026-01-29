@@ -44,6 +44,7 @@ class TrangChuEmployerAdapter (private var listCV: List<EmployerJob>, private va
         val cv = listCV[position]
         Glide.with(holder.itemView.context)
             .load(cv.avatar)
+            .error(R.drawable.error)
             .into(holder.anhDaiDien)
 
         holder.tieuDe.text = cv.title

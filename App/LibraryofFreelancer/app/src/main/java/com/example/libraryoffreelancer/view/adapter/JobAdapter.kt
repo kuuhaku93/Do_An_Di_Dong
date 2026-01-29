@@ -58,6 +58,7 @@ class EmployerCurrentJobAdapter(private var items: List<EmployerCurrentJob>, pri
         holder.txt_ThoiGian_ketThuc.text = dateconvert(job.end_date)
         Glide.with(holder.itemView.context)
             .load(freelancer.avatar)
+            .error(R.drawable.error)
             .into(holder.img_avatar)
         holder.btn_DanhGia.setOnClickListener {
             listener.onFinishClick(job)
@@ -105,6 +106,7 @@ class EmployerApplicationManagerAdapter(private val items: List<Application>, pr
         val freelancer=freelancerViewModel.Load_portfolio(application.freelancer_id,token)
         Glide.with(holder.itemView.context)
             .load(freelancer.avatar)
+            .error(R.drawable.error)
             .into(holder.img_avatar)
         holder.img_avatar.setOnClickListener {
             listener.OnApplicantClick(application.freelancer_id)
@@ -165,6 +167,7 @@ class EmployerJobHistoryAdapter(private val items: List<EmployerJobHistory>): Re
         val job=items[position]
         Glide.with(holder.itemView.context)
             .load(job.freelancer_avatar)
+            .error(R.drawable.error)
             .into(holder.img_avatar)
         holder.txt_tenCongViec.text=job.job_title
         holder.txt_tenCongTy.text=job.company_name
@@ -215,6 +218,7 @@ class HistoryJobAdapter(private val items: List<HistoryJob>, private val listenn
 
         Glide.with(holder.itemView.context)
             .load(job.company_avatar)
+            .error(R.drawable.error)
             .into(holder.img_avatar)
         holder.img_avatar.setOnClickListener {
             listenner.onItemClick(job.employer_id)
@@ -270,6 +274,7 @@ class ApplicationAdapter(private val items: List<Application>,private val token:
 
         Glide.with(holder.itemView.context)
             .load(freelancer.avatar)
+            .error(R.drawable.error)
             .into(holder.img_avatar)
         holder.img_avatar.setOnClickListener {
             listenner.onItemClick(application.freelancer_id)
@@ -324,6 +329,7 @@ class CurrentJobAdapter(private val items: List<CurrentJob>,private val token: S
 
         Glide.with(holder.itemView.context)
             .load(employer.company_logo)
+            .error(R.drawable.error)
             .into(holder.img_avatar)
         holder.img_avatar.setOnClickListener {
             listenner.onItemClick(job.company_id)

@@ -44,6 +44,7 @@ class TrangChuFreelancerAdapter(private val listJob: List<Job>, private val list
 
         Glide.with(holder.itemView.context)
             .load(job.avatar)
+            .error(R.drawable.error)
             .into(holder.img_avatar)
 
         holder.txt_title.text=job.title

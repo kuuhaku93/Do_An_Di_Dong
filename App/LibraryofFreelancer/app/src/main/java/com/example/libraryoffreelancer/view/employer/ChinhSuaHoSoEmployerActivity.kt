@@ -17,7 +17,6 @@ import com.bumptech.glide.Glide
 import com.example.libraryoffreelancer.R
 import com.example.libraryoffreelancer.model.UpdateProfileRequest
 import com.example.libraryoffreelancer.viewmodel.EmployerViewModel
-import com.example.libraryoffreelancer.viewmodel.FreelancerViewModel
 
 class ChinhSuaHoSoEmployerActivity : AppCompatActivity() {
     private val employerViewModel = EmployerViewModel()

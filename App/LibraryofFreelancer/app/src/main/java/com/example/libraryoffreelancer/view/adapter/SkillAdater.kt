@@ -297,6 +297,7 @@ class ItemChungNhanCustomAdapter(private val items: MutableList<CustomItem>, pri
         val item=items[position]
         Glide.with(holder.itemView.context)
             .load(item.icon)
+            .error(R.drawable.error)
             .into(holder.img_icon)
         holder.cb_itemCustom.text=item.title
         holder.cb_itemCustom.buttonTintList = ColorStateList.valueOf(Color.parseColor("#0C9300"))
