@@ -329,7 +329,7 @@ class FreelancerViewModel {
             .put("description", description)
             .put("skills", skills)
             .put("items", Json.encodeToString(ListSerializer(ItemRequest.serializer()),items))
-            .put("custom", Json.encodeToString(ListSerializer(CustomItem.serializer()),custom))
+            .put("customs", Json.encodeToString(ListSerializer(CustomItem.serializer()),custom))
             .toString()
         val JSON = "application/json; charset=utf-8".toMediaType()
         val body = bodyString.toRequestBody(JSON)

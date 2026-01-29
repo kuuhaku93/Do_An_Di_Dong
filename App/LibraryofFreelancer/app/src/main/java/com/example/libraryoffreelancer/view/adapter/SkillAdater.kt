@@ -226,14 +226,13 @@ class ItemChungNhanAdapter(private val items: List<DefaultItem>, private val lis
                     if(index==-1){
                         currentList.add(DefaultItem(item.id,item.title,"",item.icon,start_year = 2000,end_year = 2000))
                         listIDItem.add(ItemRequest(item.id,2000,2000))
-                        index=listIDItem.indexOfFirst { it.id==item.id }
                     }
                     val currentItem = currentList.find { it.id == item.id }
                     val idItem = listIDItem.find { it.id == item.id }
 
                     if (currentItem != null && idItem != null) {
-                        currentItem.start_year = numberPicker.value
-                        idItem.start_year = numberPicker.value
+                        currentItem.end_year = numberPicker.value
+                        idItem.end_year = numberPicker.value
                     }
                     Log.d("mydebug","Năm được chọn: ${numberPicker.value}")
                 }

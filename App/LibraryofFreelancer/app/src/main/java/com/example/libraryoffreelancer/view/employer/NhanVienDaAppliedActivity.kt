@@ -2,10 +2,12 @@ package com.example.libraryoffreelancer.view.employer
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -54,6 +56,7 @@ class NhanVienDaAppliedActivity : AppCompatActivity(), EmployerApplicationManage
         rev_item_job.adapter= adapter
     }
 
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun OnAcceptClick(application_id: Int){
         val calendar = Calendar.getInstance()
         val sdf = SimpleDateFormat("HH:mm:ss dd-MM-yyyy", Locale.getDefault())

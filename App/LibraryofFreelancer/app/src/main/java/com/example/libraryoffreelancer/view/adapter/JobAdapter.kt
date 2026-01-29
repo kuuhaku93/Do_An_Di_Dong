@@ -141,7 +141,7 @@ class EmployerJobHistoryAdapter(private val items: List<EmployerJobHistory>): Re
         val txt_tenCongViec = item.findViewById<TextView>(R.id.txt_ten_cong_viec_Employer)
         val txt_tenCongTy = item.findViewById<TextView>(R.id.txt_tenCongTy_lichSuCongViec)
         val txt_tienTrinh = item.findViewById<TextView>(R.id.txt_tien_trinh)
-        val txt_thoiGian = item.findViewById<TextView>(R.id.txt_thoi_gian)
+        val txt_thoiGian = item.findViewById<TextView>(R.id.txt_thoi_gian_Employer)
         val txt_soDiem=itemView.findViewById<TextView>(R.id.txt_score_employer)
         val layout_vien=item.findViewById<View>(R.id.layout_vien_lichsuCongViec_item)
 

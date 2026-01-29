@@ -76,7 +76,7 @@ class EmployerViewModel {
         val JSON = "application/json; charset=utf-8".toMediaType()
         val body = bodyString.toRequestBody(JSON)
         val req = Request.Builder()
-            .url("$urlRoot/create_rating")
+            .url("$urlRoot/employer/create_rating")
             .addHeader("Content-Type","application/json")
             .addHeader("Authorization","Token $token")
             .post(body)

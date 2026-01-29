@@ -199,7 +199,7 @@ class ChinhSuaHoSoFreelancerActivity : AppCompatActivity(), ItemKyNangClick, Ite
              val listcustom:List<CustomItem> = listCustom.toList()
 
 //             Log.d("mydebug", Json.encodeToString(ListSerializer(ItemRequest.serializer()),listitem))
-//             Log.d("mydebug", Json.encodeToString(ListSerializer(CustomItem.serializer()),listcustom))
+             Log.d("mydebug", "list custom"+Json.encodeToString(ListSerializer(CustomItem.serializer()),listcustom))
              val freelancerViewModel= FreelancerViewModel()
              val res=freelancerViewModel.Edit_Portfolio(token,txt_HovaTen.text.toString(),portfolio.avatar,txt_Email.text.toString(),txt_SDT.text.toString(),txt_Mota.text.toString(),listIDSkill,listitem,listcustom)
              if (res.success){

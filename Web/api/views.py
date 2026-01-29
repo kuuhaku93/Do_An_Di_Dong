@@ -528,7 +528,7 @@ class Freelancer:
             data = json.loads(request.body.decode('utf-8'))
         except (ValueError, UnicodeDecodeError):
             return HttpResponseBadRequest(json.dumps({'success':False,'message': 'Invalid JSON'}), content_type='application/json')
-
+        print(data)
         freelancer=token.user
         freelancer_name = data.get('freelancer_name','').strip()
         avatar = data.get('avatar','').strip()
@@ -779,18 +779,23 @@ class Freelancer:
             return JsonResponse({'success': True, 'contacts': []}, status=200)
         result = []
         for contact in contacts_qs:
-            rating=Freelancer_Ratings.objects.get(contact_id=contact)
-            review=Employer_Reviews.objects.get(contact_id=contact)
+            rating = Freelancer_Ratings.objects.filter(contact_id=contact).first()
+            review = Employer_Reviews.objects.filter(contact_id=contact).first()
+
+            if not rating or not review:
+                continue # Skip if either rating or review is missing
+
             job = contact.application_id.job_id
-            employer=contact.application_id.job_id.employer_id
+            employer = job.employer_id
+
             result.append({
-                'contact_id':contact.pk,
-                'job_title':job.title,
-                'score':review.score,
-                'complete':rating.complete,
-                'company_name':employer.company_name,
-                'company_avatar':employer.company_logo,
-                'employer_id':employer.pk,
+                'contact_id': contact.pk,
+                'job_title': job.title,
+                'score': review.score,
+                'complete': rating.complete,
+                'company_name': employer.company_name,
+                'company_avatar': employer.company_logo,
+                'employer_id': employer.pk,
                 'start_date': contact.start_date,
                 'end_date': contact.end_date
             })
@@ -1244,16 +1249,23 @@ class Employer:
             token = Token.objects.get(key=token_key)
         except Token.DoesNotExist:
             return JsonResponse({'success':False,'message': 'Token does not exist.'}, status=400)
-        freelancer=token.user
+        employer=token.user
 
-        contacts_qs = Contacts.objects.filter(application_id__freelancer_id=freelancer,current_status=False).select_related('application_id__job_id','application_id__freelancer_id','application_id').distinct()
+        contacts_qs = Contacts.objects.filter(application_id__job_id__employer_id=employer,current_status=False).select_related('application_id__job_id','application_id__freelancer_id','application_id').distinct()
         if not contacts_qs.exists():
             return JsonResponse({'success': True, 'contacts': []}, status=200)
         result = []
         for contact in contacts_qs:
+            review = Employer_Reviews.objects.filter(contact_id=contact).first()
+            rating = Freelancer_Ratings.objects.filter(contact_id=contact).first()
+
+            if not review or not rating:
+                continue
+            
             review=Employer_Reviews.objects.get(contact_id=contact)
             job = contact.application_id.job_id
             freelancer = contact.application_id.freelancer_id
+            rating = Freelancer_Ratings.objects.get(contact_id=contact)
             result.append({
                 'contact_id':contact.pk,
                 'job_title':job.title,
