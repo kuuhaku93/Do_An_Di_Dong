@@ -67,6 +67,7 @@ class PortfolioItemAdapter(private val item: Item): RecyclerView.Adapter<Portfol
             holder.txt_namKetThuc.text=item.default[position].end_year.toString()
             Glide.with(holder.itemView.context)
                 .load(item.default[position].icon)
+                .error(R.drawable.error)
                 .into(holder.img_anh)
         }
         else {
@@ -74,6 +75,7 @@ class PortfolioItemAdapter(private val item: Item): RecyclerView.Adapter<Portfol
             holder.txt_mota.text=item.custom[position-item.default.size].description
             Glide.with(holder.itemView.context)
                 .load(item.custom[position-item.default.size].icon)
+                .error(R.drawable.error)
                 .into(holder.img_anh)
         }
     }
@@ -135,6 +137,7 @@ class RatingAdapter(private val items: List<Rating>): RecyclerView.Adapter<Ratin
         holder.txt_sao.text=items[position].rating.toString()
         Glide.with(holder.itemView.context)
             .load(items[position].employer_avatar)
+            .error(R.drawable.error)
             .into(holder.img_avatar)
     }
 

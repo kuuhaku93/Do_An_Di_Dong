@@ -43,6 +43,7 @@ class ChiTietCongViecActivity : AppCompatActivity() {
         val img_avatar = findViewById<ImageView>(R.id.img_avatar_chiTietCongViecEmployer)
         Glide.with(this)
             .load(job.avatar)
+            .error(R.drawable.error)
             .into(img_avatar)
         val txt_nguoiThamGia = findViewById<TextView>(R.id.txt_SoNguoiDaThamGia)
         val txt_tenCongTy = findViewById<TextView>(R.id.txt_TenCongTyEmployer)

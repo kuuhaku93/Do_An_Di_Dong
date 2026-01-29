@@ -52,6 +52,7 @@ class ChinhSuaHoSoEmployerActivity : AppCompatActivity() {
         txt_Desc.setText(profile.employer_description)
         Glide.with(this )
             .load(profile.company_logo)
+            .error(R.drawable.error)
             .into(logo)
         logo.setOnClickListener {
             val builder = AlertDialog.Builder(this)

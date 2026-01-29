@@ -45,7 +45,7 @@ class DanhGiaFreelancerActivity : AppCompatActivity() {
         Glide.with(this)
             .load(portfolio.avatar)
             .placeholder(R.drawable.baseline_account_circle_24)
-            .error(R.drawable.baseline_account_circle_24)
+            .error(R.drawable.error)
             .into(imgAvatar)
 
         btnDang.setOnClickListener {

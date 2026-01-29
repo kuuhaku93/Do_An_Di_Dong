@@ -36,6 +36,7 @@ class EmployerReviewAdapter(private var reviews: List<EmployerReview>) : Recycle
         Glide.with(holder.itemView.context)
             .load(review.freelancer_avatar)
             .placeholder(R.drawable.about)
+            .error(R.drawable.error)
             .into(holder.imgAvatar)
     }
 

@@ -150,7 +150,7 @@ class HoSoEmployerActivity : AppCompatActivity() {
         Glide.with(this@HoSoEmployerActivity)
             .load(profile.company_logo)
             .placeholder(R.drawable.baseline_account_circle_24)
-            .error(R.drawable.baseline_account_circle_24)
+            .error(R.drawable.error)
             .into(imgAvatar)
         val list = employerViewModel.loadEmployerReviews(token, employerId)
         val reviewAdapter = EmployerReviewAdapter(list)
