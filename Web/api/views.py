@@ -1036,7 +1036,7 @@ class Employer:
             job = Jobs.objects.select_for_update().get(pk=job.pk)
             if job.employer_id_id != user.id:
                 return JsonResponse({'success': False, 'message': 'User does not have permission'}, status=400)
-            if not application.apply_status:
+            if not application.status:
                 return JsonResponse({'success': False, 'message': 'Application is not in applied state'}, status=400)
             if job.current_employee >= job.max_employee:
                 return JsonResponse({'success': False, 'message': 'This job has reached max employees'}, status=400)
@@ -1050,6 +1050,8 @@ class Employer:
         job.current_employee = F('current_employee') + 1
         job.save()
         job.refresh_from_db(fields=['current_employee'])
+        application.apply_status = True
+        application.save()
         return JsonResponse({'success':True,'message': 'Contact created successfully'}, status=200)
 
     @csrf_exempt
