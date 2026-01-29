@@ -920,7 +920,10 @@ class Employer:
         if not employer:
             return JsonResponse({'success':False,'message': 'Employer id is required'}, status=400)
         
-        profile=Accounts.objects.get(pk=employer)
+        try :
+            profile=Accounts.objects.get(pk=employer)
+        except Accounts.DoesNotExist:
+            return JsonResponse({'success':False,'message': 'Employer not found'}, status=404)
         qs=Employer_Reviews.objects.filter(status=True,contact_id__application_id__job_id__employer_id=employer).aggregate(avg_score=Avg('score'))
         rating = qs['avg_score']
         if rating is None:
@@ -938,6 +941,63 @@ class Employer:
         }
         return JsonResponse({'success':True,'profile':result}, status=200)
     
+    @csrf_exempt
+    @require_POST
+    def edit_profile(request):
+        auth_header = request.META.get('HTTP_AUTHORIZATION', '')
+        if not auth_header.startswith('Token '):
+            return JsonResponse({'success':False,'message': 'Authorization header required: Token <key>'}, status=400)
+        token_key = auth_header.split(' ', 1)[1].strip()
+        if not token_key:
+            return JsonResponse({'success':False,'message': 'Token is invalid.'}, status=400)
+        try:
+            token = Token.objects.get(key=token_key)
+        except Token.DoesNotExist:
+            return JsonResponse({'success':False,'message': 'Token does not exist.'}, status=400)
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+        except (ValueError, UnicodeDecodeError):
+            return HttpResponseBadRequest(json.dumps({'success':False,'message': 'Invalid JSON'}), content_type='application/json')
+
+        
+
+        employer_id=data.get("employer_id")
+        if not employer_id:
+            return JsonResponse({'success':False,'message': 'Employer id is required'}, status=400)
+        try:
+            user = Accounts.objects.get(pk=employer_id)
+        except Accounts.DoesNotExist:
+            return JsonResponse({'success':False,'message': 'User not found'}, status=404)
+        if user.pk != employer_id:
+            return JsonResponse({'success':False,'message': 'User does not have permission'}, status=400)
+            
+        company_name=data.get('company_name','').strip()
+        company_logo=data.get('company_logo','').strip()
+        email=data.get('email','').strip()
+        phone_number=data.get('phone_number','').strip()
+        website=data.get('website','').strip()
+        address=data.get('address','').strip()
+        employer_description=data.get('employer_description','').strip()
+        if not company_name:
+            return JsonResponse({'success':False,'message': 'company_name is required.'}, status=400)
+        if not email:
+            return JsonResponse({'success':False,'message': 'email is required.'}, status=400)
+        if Accounts.objects.filter(email=email).exists() and email != user.email:
+            return JsonResponse({'success':False,'message': 'email is already in use.'}, status=400)
+        if phone_number and len(phone_number) < 10:
+            return JsonResponse({'success':False,'message': 'phone_number is invalid.'}, status=400)
+        with transaction.atomic():
+            user.company_name=company_name
+            user.company_logo=company_logo
+            user.email=email
+            user.phone_number=phone_number
+            user.website=website
+            user.address=address
+            user.employer_description=employer_description
+            user.save()
+
+        return JsonResponse({'success':True,'message':'Profile updated successfully'}, status=200)
+
     @csrf_exempt
     @require_POST
     def create_contact(request):
