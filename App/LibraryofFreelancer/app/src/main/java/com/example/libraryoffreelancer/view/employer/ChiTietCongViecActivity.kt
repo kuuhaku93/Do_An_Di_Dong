@@ -22,6 +22,7 @@ import com.example.libraryoffreelancer.viewmodel.EmployerViewModel
 import com.example.libraryoffreelancer.viewmodel.dateconvert
 
 class ChiTietCongViecActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

@@ -30,7 +30,7 @@ class NhanVienDaAppliedActivity : AppCompatActivity(), EmployerApplicationManage
     private var token = ""
     private var job_id = 0
     private lateinit var adapter: EmployerApplicationManagerAdapter
-    private var rev_item_job = findViewById<RecyclerView>(R.id.rev_item_info)
+    private lateinit var rev_item_job: RecyclerView
     private val employerViewModel= EmployerViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +51,7 @@ class NhanVienDaAppliedActivity : AppCompatActivity(), EmployerApplicationManage
         btn_return.setOnClickListener {
             this.finish()
         }
+        rev_item_job = findViewById<RecyclerView>(R.id.rev_item_info)
         rev_item_job.layoutManager= LinearLayoutManager(this)
         adapter = EmployerApplicationManagerAdapter(employerViewModel.Load_application(job_id,token),token,this, this)
         rev_item_job.adapter= adapter
@@ -82,7 +83,7 @@ class NhanVienDaAppliedActivity : AppCompatActivity(), EmployerApplicationManage
     override fun onResume() {
         super.onResume()
         val list = employerViewModel.Load_application(job_id,token)
-        val adapter = EmployerApplicationManagerAdapter(list, token, this@NhanVienDaAppliedActivity, this@NhanVienDaAppliedActivity)
+        val adapter = EmployerApplicationManagerAdapter(list, token, this, this)
         rev_item_job.adapter = adapter
     }
     override fun OnApplicantClick(freelancer_id: Int) {
