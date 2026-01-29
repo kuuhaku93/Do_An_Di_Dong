@@ -36,6 +36,8 @@ class EmployerViewModel {
     fun updateProfile(token: String, requestData: UpdateProfileRequest): APIResponse {
         var result = APIResponse(false, "Lỗi kết nối")
             val jsonBody = JSONObject()
+            jsonBody.put("employer_id", requestData.employer_id)
+            jsonBody.put("company_logo", requestData.company_logo)
             jsonBody.put("company_name", requestData.company_name)
             jsonBody.put("phone_number", requestData.phone_number)
             jsonBody.put("website", requestData.website)
@@ -47,22 +49,27 @@ class EmployerViewModel {
             val body = jsonBody.toString().toRequestBody(mediaType)
 
             val req = Request.Builder()
-                .url("$urlRoot/employer/update_profile") // Nhớ thêm URL này vào urls.py của Django
+                .url("$urlRoot/employer/edit_profile")
                 .addHeader("Authorization", "Token $token")
                 .post(body)
                 .build()
-
-            client.newCall(req).execute().use { response ->
-                val respBody = response.body?.string().orEmpty()
-                if (response.isSuccessful) {
-                    val jsonRes = JSONObject(respBody)
-                    val success = jsonRes.optBoolean("success")
-                    val message = jsonRes.optString("message")
-                    result = APIResponse(success, message)
-                } else {
-                    result = APIResponse(false, response.message)
+            val thread = Thread{
+                client.newCall(req).execute().use { response ->
+                    val respBody = response.body?.string().orEmpty()
+                    Log.d("mydebug",respBody)
+                    if (response.isSuccessful) {
+                        val jsonRes = JSONObject(respBody)
+                        val success = jsonRes.optBoolean("success")
+                        val message = jsonRes.optString("message")
+                        result = APIResponse(success, message)
+                    } else {
+                        result = APIResponse(false, response.message)
+                    }
                 }
             }
+            thread.start()
+            thread.join()
+
         return result
     }
     fun createRating(token: String, requestData: CreateRatingRequest): APIResponse{
@@ -104,6 +111,7 @@ class EmployerViewModel {
                 .build()
             client.newCall(request).execute().use { response ->
                 val body = response.body?.string().orEmpty()
+                Log.d("mydebug",body)
                 if (response.isSuccessful) {
                     val listResponse = customJson.decodeFromString<EmployerCurrentJobResponse>(body)
                     if (listResponse.success) {

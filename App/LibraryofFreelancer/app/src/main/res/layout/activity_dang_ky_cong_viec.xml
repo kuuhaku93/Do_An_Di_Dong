@@ -73,36 +73,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/txt_mucluongmongmuon_trangdangkycongviec"
-            android:layout_width="wrap_content"
-            android:layout_height="64dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/custom_txt"
-            android:ems="10"
-            android:hint="Mức lương mong muốn"
-            android:inputType="phone"
-            android:paddingLeft="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.515"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
-        <EditText
             android:id="@+id/txt_motacongviec"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="70dp"
             android:background="@drawable/custum_txt_mota"
             android:ems="10"
             android:gravity="start"
             android:hint="Nhập điều muốn nói với nhà tuyển dụng"
-            android:inputType="text"
+            android:inputType="textMultiLine"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
-            app:layout_constraintEnd_toEndOf="@+id/txt_mucluongmongmuon_trangdangkycongviec"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/txt_mucluongmongmuon_trangdangkycongviec"
-            app:layout_constraintTop_toBottomOf="@+id/txt_mucluongmongmuon_trangdangkycongviec" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_mucLuong_dangKyApply_freelancer" />
 
         <Button
             android:id="@+id/btn_ungtuyen"
@@ -116,5 +100,62 @@
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="@+id/txt_motacongviec"
             app:layout_constraintTop_toBottomOf="@+id/txt_motacongviec" />
+
+        <SeekBar
+            android:id="@+id/sb_mucLuong_trangDangKy_freelancer"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:max="10"
+            android:progress="3"
+            android:progressTint="#FFFFFF"
+            app:layout_constraintEnd_toStartOf="@+id/txt_sbMax_dangKyApply"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/txt_sbMin_dangKyApply"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Mức lương:$"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/sb_mucLuong_trangDangKy_freelancer"
+            app:layout_constraintTop_toBottomOf="@+id/sb_mucLuong_trangDangKy_freelancer" />
+
+        <TextView
+            android:id="@+id/txt_mucLuong_dangKyApply_freelancer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/textView21"
+            app:layout_constraintTop_toTopOf="@+id/textView21" />
+
+        <TextView
+            android:id="@+id/txt_sbMin_dangKyApply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="TextView"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/sb_mucLuong_trangDangKy_freelancer" />
+
+        <TextView
+            android:id="@+id/txt_sbMax_dangKyApply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="TextView"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/sb_mucLuong_trangDangKy_freelancer" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

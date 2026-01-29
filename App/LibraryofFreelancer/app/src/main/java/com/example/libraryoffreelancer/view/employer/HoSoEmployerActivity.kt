@@ -43,6 +43,7 @@ class HoSoEmployerActivity : AppCompatActivity() {
         val imgAvatar = findViewById<ImageView>(R.id.img_company_logo)
         Glide.with(this)
             .load(profile.company_logo)
+            .error(R.drawable.error)
             .into(imgAvatar)
         val txt_tenCongTy = findViewById<TextView>(R.id.txt_companyName)
         val txt_moTa = findViewById<TextView>(R.id.txt_mota_trangChuEmployer)

@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseline_arrow_back_24"
-        app:tint="#6C6C6C" />
+        app:tint="#FFFFFF" />
 
     <ImageButton
         android:id="@+id/imageButton2"

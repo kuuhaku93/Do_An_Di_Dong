@@ -43,6 +43,7 @@ class EmployerCurrentJobAdapter(private var items: List<EmployerCurrentJob>, pri
         return JobViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onBindViewHolder(
         holder: EmployerCurrentJobAdapter.JobViewHolder,
         position: Int
@@ -114,9 +115,11 @@ class EmployerApplicationManagerAdapter(private val items: List<Application>, pr
         holder.txt_mucLuong.setText("$"+application.wanted_salary.toString())
         holder.txt_dangGia.text=freelancer.rating.toString()
         if(application.is_applied){
+            holder.btn_accept.visibility=View.GONE
             holder.ctlayout_vien.setBackgroundColor(Color.GREEN)
         }
         else{
+            holder.btn_accept.visibility=View.VISIBLE
             holder.ctlayout_vien.setBackgroundColor(Color.WHITE)
         }
         holder.rev_kynang.layoutManager= GridLayoutManager(holder.itemView.context, 3)

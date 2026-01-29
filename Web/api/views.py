@@ -975,7 +975,7 @@ class Employer:
             return JsonResponse({'success':False,'message': 'User not found'}, status=404)
         if user.pk != employer_id:
             return JsonResponse({'success':False,'message': 'User does not have permission'}, status=400)
-            
+        print(data)
         company_name=data.get('company_name','').strip()
         company_logo=data.get('company_logo','').strip()
         email=data.get('email','').strip()
@@ -989,7 +989,7 @@ class Employer:
             return JsonResponse({'success':False,'message': 'email is required.'}, status=400)
         if Accounts.objects.filter(email=email).exists() and email != user.email:
             return JsonResponse({'success':False,'message': 'email is already in use.'}, status=400)
-        if phone_number and len(phone_number) < 10:
+        if phone_number and len(phone_number) < 8:
             return JsonResponse({'success':False,'message': 'phone_number is invalid.'}, status=400)
         with transaction.atomic():
             user.company_name=company_name

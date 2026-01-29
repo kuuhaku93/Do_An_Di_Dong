@@ -73,6 +73,8 @@ class ChiTietCongViecFreelancerActivity : AppCompatActivity() {
         val btn_ungtuyencongviec = findViewById<Button>(R.id.btn_ungtuyencongviec)
         btn_ungtuyencongviec.setOnClickListener {
             val intent = Intent(this, DangKyCongViecActivity::class.java)
+            intent.putExtra("max_salary", job.salary_max)
+            intent.putExtra("min_salary", job.salary_min)
             intent.putExtra("job_id",job.id)
             startActivity(intent)
         }

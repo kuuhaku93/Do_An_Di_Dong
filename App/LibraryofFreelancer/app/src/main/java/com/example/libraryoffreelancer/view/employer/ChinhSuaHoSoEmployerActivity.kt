@@ -1,6 +1,7 @@
 package com.example.libraryoffreelancer.view.employer
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -48,11 +49,13 @@ class ChinhSuaHoSoEmployerActivity : AppCompatActivity() {
 
         txt_Name.setText(profile.company_name)
         txt_Email.setText(profile.email)
+        txt_Phone.setText(profile.phone_number)
         txt_Website.setText(profile.website)
         txt_Address.setText(profile.address)
         txt_Desc.setText(profile.employer_description)
         Glide.with(this )
             .load(profile.company_logo)
+            .error(R.drawable.error)
             .into(logo)
         logo.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -84,6 +87,7 @@ class ChinhSuaHoSoEmployerActivity : AppCompatActivity() {
             val phone = txt_Phone.text.toString().trim()
 
             val request = UpdateProfileRequest(
+                employer_id = userID,
                 company_name = newName,
                 company_logo = newLogo,
                 email = newEmail,
@@ -94,12 +98,15 @@ class ChinhSuaHoSoEmployerActivity : AppCompatActivity() {
 
             )
             val response = employerViewModel.updateProfile(token, request)
+            Log.d("editprofile", response.toString())
             if (response.success) {
-                Toast.makeText(this@ChinhSuaHoSoEmployerActivity, "Cập nhật thành công!", Toast.LENGTH_SHORT).show()
+                Log.d("editprofile", response.message)
+                Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show()
                 setResult(RESULT_OK)
                 finish()
             } else {
-                Toast.makeText(this@ChinhSuaHoSoEmployerActivity, "Lỗi: ${response.message}", Toast.LENGTH_SHORT).show()
+                Log.d("editprofile", response.message)
+                Toast.makeText(this, "Lỗi: ${response.message}", Toast.LENGTH_SHORT).show()
             }
         }
         btnBack.setOnClickListener {

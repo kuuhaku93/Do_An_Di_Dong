@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UpdateProfileRequest(
+    val employer_id: Int,
     val company_name: String,
     val company_logo: String = " ",
     val phone_number: String,

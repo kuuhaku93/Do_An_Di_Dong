@@ -1,6 +1,5 @@
 package com.example.libraryoffreelancer.view.employer
 
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -30,7 +29,7 @@ class NhanVienDaAppliedActivity : AppCompatActivity(), EmployerApplicationManage
     private var token = ""
     private var job_id = 0
     private lateinit var adapter: EmployerApplicationManagerAdapter
-    private var rev_item_job = findViewById<RecyclerView>(R.id.rev_item_info)
+    private lateinit var rev_item_job: RecyclerView
     private val employerViewModel= EmployerViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +42,8 @@ class NhanVienDaAppliedActivity : AppCompatActivity(), EmployerApplicationManage
         }
         job_id = intent.getIntExtra("job_id",0)
         job_deadline = intent.getStringExtra("job_deadline").orEmpty()
-        val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+        val sharedPref = getSharedPreferences("MyPref", MODE_PRIVATE)
+        rev_item_job = findViewById<RecyclerView>(R.id.rev_item_info)
         token=sharedPref.getString("token","").orEmpty()
         Log.d("mydebug",token)
 
