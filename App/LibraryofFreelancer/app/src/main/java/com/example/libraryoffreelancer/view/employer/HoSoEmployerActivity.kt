@@ -35,6 +35,7 @@ class HoSoEmployerActivity : AppCompatActivity() {
         val is_self = intent.getBooleanExtra("self", false)
         val Pref = getSharedPreferences("MyPref", MODE_PRIVATE)
         val token = Pref.getString("token", "")
+
         val employerId = intent.getIntExtra("employer_id", 0)
         val employerViewModel = EmployerViewModel()
         val profile = employerViewModel.loadProfileEmployer(token!!, employerId)

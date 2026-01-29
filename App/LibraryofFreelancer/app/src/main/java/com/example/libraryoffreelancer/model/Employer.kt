@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class UpdateProfileRequest(
     val company_name: String,
+    val company_logo: String = " ",
     val phone_number: String,
     val website: String,
     val address: String,
@@ -14,7 +15,7 @@ data class UpdateProfileRequest(
 @Serializable
 data class EmployerProfile(
     val company_name: String,
-    val company_logo: String = "",
+    var company_logo: String = "",
     val email: String,
     val phone_number: String,
     val website: String = "",
