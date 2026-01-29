@@ -36,7 +36,7 @@ class TrangChuEmployerActivity : AppCompatActivity(), TrangChuEmployerAdapter.On
             insets
         }
 
-        val sharedPref = getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         token=sharedPref.getString("token","").orEmpty()
         val userID=sharedPref.getInt("ACCOUNT_ID",0)
 

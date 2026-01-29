@@ -12,7 +12,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.libraryoffreelancer.R
+import com.example.libraryoffreelancer.view.employer.LichSuCongViecEmployerActivity
+import com.example.libraryoffreelancer.view.employer.TrangChuEmployerActivity
 import com.example.libraryoffreelancer.view.freelancer.LichSuCongViecActivity
+import com.example.libraryoffreelancer.view.freelancer.TrangChuFreeLancerActivity
 import com.example.libraryoffreelancer.viewmodel.AccountViewModel
 
 class NutCaiDatActivity : AppCompatActivity() {
@@ -27,6 +30,9 @@ class NutCaiDatActivity : AppCompatActivity() {
         }
         val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         val token = sharedPref.getString("token", "")
+        val is_freelancer=intent.getBooleanExtra("is_freelancer",false)
+
+
 
         val btn_QuayLaiTrangHoSo=findViewById<ImageButton>(R.id.btn_QuayLaiTrangHoSo)
         btn_QuayLaiTrangHoSo.setOnClickListener {
@@ -52,10 +58,27 @@ class NutCaiDatActivity : AppCompatActivity() {
 
 
         val btn_vai_tro=findViewById<Button>(R.id.btn_vai_tro)
+        btn_vai_tro.setOnClickListener {
+            if(is_freelancer){
+                val intent = Intent(this, TrangChuEmployerActivity::class.java)
+                startActivity(intent)
+            }
+            else{
+                val intent = Intent(this, TrangChuFreeLancerActivity::class.java)
+                startActivity(intent)
+            }
+        }
         val btn_lich_su=findViewById<Button>(R.id.btn_lich_su)
         btn_lich_su.setOnClickListener {
-            val intent = Intent(this, LichSuCongViecActivity::class.java)
-            startActivity(intent)
+            if(is_freelancer){
+                val intent = Intent(this, LichSuCongViecActivity::class.java)
+                startActivity(intent)
+            }
+            else{
+                val intent = Intent(this, LichSuCongViecEmployerActivity::class.java)
+                startActivity(intent)
+            }
+
         }
     }
 }

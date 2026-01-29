@@ -80,7 +80,7 @@ class DangNhapActivity : AppCompatActivity() {
                     "Employer" -> {
                         if (login.employer_status == true) {
                             val intent = Intent(this, TrangChuEmployerActivity::class.java)
-                            val Pref = getSharedPreferences("Pref", Context.MODE_PRIVATE)
+                            val Pref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
                             Pref.edit {
                                 putString("token", token)
                                 putInt("ACCOUNT_ID", login.account_id)

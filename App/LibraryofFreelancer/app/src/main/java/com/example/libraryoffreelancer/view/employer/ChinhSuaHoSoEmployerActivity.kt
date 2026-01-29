@@ -33,7 +33,7 @@ class ChinhSuaHoSoEmployerActivity : AppCompatActivity() {
         val txt_Phone = findViewById<TextView>(R.id.txt_nhapsdt)
         val btnSave = findViewById<Button>(R.id.btn_luuemployer)
 
-        val sharedPref = getSharedPreferences("Pref", MODE_PRIVATE)
+        val sharedPref = getSharedPreferences("MyPref", MODE_PRIVATE)
         val token = sharedPref.getString("token", "").orEmpty()
 
         txt_Name.text = intent.getStringExtra("company_name")

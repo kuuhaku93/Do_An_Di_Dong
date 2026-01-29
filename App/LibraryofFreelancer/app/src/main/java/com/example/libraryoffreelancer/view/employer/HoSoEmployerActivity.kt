@@ -33,7 +33,7 @@ class HoSoEmployerActivity : AppCompatActivity() {
             insets
         }
         val is_self = intent.getBooleanExtra("self", false)
-        val Pref = getSharedPreferences("Pref", MODE_PRIVATE)
+        val Pref = getSharedPreferences("MyPref", MODE_PRIVATE)
         val token = Pref.getString("token", "")
         val employerId = intent.getIntExtra("employer_id", 0)
         val employerViewModel = EmployerViewModel()
@@ -105,6 +105,7 @@ class HoSoEmployerActivity : AppCompatActivity() {
         }
         btn_caidat.setOnClickListener {
             val intent = Intent(this, NutCaiDatActivity::class.java)
+            intent.putExtra("is_freelancer", false)
             startActivity(intent)
         }
         btn_chinhSua.setOnClickListener {

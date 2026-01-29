@@ -32,7 +32,7 @@ class DanhGiaFreelancerActivity : AppCompatActivity() {
         val contactId = intent.getIntExtra("contact_id", 0)
         val freelancerId = intent.getIntExtra("freelancer_id", 0)
 
-        val sharedPref = getSharedPreferences("Pref", MODE_PRIVATE)
+        val sharedPref = getSharedPreferences("MyPref", MODE_PRIVATE)
         val token = sharedPref.getString("token", "").orEmpty()
 
         val portfolio = freelancerViewModel.Load_portfolio(freelancerId, token)

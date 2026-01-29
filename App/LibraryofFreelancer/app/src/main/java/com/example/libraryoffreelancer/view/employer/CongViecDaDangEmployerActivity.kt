@@ -32,7 +32,7 @@ class CongViecDaDangEmployerActivity : AppCompatActivity(), EmployerCurrentJobAd
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val sharedPref = getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         val userID=sharedPref.getInt("ACCOUNT_ID",0)
         token=sharedPref.getString("token","").orEmpty()
 

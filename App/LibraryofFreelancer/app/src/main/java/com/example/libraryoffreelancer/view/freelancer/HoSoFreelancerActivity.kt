@@ -48,6 +48,7 @@ class HoSoFreelancerActivity : AppCompatActivity() {
         val btn_caiDat = findViewById<ImageButton>(R.id.btn_CaiDat_Freelancer)
         btn_caiDat.setOnClickListener {
             val intent = Intent(this, NutCaiDatActivity::class.java)
+                intent.putExtra("is_freelancer",true)
             startActivity(intent)
         }
         val btn_back=findViewById<ImageButton>(R.id.btn_back_portfolio_freelancer)

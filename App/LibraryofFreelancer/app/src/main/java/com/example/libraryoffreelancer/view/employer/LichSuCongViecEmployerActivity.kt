@@ -26,7 +26,7 @@ class LichSuCongViecEmployerActivity : AppCompatActivity() {
             insets
         }
         val employerViewModel = EmployerViewModel()
-        val sharedPref = getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         val token=sharedPref.getString("token","").orEmpty()
         Log.d("mydebug",token.toString())
         val rev_lichSu = findViewById<RecyclerView>(R.id.rev_lichSuCongViecEmployer)

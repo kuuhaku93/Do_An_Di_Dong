@@ -121,13 +121,14 @@ class EmployerViewModel {
         return listJobs
     }
     fun createContact(token: String, requestData: CreateContactRequest): APIResponse {
+        Log.d("mydebug","token truyen vao"+token)
         var result = APIResponse(false, "Lỗi kết nối")
         val thread = Thread {
             val bodyString = JSONObject()
             bodyString.put("application_id", requestData.application_id)
             bodyString.put("start_date", requestData.start_date)
             bodyString.put("end_date", requestData.end_date)
-
+            Log.d("mydebug",bodyString.toString())
             val mediaType = "application/json; charset=utf-8".toMediaType()
             val body = bodyString.toString().toRequestBody(mediaType)
 
@@ -139,6 +140,7 @@ class EmployerViewModel {
 
             client.newCall(req).execute().use { response ->
                 val respBody = response.body?.string().orEmpty()
+                Log.d("mydebug",respBody)
                 if (response.isSuccessful) {
                     if (respBody.isNotEmpty()) {
                         result = customJson.decodeFromString<APIResponse>(respBody)

@@ -1026,6 +1026,10 @@ class Employer:
             end_date = datetime.strptime(end_date_str, "%H:%M:%S %d-%m-%Y") if end_date_str else None
         except ValueError:
             return JsonResponse({'success':False,'message': 'Invalid date format. Use ISO format YYYY-MM-DD'}, status=400)
+        try:
+            application=Applications.objects.select_related('job_id','freelancer_id').get(pk=application_id)
+        except Applications.DoesNotExist:
+            return JsonResponse({'success':False,'message': 'Application not found'}, status=404)
         
         job = application.job_id
         with transaction.atomic():

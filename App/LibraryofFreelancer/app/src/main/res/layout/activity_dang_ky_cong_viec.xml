@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1C1B1B"
+    android:backgroundTint="#FFFFFF"
     tools:context=".view.freelancer.DangKyCongViecActivity">
 
     <!-- Guideline chia màn hình theo chiều dọc (30% trên) -->
@@ -14,8 +14,8 @@
         android:id="@+id/guideline30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.3"
-        android:orientation="horizontal"/>
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
 
     <!-- Phần xanh (chiếm 30% trên cùng) -->
     <View
@@ -23,8 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#0C9300"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/guideline30"/>
+        app:layout_constraintBottom_toTopOf="@id/guideline30"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Phần đen (chiếm 70% còn lại) -->
     <View
@@ -32,8 +32,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#1C1B1B"
-        app:layout_constraintTop_toBottomOf="@id/guideline30"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline30" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="375dp"
@@ -52,10 +52,11 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:background="@null"
+            android:backgroundTint="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/baseline_arrow_back_24"
-            app:tint="#6C6C6C" />
+            app:tint="#FFFDFD" />
 
         <TextView
             android:id="@+id/textView18"

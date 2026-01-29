@@ -33,7 +33,7 @@ fun dateconvert(input: String): String {
     val instant = Instant.parse(input)
     val zoneId = ZoneId.of("Asia/Ho_Chi_Minh")
     val zonedDateTime = instant.atZone(zoneId)
-    val formatter = DateTimeFormatter.ofPattern("H:mm dd/MM/yyyy")
+    val formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy")
     val output = zonedDateTime.format(formatter)
     return output
 }

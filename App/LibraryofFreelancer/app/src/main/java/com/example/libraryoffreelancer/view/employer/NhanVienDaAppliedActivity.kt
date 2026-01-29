@@ -3,6 +3,7 @@ package com.example.libraryoffreelancer.view.employer
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
@@ -16,6 +17,7 @@ import com.example.libraryoffreelancer.model.CreateContactRequest
 import com.example.libraryoffreelancer.view.adapter.EmployerApplicationManagerAdapter
 import com.example.libraryoffreelancer.view.freelancer.HoSoFreelancerActivity
 import com.example.libraryoffreelancer.viewmodel.EmployerViewModel
+import com.example.libraryoffreelancer.viewmodel.dateconvert
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -35,8 +37,9 @@ class NhanVienDaAppliedActivity : AppCompatActivity(), EmployerApplicationManage
         }
         val job_id = intent.getIntExtra("job_id",0)
         job_deadline = intent.getStringExtra("job_deadline").orEmpty()
-        val sharedPref = getSharedPreferences("Pref", Context.MODE_PRIVATE)
-        val token=sharedPref.getString("token","").orEmpty()
+        val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+        token=sharedPref.getString("token","").orEmpty()
+        Log.d("mydebug",token)
 
         val btn_return = findViewById<ImageButton>(R.id.btn_return_nhan_vien_da_applied)
         btn_return.setOnClickListener {
@@ -52,7 +55,7 @@ class NhanVienDaAppliedActivity : AppCompatActivity(), EmployerApplicationManage
         val calendar = Calendar.getInstance()
         val sdf = SimpleDateFormat("HH:mm:ss dd-MM-yyyy", Locale.getDefault())
         val startDate = sdf.format(calendar.time)
-        val endDate = job_deadline
+        val endDate = dateconvert(job_deadline)
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Xác nhận tuyển dụng")

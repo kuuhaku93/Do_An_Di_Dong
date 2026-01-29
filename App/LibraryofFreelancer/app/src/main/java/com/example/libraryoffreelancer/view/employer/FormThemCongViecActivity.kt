@@ -35,7 +35,7 @@ class FormThemCongViecActivity : AppCompatActivity(), ItemSkillCheck {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val Pref = getSharedPreferences("Pref", MODE_PRIVATE)
+        val Pref = getSharedPreferences("MyPref", MODE_PRIVATE)
         val token = Pref.getString("token", "").orEmpty()
         val viewModel = EmployerViewModel()
 

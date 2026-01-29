@@ -3,6 +3,7 @@ package com.example.libraryoffreelancer.view.employer
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -32,8 +33,9 @@ class ChiTietCongViecActivity : AppCompatActivity() {
         }
         val id = intent.getIntExtra("position",0)
         val employerViewModel = EmployerViewModel()
-        val Pref = getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val Pref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         val token = Pref.getString("token","").orEmpty()
+        Log.d("mydebug",token)
         val list = employerViewModel.loadTrangChuEmployer(token)
         val job = list[id]
 
