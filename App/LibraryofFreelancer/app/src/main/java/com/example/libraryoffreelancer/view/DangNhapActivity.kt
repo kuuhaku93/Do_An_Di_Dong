@@ -70,6 +70,8 @@ class DangNhapActivity : AppCompatActivity() {
                             sharedPref.edit {
                                 putString("token", token)
                                 putInt("ACCOUNT_ID", login.account_id)
+                                putBoolean("FREELANCER_STATUS", login.freelancer_status==true)
+                                putBoolean("EMPLOYER_STATUS", login.employer_status==true)
                             }
                             startActivity(intent)
                             finish()
@@ -84,6 +86,8 @@ class DangNhapActivity : AppCompatActivity() {
                             Pref.edit {
                                 putString("token", token)
                                 putInt("ACCOUNT_ID", login.account_id)
+                                putBoolean("FREELANCER_STATUS", login.freelancer_status==true)
+                                putBoolean("EMPLOYER_STATUS", login.employer_status==true)
                             }
                             startActivity(intent)
                             finish()

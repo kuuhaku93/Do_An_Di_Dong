@@ -202,8 +202,8 @@
 
             <EditText
                 android:id="@+id/txt_moTa_congViec"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="364dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/custom_txt"
                 android:gravity="top|start"

@@ -60,10 +60,20 @@ class NutCaiDatActivity : AppCompatActivity() {
         val btn_vai_tro=findViewById<Button>(R.id.btn_vai_tro)
         btn_vai_tro.setOnClickListener {
             if(is_freelancer){
+                val sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+
+                if (!sharedPref.getBoolean("EMPLOYER_STATUS", false)){
+                    Toast.makeText(this, "Vai trò Employer của tài khoản tạm thời bị khoá!", Toast.LENGTH_LONG).show()
+                    return@setOnClickListener
+                }
                 val intent = Intent(this, TrangChuEmployerActivity::class.java)
                 startActivity(intent)
             }
             else{
+                if (!sharedPref.getBoolean("FREELANCER_STATUS", false)){
+                    Toast.makeText(this, "Vai trò Freelancer của tài khoản tạm thời bị khoá!", Toast.LENGTH_LONG).show()
+                    return@setOnClickListener
+                }
                 val intent = Intent(this, TrangChuFreeLancerActivity::class.java)
                 startActivity(intent)
             }

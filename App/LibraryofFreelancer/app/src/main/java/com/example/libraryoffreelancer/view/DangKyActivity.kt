@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +31,10 @@ class DangKyActivity : AppCompatActivity() {
         val edt_ten_dang_nhap = findViewById<EditText>(R.id.edt_ten_dang_nhap)
         val edt_mat_khau01 = findViewById<EditText>(R.id.edt_mat_khau01)
         val edt_xac_nhan_mat_khau01 = findViewById<EditText>(R.id.edt_xac_nhan_mat_khau01)
+        val btn_back=findViewById<ImageButton>(R.id.btn_back_dangKy)
+        btn_back.setOnClickListener {
+            this.finish()
+        }
         val btn_dang_ky = findViewById<Button>(R.id.btn_dang_ky)
         btn_dang_ky.setOnClickListener {
             val fullname = edt_ho_ten.text.toString()

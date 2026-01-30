@@ -36,6 +36,7 @@ class QuenMatKhauActivity : AppCompatActivity() {
                 if(res.success){
                     Toast.makeText(this, res.message, Toast.LENGTH_LONG).show()
                     val chuyen_trang= Intent(this, NhapMaOTPActivity::class.java)
+                    chuyen_trang.putExtra("email",edt_quenMatkhau.text.toString())
                     startActivity(chuyen_trang)
                 }
                 else{

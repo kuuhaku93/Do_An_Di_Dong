@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -40,6 +41,17 @@ class NhapMaOTPActivity : AppCompatActivity() {
                 val chuyen_trang= Intent(this, TaoMatKhauMoiActivity::class.java)
                 chuyen_trang.putExtra("otp",edt_maOtp.text.toString())
                 startActivity(chuyen_trang)
+            }
+            else{
+                Toast.makeText(this, res.message, Toast.LENGTH_LONG).show()
+            }
+        }
+        val btn_reSendOTP=findViewById<TextView>(R.id.txt_reSendOTP)
+        btn_reSendOTP.setOnClickListener {
+            val accountViewModel = AccountViewModel()
+            val res=accountViewModel.Send_otp(intent.getStringExtra("email").orEmpty())
+            if(res.success){
+                Toast.makeText(this, res.message, Toast.LENGTH_LONG).show()
             }
             else{
                 Toast.makeText(this, res.message, Toast.LENGTH_LONG).show()
