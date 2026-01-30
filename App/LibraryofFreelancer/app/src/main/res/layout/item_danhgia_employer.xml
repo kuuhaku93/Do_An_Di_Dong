@@ -7,15 +7,17 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_nguoiDanhGia"
-        android:layout_width="411dp"
+        android:layout_width="400dp"
         android:layout_height="132dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/bg_item_trang_chu_freelancer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
         <!-- Ảnh đại diện -->
 
@@ -38,6 +40,7 @@
             android:layout_height="24dp"
             android:layout_marginTop="16dp"
             android:text="Số sao"
+            android:textAlignment="textEnd"
             android:textColor="#FDFDFD"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -62,14 +65,14 @@
 
         <TextView
             android:id="@+id/txt_title_item"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="Tên Người Đánh Giá"
             android:textColor="#FDFDFD"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/txt_soSao_item"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/img_anhDaiDien_NguoiDanhGia_item"
             app:layout_constraintTop_toTopOf="@+id/img_anhDaiDien_NguoiDanhGia_item" />
@@ -78,12 +81,13 @@
             android:id="@+id/txt_noiDung_item"
             android:layout_width="213dp"
             android:layout_height="63dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="48dp"
+            android:layout_marginEnd="10dp"
             android:inputType="textMultiLine"
             android:text="Nội dung đánh giá"
             android:textColor="#FDFDFD"
-            app:layout_constraintEnd_toEndOf="@+id/txt_title_item"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/txt_title_item"
             app:layout_constraintTop_toBottomOf="@+id/txt_title_item" />
@@ -93,14 +97,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
+            android:layout_marginBottom="2dp"
             android:gravity="center"
             android:text="★"
             android:textColor="#FFD700"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/txt_soSao_item"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/txt_soSao_item"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <!-- Icon và mức lương -->
 

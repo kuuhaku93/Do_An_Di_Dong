@@ -87,7 +87,7 @@ class EmployerApplicationManagerAdapter(private val items: List<Application>, pr
         val txt_dangGia=item.findViewById<TextView>(R.id.txt_review_itemProvider_Employer)
         val txt_mucLuong=item.findViewById<TextView>(R.id.txt_wantedsalary_itemProvider_Employer)
         val rev_kynang=item.findViewById<RecyclerView>(R.id.rev_skill_itemProvider_Employer)
-        val btn_accept=item.findViewById<ImageButton>(R.id.btn_accept)
+        val btn_accept=item.findViewById<Button>(R.id.btn_duyet)
     }
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -97,6 +97,7 @@ class EmployerApplicationManagerAdapter(private val items: List<Application>, pr
         return EmployerApplicationManagerViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onBindViewHolder(
         holder: EmployerApplicationManagerAdapter.EmployerApplicationManagerViewHolder,
         position: Int

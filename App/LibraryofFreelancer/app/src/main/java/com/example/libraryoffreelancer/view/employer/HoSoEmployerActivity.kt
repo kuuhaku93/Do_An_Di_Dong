@@ -22,18 +22,7 @@ import com.example.libraryoffreelancer.viewmodel.EmployerViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HoSoEmployerActivity : AppCompatActivity() {
-    private lateinit var imgAvatar: ImageView
-    private lateinit var txt_tenCongTy: TextView
-    private lateinit var txt_moTa: TextView
-    private lateinit var txt_Email: TextView
-    private lateinit var txt_SDT: TextView
-    private lateinit var txt_Website: TextView
-    private lateinit var txt_diaChi: TextView
-    private lateinit var txt_diemDanhGia: TextView
-    private lateinit var rcvDanhGia: RecyclerView
-
     private val employerViewModel = EmployerViewModel()
-    private var token: String = ""
     private var employerId: Int = 0
     @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,18 +41,19 @@ class HoSoEmployerActivity : AppCompatActivity() {
         employerId = intent.getIntExtra("employer_id", 0)
         val profile = employerViewModel.loadProfileEmployer(token!!, employerId)
 
-        val imgAvatar = findViewById<ImageView>(R.id.img_company_logo)
+        var imgAvatar = findViewById<ImageView>(R.id.img_company_logo)
         Glide.with(this)
             .load(profile.company_logo)
             .error(R.drawable.error)
             .into(imgAvatar)
-        txt_tenCongTy = findViewById<TextView>(R.id.txt_companyName)
-        txt_moTa = findViewById<TextView>(R.id.txt_mota_trangChuEmployer)
-        txt_Email = findViewById<TextView>(R.id.txt_email)
-        txt_SDT = findViewById<TextView>(R.id.txt_phone_TrangChuEmployer)
-        txt_Website = findViewById<TextView>(R.id.txt_website)
-        txt_diaChi = findViewById<TextView>(R.id.txt_diachi)
-        txt_diemDanhGia = findViewById<TextView>(R.id.so_sao_review_Employer)
+        val txt_tenCongTy = findViewById<TextView>(R.id.txt_companyName)
+        val txt_moTa = findViewById<TextView>(R.id.txt_mota_trangChuEmployer)
+        val txt_Email = findViewById<TextView>(R.id.txt_email)
+        val txt_SDT = findViewById<TextView>(R.id.txt_phone_TrangChuEmployer)
+        val txt_Website = findViewById<TextView>(R.id.txt_website)
+        val txt_diaChi = findViewById<TextView>(R.id.txt_diachi)
+        val txt_diemDanhGia = findViewById<TextView>(R.id.so_sao_review_Employer)
+        val txt_soReview = findViewById<TextView>(R.id.so_review)
 
         txt_tenCongTy.text = profile.company_name
         txt_moTa.text = profile.employer_description
@@ -73,12 +63,14 @@ class HoSoEmployerActivity : AppCompatActivity() {
         txt_diaChi.text = profile.address
         txt_diemDanhGia.text = profile.rating.toString()
 
-        rcvDanhGia = findViewById<RecyclerView>(R.id.rcv_danh_gia_Employer)
+
+
+        val rcvDanhGia = findViewById<RecyclerView>(R.id.rcv_danh_gia_Employer)
         val listRating = employerViewModel.loadEmployerReviews(token, employerId)
         var reviewAdapter = EmployerReviewAdapter(listRating)
         rcvDanhGia.layoutManager = LinearLayoutManager(this)
         rcvDanhGia.adapter = reviewAdapter
-
+        txt_soReview.text = listRating.size.toString() + " review"
         val btn_chinhSua = findViewById<ImageButton>(R.id.btn_ChinhSuaHoSoEmployer)
         val btn_caidat = findViewById<ImageButton>(R.id.btn_CaiDat_Employer)
         val btn_back = findViewById<ImageButton>(R.id.btn_back_profile_employer)
@@ -137,25 +129,5 @@ class HoSoEmployerActivity : AppCompatActivity() {
             btn_caidat.visibility = View.GONE
             btn_back.visibility = View.VISIBLE
         }
-    }
-    override fun onResume() {
-        super.onResume()
-        val profile = employerViewModel.loadProfileEmployer(token, employerId)
-        txt_tenCongTy.text = profile.company_name
-        txt_moTa.text = profile.employer_description
-        txt_Email.text = profile.email
-        txt_SDT.text = profile.phone_number
-        txt_Website.text = profile.website
-        txt_diaChi.text = profile.address
-        txt_diemDanhGia.text = profile.rating.toString()
-        Glide.with(this@HoSoEmployerActivity)
-            .load(profile.company_logo)
-            .placeholder(R.drawable.baseline_account_circle_24)
-            .error(R.drawable.error)
-            .into(imgAvatar)
-        val list = employerViewModel.loadEmployerReviews(token, employerId)
-        val reviewAdapter = EmployerReviewAdapter(list)
-        rcvDanhGia.layoutManager = LinearLayoutManager(this)
-        rcvDanhGia.adapter = reviewAdapter
     }
 }

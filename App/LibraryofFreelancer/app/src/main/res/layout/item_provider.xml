@@ -24,7 +24,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_item_provider_Employer"
             android:layout_width="396dp"
-            android:layout_height="380dp"
+            android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:layout_marginStart="2dp"
             android:layout_marginTop="2dp"
@@ -35,6 +35,18 @@
             app:layout_constraintEnd_toEndOf="@+id/ctlayout_applyJob_itemProvider_Employer"
             app:layout_constraintStart_toStartOf="@+id/ctlayout_applyJob_itemProvider_Employer"
             app:layout_constraintTop_toTopOf="@+id/ctlayout_applyJob_itemProvider_Employer">
+
+            <Button
+                android:id="@+id/btn_duyet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#0C9300"
+                android:text="TUYỂN"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView25"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="@+id/txt_motacongviec"
+                app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
             <ImageView
                 android:id="@+id/img_avatar_ItemProvider_Employer"
@@ -61,13 +73,14 @@
 
             <TextView
                 android:id="@+id/txt_message_itemProvide_Employer"
-                android:layout_width="204dp"
+                android:layout_width="0dp"
                 android:layout_height="53dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
                 android:text="TextView"
                 android:textColor="#FFFEFE"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/txt_fullName_itemProvider_Employer"
+                app:layout_constraintEnd_toStartOf="@+id/btn_duyet"
                 app:layout_constraintHorizontal_bias="0.481"
                 app:layout_constraintStart_toStartOf="@+id/txt_fullName_itemProvider_Employer"
                 app:layout_constraintTop_toBottomOf="@+id/txt_time_itemProvider_Employer" />
@@ -88,7 +101,7 @@
                 android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="8dp"
                 android:textColor="#FFEB3B"
                 android:textSize="34sp"
@@ -135,19 +148,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_avatar_ItemProvider_Employer"
                 app:layout_constraintVertical_bias="0.111" />
-
-            <ImageButton
-                android:id="@+id/btn_accept"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="4dp"
-                android:background="#040404"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rev_skill_itemProvider_Employer"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@android:drawable/ic_input_add" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

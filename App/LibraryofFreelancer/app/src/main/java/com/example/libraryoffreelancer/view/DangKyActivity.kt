@@ -59,7 +59,7 @@ class DangKyActivity : AppCompatActivity() {
                 if (check.isSuccess){
                     Toast.makeText(
                             this,
-                            "Đăng nhập thành công!",
+                            "Đăng ký thành công!",
                             Toast.LENGTH_SHORT
                         ).show()
                         val intent = Intent(this, DangNhapActivity::class.java)

@@ -242,7 +242,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:text="★"
-                    android:textColor="#919191"
+                    android:textColor="#FFEB3B"
                     android:textSize="30sp" />
 
                 <TextView
